@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import React, { useEffect } from "react";
+// import "./App.css";
+
+// pull into ENV
+const url = "https://comicclan.vett.io/comics";
+const token = "ComicClanVettIO2019";
+const term = "?q=The True Story";
+
+const getComics = (url: string, token: string) => {
+  axios
+    .get(url, { headers: { Authorization: `Bearer ${token}` } })
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(function(error) {
+      // handle error
+      console.log(error);
+    });
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  useEffect(() => {
+    getComics(url, token);
+  });
+
+  return <div className="App">Hello World</div>;
 }
 
 export default App;
