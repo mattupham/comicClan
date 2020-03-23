@@ -2,7 +2,7 @@ import axios from "axios";
 import Headers from "components/Header";
 import Main from "components/Main";
 import React, { FC, useEffect } from "react";
-import { Flex } from "rebass";
+import { Box, Flex } from "rebass";
 
 // pull into ENV
 const url = "https://comicclan.vett.io/comics";
@@ -27,12 +27,12 @@ const App: FC = () => {
   }, []);
 
   return (
-    <div className="App">
+    <Box className="App">
       <Flex flexDirection="column">
         <Headers />
         <Main />
       </Flex>
-    </div>
+    </Box>
   );
 };
 

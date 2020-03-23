@@ -1,3 +1,4 @@
+import BookList from "components/BookList";
 import Filter from "components/Filter";
 import Search from "components/Search";
 import React, { FC } from "react";
@@ -16,6 +17,7 @@ const StyledMain: FC = () => {
     <Main className="main">
       <Search />
       <Filter />
+      <BookList />
     </Main>
   );
 };

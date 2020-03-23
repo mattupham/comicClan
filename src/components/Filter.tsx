@@ -1,6 +1,5 @@
 import StyledFilterButton from "components/FilterButton";
 import React, { FC, ReactNode, useState } from "react";
-import { Box } from "rebass";
 
 interface IProps {
   primary: boolean;
@@ -33,25 +32,27 @@ const filterButtonsDefault = [
 ];
 
 const Filter: FC = () => {
-  const [selected, setSelected] = useState<
+  const [buttonList, setButtonList] = useState<
     { name: string; selected: boolean }[]
   >(filterButtonsDefault);
-  console.log("SELECTED: ", selected);
-  const handleClick = (selectedIndex: number) => {
-    if (!selected[selectedIndex].selected) {
-      const updatedSelected = [...selected];
-      updatedSelected.forEach((button, index) => {
-        index === selectedIndex
+
+  console.log("SELECTED: ", buttonList);
+
+  const handleClick = (curIndex: number) => {
+    if (!buttonList[curIndex].selected) {
+      const updatedButtonList = [...buttonList];
+      updatedButtonList.forEach((button, index) =>
+        index === curIndex
           ? (button.selected = true)
-          : (button.selected = false);
-      });
-      setSelected(updatedSelected);
+          : (button.selected = false)
+      );
+      setButtonList(updatedButtonList);
     }
   };
 
   return (
-    <Box>
-      {selected.map(({ name, selected }, index) => {
+    <>
+      {buttonList.map(({ name, selected }, index) => {
         return (
           <StyledFilterButton
             key={index}
@@ -63,7 +64,7 @@ const Filter: FC = () => {
           </StyledFilterButton>
         );
       })}
-    </Box>
+    </>
   );
 };
 
