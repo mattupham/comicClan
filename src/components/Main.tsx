@@ -7,7 +7,7 @@ const Main = styled.main`
   height: 100%;
 `;
 
-const StyledMain = () => {
+const StyledMain: React.FC = () => {
   return (
     <Main className="main">
       <Search />

@@ -10,7 +10,7 @@ const Header = styled.header`
   background: #535353;
 `;
 
-const StyledHeader = () => {
+const StyledHeader: React.FC = () => {
   return (
     <Header className="header">
       <Flex>

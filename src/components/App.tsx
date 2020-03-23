@@ -21,7 +21,7 @@ const getComics = (url: string, token: string) => {
     });
 };
 
-function App() {
+const App: React.FC = () => {
   useEffect(() => {
     getComics(url, token);
   });
@@ -34,6 +34,6 @@ function App() {
       </Flex>
     </div>
   );
-}
+};
 
 export default App;
