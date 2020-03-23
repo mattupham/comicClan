@@ -1,0 +1,31 @@
+import { ReactComponent as ComicClanLogoSVG } from "assets/comicClanLogo.svg";
+import { ReactComponent as ComicClanTextSVG } from "assets/comicClanText.svg";
+import React from "react";
+import { Box, Flex } from "rebass";
+import styled from "styled-components";
+
+const Header = styled.header`
+  position: absolute;
+  width: 100%;
+  height: 73px;
+  left: 0px;
+  top: 0px;
+  background: #535353;
+`;
+
+const StyledHeader = () => {
+  return (
+    <Header className="header">
+      <Flex>
+        <Box mt="2.3rem" mb="2rem" ml="2.8rem" mr="1.2rem">
+          <ComicClanLogoSVG />
+        </Box>
+        <Box mt="2.537rem" mb="2.57rem">
+          <ComicClanTextSVG />
+        </Box>
+      </Flex>
+    </Header>
+  );
+};
+
+export default StyledHeader;

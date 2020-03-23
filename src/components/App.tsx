@@ -1,5 +1,5 @@
 import axios from "axios";
-import Header from "Header";
+import Header from "components/Header";
 import React, { useEffect } from "react";
 
 // pull into ENV
