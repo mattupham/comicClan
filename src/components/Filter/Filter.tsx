@@ -1,4 +1,4 @@
-import StyledFilterButton from "components/FilterButton";
+import StyledFilterButton from "components/FilterButton/FilterButton";
 import React, { FC, ReactNode, useState } from "react";
 
 interface IProps {

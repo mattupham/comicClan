@@ -1,6 +1,6 @@
-import BookList from "components/BookList";
-import Filter from "components/Filter";
-import Search from "components/Search";
+import BookList from "components/BookList/BookList";
+import Filter from "components/Filter/Filter";
+import Search from "components/Search/Search";
 import React, { FC } from "react";
 import styled from "styled-components";
 

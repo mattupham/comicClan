@@ -1,6 +1,6 @@
 import axios from "axios";
-import Headers from "components/Header";
-import Main from "components/Main";
+import Headers from "components/Header/Header";
+import Main from "components/Main/Main";
 import React, { FC, useEffect } from "react";
 import { Box, Flex } from "rebass";
 
