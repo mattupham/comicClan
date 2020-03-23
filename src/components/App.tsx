@@ -1,7 +1,7 @@
 import axios from "axios";
 import Headers from "components/Header";
 import Main from "components/Main";
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { Flex } from "rebass";
 
 // pull into ENV
@@ -21,10 +21,10 @@ const getComics = (url: string, token: string) => {
     });
 };
 
-const App: React.FC = () => {
+const App: FC = () => {
   useEffect(() => {
     getComics(url, token);
-  });
+  }, []);
 
   return (
     <div className="App">

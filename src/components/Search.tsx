@@ -1,5 +1,5 @@
 import { ReactComponent as SearchIcon } from "assets/searchIcon.svg";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
 
@@ -7,7 +7,6 @@ const SearchContainer = styled.div`
   display: inline-flex;
   border: 1px solid #ccc;
   overflow: hidden;
-  margin: "2.8rem";
   width: 100%;
   border-radius: 0.8rem;
   background: none;
@@ -42,7 +41,7 @@ const Search = styled.input`
   color: #cccccc;
 `;
 
-const StyledSearch: React.FC = () => {
+const StyledSearch: FC = () => {
   const [value, setValue] = useState<string>("");
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     alert("A name was submitted: " + value);
@@ -50,7 +49,7 @@ const StyledSearch: React.FC = () => {
   };
 
   return (
-    <Box m="2.8rem">
+    <Box mb="2.8rem">
       <form onSubmit={handleSubmit}>
         <SearchContainer>
           <Box ml="1.819rem" mt="1.819rem" mb="1.811rem" mr="1.811rem">

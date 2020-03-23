@@ -1,6 +1,6 @@
 import { ReactComponent as ComicClanLogoSVG } from "assets/comicClanLogo.svg";
 import { ReactComponent as ComicClanTextSVG } from "assets/comicClanText.svg";
-import React from "react";
+import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const Header = styled.header`
   background: #535353;
 `;
 
-const StyledHeader: React.FC = () => {
+const StyledHeader: FC = () => {
   return (
     <Header className="header">
       <Flex>
