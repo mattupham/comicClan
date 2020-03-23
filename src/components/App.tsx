@@ -1,6 +1,8 @@
 import axios from "axios";
-import Header from "components/Header";
+import Headers from "components/Header";
+import Main from "components/Main";
 import React, { useEffect } from "react";
+import { Flex } from "rebass";
 
 // pull into ENV
 const url = "https://comicclan.vett.io/comics";
@@ -26,7 +28,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Flex flexDirection="column">
+        <Headers />
+        <Main />
+      </Flex>
     </div>
   );
 }
