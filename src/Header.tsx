@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ComicClanLogo from "../
 
 const Header = styled.header`
   position: absolute;
@@ -10,8 +11,19 @@ const Header = styled.header`
   background: #535353;
 `;
 
+const ComicClanLogo = styled.svg`
+  flex: none;
+  transition: fill 0.25s;
+  width: 48px;
+  height: 48px;
+
+  ${Link}:hover & {
+    fill: rebeccapurple;
+  }
+`;
+
 const StyledHeader = () => {
-  return <Header className="header">Hello World</Header>;
+  return <Header className="header"></Header>;
 };
 
 export default StyledHeader;

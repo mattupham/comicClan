@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 // pull into ENV
 const url = "https://comicclan.vett.io/comics";
 const token = "ComicClanVettIO2019";
-const term = "?q=The True Story";
+// const term = "?q=The True Story";
 
 const getComics = (url: string, token: string) => {
   axios
