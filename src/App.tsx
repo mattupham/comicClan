@@ -1,6 +1,6 @@
 import axios from "axios";
+import Header from "Header";
 import React, { useEffect } from "react";
-// import "./App.css";
 
 // pull into ENV
 const url = "https://comicclan.vett.io/comics";
@@ -24,7 +24,11 @@ function App() {
     getComics(url, token);
   });
 
-  return <div className="App">Hello World</div>;
+  return (
+    <div className="App">
+      <Header />
+    </div>
+  );
 }
 
 export default App;
