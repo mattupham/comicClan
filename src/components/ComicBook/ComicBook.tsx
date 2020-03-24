@@ -45,7 +45,6 @@ const ComicBook: FC<IProps> = (props: IProps) => {
   return (
     <Box className="comicBook" mt="3.2rem" mr="9.6rem" width="20rem">
       <Box>
-        {/* <ComicBookBlueSVG /> */}
         <ComicBookImage alt={`${props.bookName}-image`} src={props.imageUrl} />
       </Box>
       <Box mt="1.605rem">

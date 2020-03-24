@@ -1,8 +1,10 @@
 import { BookData } from "components/App/App";
 import ComicBookList from "components/ComicBookList/ComicBookList";
-import Filter from "components/Filter/Filter";
+import GroupOptions, {
+  GROUP_OPTIONS
+} from "components/GroupOptions/GroupOptions";
 import Search from "components/Search/Search";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 
 const Main = styled.main`
@@ -23,10 +25,19 @@ interface IProps {
 }
 
 const StyledMain: FC<IProps> = (props: IProps) => {
+  const [currentGroup, setCurrentGroup] = useState<GROUP_OPTIONS>(
+    GROUP_OPTIONS.YEAR
+  );
+
+  console.log("CURRENT GROUP: ", currentGroup);
+
   return (
     <Main className="main">
       <Search />
-      <Filter />
+      <GroupOptions
+        handleSetCurrentGroup={setCurrentGroup}
+        currentGroup={currentGroup}
+      />
       <ComicBookList bookData={props.bookData} />
       <HR />
       {/* <ComicBookList /> */}

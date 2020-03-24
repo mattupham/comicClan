@@ -1,7 +1,8 @@
-import React, { FC, ReactNode } from "react";
+import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import React, { FC } from "react";
 import styled, { css } from "styled-components";
 
-const FilterButton = styled.button`
+const GroupButton = styled.button`
   background: none;
   border: none;
   padding-right: 1.5rem;
@@ -27,20 +28,21 @@ const FilterButton = styled.button`
 
 interface IProps {
   primary: boolean;
-  children: ReactNode;
+  // children: ReactNode;
   index: number;
-  handleClick: (index: number) => void;
+  handleClick: (groupOption: GROUP_OPTIONS) => void;
+  name: GROUP_OPTIONS;
 }
 
-const StyledFilterButton: FC<IProps> = (props: IProps) => {
+const StyledGroupButton: FC<IProps> = (props: IProps) => {
   return (
-    <FilterButton
+    <GroupButton
       primary={props.primary}
-      onClick={() => props.handleClick(props.index)}
+      onClick={() => props.handleClick(props.name)}
     >
-      {props.children}
-    </FilterButton>
+      {props.name}
+    </GroupButton>
   );
 };
 
-export default StyledFilterButton;
+export default StyledGroupButton;
