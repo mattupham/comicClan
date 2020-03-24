@@ -1,4 +1,4 @@
-import BookList from "components/BookList/BookList";
+import BookList from "components/ComicBookList/ComicBookList";
 import Filter from "components/Filter/Filter";
 import Search from "components/Search/Search";
 import React, { FC } from "react";
@@ -12,12 +12,20 @@ const Main = styled.main`
   padding-top: 2.8rem;
 `;
 
+const HR = styled.hr`
+  border: 1px solid #535353;
+  width: 100%;
+`;
+
 const StyledMain: FC = () => {
   return (
     <Main className="main">
       <Search />
       <Filter />
       <BookList />
+      <HR />
+      <BookList />
+      <HR />
     </Main>
   );
 };
