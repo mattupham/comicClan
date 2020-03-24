@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
 
-const Year = styled.div`
+const GroupTitle = styled.div`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -14,12 +14,14 @@ const Year = styled.div`
 
 interface IProps {
   bookData: BookData[];
+  // change below
+  groupValue: string;
 }
 
 const ComicBookList: FC<IProps> = (props: IProps) => {
   return (
     <Box className="comicBookList" mt="2.8rem" mb="6.9rem">
-      <Year>2019</Year>
+      <GroupTitle>{props.groupValue}</GroupTitle>
       <Flex flexWrap="wrap">
         {props.bookData.map((book, index) => (
           <ComicBook

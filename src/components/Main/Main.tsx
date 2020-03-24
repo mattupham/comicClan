@@ -64,35 +64,61 @@ const books: BookData[] = [
 ];
 
 const groupBy = (arr: BookData[], groupOption: GROUP_OPTIONS) => {
+  // if random, sort randomly
   const key = groupOption.toLowerCase() as keyof BookData;
-  console.log("KEY: ", key);
   const groups = arr.reduce((acc, curVal) => {
     acc[curVal[key]] = acc[curVal[key]] || [];
     acc[curVal[key]].push(curVal);
     return acc;
   }, Object.create(null));
-  return groups;
+  // console.log("GROUPS: ", Object.entries(groups));
+  return Object.entries(groups);
+  // [
+  //   [
+  //     2007,
+  //     [{},{},{}]
+  //   ],
+  //   [
+  //     2002,
+  //     [{},{},{}]
+  //   ]
+  // ]
+};
+
+const sortBy = (groupedData: any, groupOption: GROUP_OPTIONS) => {
+  if (groupOption === GROUP_OPTIONS.YEAR) {
+    return groupedData.sort((a: any, b: any) => +b[0] - +a[0]);
+  }
+  // year
+  // alphabetical
+  // random
 };
 
 const StyledMain: FC<IProps> = (props: IProps) => {
-  const [currentGroup, setCurrentGroup] = useState<GROUP_OPTIONS>(
+  const [currentGroupOption, setCurrentGroupOption] = useState<GROUP_OPTIONS>(
     GROUP_OPTIONS.YEAR
   );
 
-  // console.log("CURRENT GROUP: ", currentGroup);
+  const [sortedGroupData, setSortedGroupData] = useState<any>([]);
+
   useEffect(() => {
-    const groupedData = groupBy(props.bookData, currentGroup);
-    console.log("GROUPED DATA: ", groupedData);
-  }, [currentGroup, props.bookData]);
+    const groupedData = groupBy(props.bookData, currentGroupOption);
+    const sortedData = sortBy(groupedData, currentGroupOption);
+    console.log("SORTED DATA: ", sortedData);
+    setSortedGroupData(sortedData);
+  }, [currentGroupOption, props.bookData]);
 
   return (
     <Main className="main">
       <Search />
       <GroupOptions
-        handleSetCurrentGroup={setCurrentGroup}
-        currentGroup={currentGroup}
+        handleSetCurrentGroup={setCurrentGroupOption}
+        currentGroup={currentGroupOption}
       />
-      <ComicBookList bookData={props.bookData} />
+      {sortedGroupData.map(([groupValue, data]: any) => (
+        <ComicBookList groupValue={groupValue} bookData={data} />
+      ))}
+      {/* <ComicBookList bookData={props.bookData} /> */}
       <HR />
       {/* <ComicBookList /> */}
       <HR />
