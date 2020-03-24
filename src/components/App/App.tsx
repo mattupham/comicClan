@@ -33,7 +33,7 @@ const App: FC = () => {
   useEffect(() => {
     (async function getData() {
       const data: BookData[] = await getComics(url, token);
-      setBookData(data.slice(0, 4));
+      setBookData(data);
     })();
   }, []);
 

@@ -1,4 +1,3 @@
-import { ReactComponent as ComicBookBlueSVG } from "assets/comicBookBlue.svg";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
@@ -34,13 +33,20 @@ const Owner = styled.div`
 interface IProps {
   username: string;
   bookName: string;
+  imageUrl: string;
 }
+
+const ComicBookImage = styled.img`
+  width: "20rem";
+  height: "30.595rem";
+`;
 
 const ComicBook: FC<IProps> = (props: IProps) => {
   return (
     <Box className="comicBook" mt="3.2rem" mr="9.6rem" width="20rem">
       <Box>
-        <ComicBookBlueSVG />
+        {/* <ComicBookBlueSVG /> */}
+        <ComicBookImage alt={`${props.bookName}-image`} src={props.imageUrl} />
       </Box>
       <Box mt="1.605rem">
         <ComicBookName>{props.bookName}</ComicBookName>

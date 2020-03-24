@@ -22,7 +22,12 @@ const ComicBookList: FC<IProps> = (props: IProps) => {
       <Year>2019</Year>
       <Flex flexWrap="wrap">
         {props.bookData.map((book, index) => (
-          <ComicBook key={index} bookName={book.name} username={book.owner} />
+          <ComicBook
+            key={index}
+            bookName={book.name}
+            username={book.owner}
+            imageUrl={book.image}
+          />
         ))}
       </Flex>
     </Box>
