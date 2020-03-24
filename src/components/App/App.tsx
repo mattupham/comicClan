@@ -30,11 +30,10 @@ export interface BookData {
 const App: FC = () => {
   const [bookData, setBookData] = useState<BookData[]>([]);
   console.log("BOOK DATA: ", bookData);
-
   useEffect(() => {
     (async function getData() {
       const data: BookData[] = await getComics(url, token);
-      setBookData(data);
+      setBookData(data.slice(0, 4));
     })();
   }, []);
 
@@ -42,7 +41,7 @@ const App: FC = () => {
     <Box className="App">
       <Flex flexDirection="column">
         <Headers />
-        <Main />
+        <Main bookData={bookData} />
       </Flex>
     </Box>
   );

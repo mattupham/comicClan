@@ -1,6 +1,7 @@
+import { BookData } from "components/App/App";
 import ComicBook from "components/ComicBook/ComicBook";
 import React, { FC } from "react";
-import { Box } from "rebass";
+import { Box, Flex } from "rebass";
 import styled from "styled-components";
 
 const Year = styled.div`
@@ -11,15 +12,21 @@ const Year = styled.div`
   color: #aaaaaa;
 `;
 
-const BookList: FC = () => {
+interface IProps {
+  bookData: BookData[];
+}
+
+const ComicBookList: FC<IProps> = (props: IProps) => {
   return (
-    <Box className="bookList" mt="2.8rem" mb="6.9rem">
+    <Box className="comicBookList" mt="2.8rem" mb="6.9rem">
       <Year>2019</Year>
-      <Box>
-        <ComicBook bookName={"Comic Book Name"} username={"User 1"} />
-      </Box>
+      <Flex flexWrap="wrap">
+        {props.bookData.map((book, index) => (
+          <ComicBook key={index} bookName={book.name} username={book.owner} />
+        ))}
+      </Flex>
     </Box>
   );
 };
 
-export default BookList;
+export default ComicBookList;

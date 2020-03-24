@@ -1,4 +1,5 @@
-import BookList from "components/ComicBookList/ComicBookList";
+import { BookData } from "components/App/App";
+import ComicBookList from "components/ComicBookList/ComicBookList";
 import Filter from "components/Filter/Filter";
 import Search from "components/Search/Search";
 import React, { FC } from "react";
@@ -17,14 +18,18 @@ const HR = styled.hr`
   width: 100%;
 `;
 
-const StyledMain: FC = () => {
+interface IProps {
+  bookData: BookData[];
+}
+
+const StyledMain: FC<IProps> = (props: IProps) => {
   return (
     <Main className="main">
       <Search />
       <Filter />
-      <BookList />
+      <ComicBookList bookData={props.bookData} />
       <HR />
-      <BookList />
+      {/* <ComicBookList /> */}
       <HR />
     </Main>
   );

@@ -38,7 +38,7 @@ interface IProps {
 
 const ComicBook: FC<IProps> = (props: IProps) => {
   return (
-    <Box className="comicBook" mt="3.2rem">
+    <Box className="comicBook" mt="3.2rem" mr="9.6rem" width="20rem">
       <Box>
         <ComicBookBlueSVG />
       </Box>
