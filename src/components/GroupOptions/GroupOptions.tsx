@@ -9,7 +9,7 @@ interface IProps {
 export enum GROUP_OPTIONS {
   YEAR = "Year",
   WRITER = "Writer",
-  ARTIST = "Arist",
+  ARTIST = "Artist",
   OWNER = "Owner",
   RANDOM = "Random"
 }
