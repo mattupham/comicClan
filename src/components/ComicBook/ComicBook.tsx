@@ -31,18 +31,23 @@ const Owner = styled.div`
   color: #cccccc;
 `;
 
-const ComicBook: FC = () => {
+interface IProps {
+  username: string;
+  bookName: string;
+}
+
+const ComicBook: FC<IProps> = (props: IProps) => {
   return (
     <Box className="comicBook" mt="3.2rem">
       <Box>
         <ComicBookBlueSVG />
       </Box>
       <Box mt="1.605rem">
-        <ComicBookName>Book Name</ComicBookName>
+        <ComicBookName>{props.bookName}</ComicBookName>
       </Box>
       <Flex mt=".9rem">
         <OwnedBy>Owned By</OwnedBy>
-        <Owner>Username</Owner>
+        <Owner>{props.username}</Owner>
       </Flex>
     </Box>
   );

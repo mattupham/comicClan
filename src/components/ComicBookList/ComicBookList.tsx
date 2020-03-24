@@ -8,7 +8,6 @@ const Year = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 3.2rem;
-
   color: #aaaaaa;
 `;
 
@@ -17,7 +16,7 @@ const BookList: FC = () => {
     <Box className="bookList" mt="2.8rem" mb="6.9rem">
       <Year>2019</Year>
       <Box>
-        <ComicBook />
+        <ComicBook bookName={"Comic Book Name"} username={"User 1"} />
       </Box>
     </Box>
   );
