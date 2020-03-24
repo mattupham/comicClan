@@ -26,11 +26,8 @@ interface IProps {
 }
 
 const groupBy = (arr: BookData[], groupOption: GROUP_OPTIONS) => {
-  console.log("UNGROUPED GROUP OPTIONS: ", groupOption);
   let key = groupOption.toLowerCase() as keyof BookData;
-
   if (groupOption === GROUP_OPTIONS.RANDOM) {
-    // TODO RANDOMIZE
     const randomizedBookData = randomizeArray(arr);
     return [[key, randomizedBookData]];
   } else {
@@ -49,7 +46,6 @@ const randomizeArray = (array: any) => {
     randomIndex;
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
-    // console.log("RANDOM INDEX: ", randomIndex);
     currentIndex -= 1;
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
