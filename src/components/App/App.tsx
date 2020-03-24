@@ -29,7 +29,7 @@ export interface BookData {
 
 const App: FC = () => {
   const [bookData, setBookData] = useState<BookData[]>([]);
-  // console.log("BOOK DATA: ", bookData);
+
   useEffect(() => {
     (async function getData() {
       const data: BookData[] = await getComics(url, token);

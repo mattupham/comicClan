@@ -42,32 +42,16 @@ const defaultGroupButtonList: GroupButton[] = [
   }
 ];
 
-// const setGroupButtonSelected = (
-//   groupButtonList: GroupButton[],
-//   groupOption: GROUP_OPTIONS,
-//   cb: (groupButtonList: GroupButton[]) => void
-// ) => {
-//   const updatedButtonList = [...groupButtonList];
-//   updatedButtonList.forEach(button =>
-//     button.name === groupOption
-//       ? (button.selected = true)
-//       : (button.selected = false)
-//   );
-//   cb(updatedButtonList);
-// };
-
 const updateGroupButtonList = (
   groupOption: GROUP_OPTIONS,
   groupButtonsDefault: GroupButton[]
 ) => {
   const updatedGroupButtonList = [...defaultGroupButtonList];
-  updatedGroupButtonList.forEach(button => {
-    if (button.name === groupOption) {
-      button.selected = true;
-    } else {
-      button.selected = false;
-    }
-  });
+  updatedGroupButtonList.forEach(button =>
+    button.name === groupOption
+      ? (button.selected = true)
+      : (button.selected = false)
+  );
   return updatedGroupButtonList;
 };
 

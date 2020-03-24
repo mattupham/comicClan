@@ -61,8 +61,7 @@ const randomizeArray = (array: any) => {
 const sortBy = (groupedData: any, groupOption: GROUP_OPTIONS) => {
   if (groupOption === GROUP_OPTIONS.YEAR) {
     return groupedData.sort((a: any, b: any) => +b[0] - +a[0]);
-  }
-  if (
+  } else if (
     groupOption === GROUP_OPTIONS.WRITER ||
     groupOption === GROUP_OPTIONS.ARTIST ||
     groupOption === GROUP_OPTIONS.OWNER
@@ -72,11 +71,11 @@ const sortBy = (groupedData: any, groupOption: GROUP_OPTIONS) => {
       else if (a > b) return 1;
       return 0;
     });
-  }
-  if (groupOption === GROUP_OPTIONS.RANDOM) {
-    console.log("GROUP DATA: ", groupedData);
-    // const randomlyGroupedData = ["random", randomizeArray(groupedData[1])];
-    // return randomlyGroupedData;
+  } else if (groupOption === GROUP_OPTIONS.RANDOM) {
+    const randomlyGroupedData = ["random", randomizeArray(groupedData[1])];
+    return randomlyGroupedData;
+  } else {
+    return groupedData;
   }
 };
 
@@ -92,7 +91,6 @@ const StyledMain: FC<IProps> = (props: IProps) => {
     if (currentGroupOption !== GROUP_OPTIONS.RANDOM) {
       sortedGroupedData = sortBy(sortedGroupedData, currentGroupOption);
     }
-    console.log("SORTED GROUPED DATA: ", sortedGroupedData);
     setSortedGroupData(sortedGroupedData);
   }, [currentGroupOption, props.bookData]);
 

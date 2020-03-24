@@ -28,7 +28,6 @@ const GroupButton = styled.button`
 
 interface IProps {
   primary: boolean;
-  // children: ReactNode;
   index: number;
   handleClick: (groupOption: GROUP_OPTIONS) => void;
   name: GROUP_OPTIONS;
