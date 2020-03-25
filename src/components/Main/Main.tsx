@@ -7,6 +7,7 @@ import Search from "components/Search/Search";
 import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
+import randomizeArray from "utils/randomizeArray";
 
 const Main = styled.main`
   background: #333333;
@@ -26,11 +27,11 @@ interface IProps {
 }
 
 const groupBy = (arr: BookData[], groupOption: GROUP_OPTIONS) => {
-  let key = groupOption.toLowerCase() as keyof BookData;
   if (groupOption === GROUP_OPTIONS.RANDOM) {
     const randomizedBookData = randomizeArray(arr);
-    return [[key, randomizedBookData]];
+    return [[GROUP_OPTIONS.RANDOM, randomizedBookData]];
   } else {
+    let key = groupOption.toLowerCase() as keyof BookData;
     const groups = arr.reduce((acc, curVal) => {
       acc[curVal[key]] = acc[curVal[key]] || [];
       acc[curVal[key]].push(curVal);
@@ -38,20 +39,6 @@ const groupBy = (arr: BookData[], groupOption: GROUP_OPTIONS) => {
     }, Object.create(null));
     return Object.entries(groups);
   }
-};
-
-const randomizeArray = (array: any) => {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
 };
 
 const sortBy = (groupedData: any, groupOption: GROUP_OPTIONS) => {

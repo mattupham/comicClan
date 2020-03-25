@@ -15,7 +15,6 @@ const GroupTitle = styled.div`
 
 interface IProps {
   bookData: BookData[];
-  // change below
   groupValue: string;
   currentGroup: GROUP_OPTIONS;
 }
