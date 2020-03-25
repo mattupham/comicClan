@@ -7,11 +7,11 @@ interface IProps {
 }
 
 export enum GROUP_OPTIONS {
-  YEAR = "year",
-  WRITER = "writer",
-  ARTIST = "artist",
-  OWNER = "owner",
-  RANDOM = "random"
+  YEAR = "Year",
+  WRITER = "Writer",
+  ARTIST = "Artist",
+  OWNER = "Owner",
+  RANDOM = "Random"
 }
 
 interface GroupButton {

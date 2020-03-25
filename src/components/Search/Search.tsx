@@ -43,6 +43,7 @@ const Search = styled.input`
 
 const StyledSearch: FC = () => {
   const [value, setValue] = useState<string>("");
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     alert("A name was submitted: " + value);
     e.preventDefault();

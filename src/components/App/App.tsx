@@ -9,7 +9,7 @@ const url = "https://comicclan.vett.io/comics";
 const token = "ComicClanVettIO2019";
 // const term = "?q=The True Story";
 
-const getComics = (url: string, token: string) =>
+const getComics = (url: string, token: string): Promise<BookData[]> =>
   axios
     .get(url, { headers: { Authorization: `Bearer ${token}` } })
     .then(({ data }) => data)
