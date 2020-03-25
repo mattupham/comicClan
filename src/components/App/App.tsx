@@ -9,11 +9,20 @@ const url = "https://comicclan.vett.io/comics";
 const token = "ComicClanVettIO2019";
 // const term = "?q=The True Story";
 
-const getComics = (url: string, token: string): Promise<BookData[]> =>
-  axios
+const getComics = (
+  url: string,
+  token: string,
+  queryString?: string
+): Promise<BookData[]> => {
+  if (queryString) {
+    url = `${url}?q=${queryString}`;
+  }
+
+  return axios
     .get(url, { headers: { Authorization: `Bearer ${token}` } })
     .then(({ data }) => data)
     .catch(err => console.log(err));
+};
 
 export interface BookData {
   name: string;
@@ -30,6 +39,11 @@ export interface BookData {
 const App: FC = () => {
   const [bookData, setBookData] = useState<BookData[]>([]);
 
+  const handleSearch = async (query: string) => {
+    const data: BookData[] = await getComics(url, token, query);
+    setBookData(data);
+  };
+
   useEffect(() => {
     (async function getData() {
       const data: BookData[] = await getComics(url, token);
@@ -41,7 +55,7 @@ const App: FC = () => {
     <Box className="App">
       <Flex flexDirection="column">
         <Headers />
-        <Main bookData={bookData} />
+        <Main bookData={bookData} handleSearch={handleSearch} />
       </Flex>
     </Box>
   );

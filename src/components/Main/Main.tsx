@@ -24,6 +24,7 @@ const HR = styled.hr`
 
 interface IProps {
   bookData: BookData[];
+  handleSearch: (val: string) => void;
 }
 
 const groupBy = (arr: BookData[], groupOption: GROUP_OPTIONS) => {
@@ -79,7 +80,7 @@ const StyledMain: FC<IProps> = (props: IProps) => {
 
   return (
     <Main className="main">
-      <Search />
+      <Search handleSearch={props.handleSearch} />
       <GroupOptions
         handleSetCurrentGroup={setCurrentGroupOption}
         currentGroup={currentGroupOption}

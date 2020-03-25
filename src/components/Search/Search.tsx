@@ -41,11 +41,16 @@ const Search = styled.input`
   color: #cccccc;
 `;
 
-const StyledSearch: FC = () => {
+interface IProps {
+  handleSearch: (val: string) => void;
+}
+
+const StyledSearch: FC<IProps> = (props: IProps) => {
   const [value, setValue] = useState<string>("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    alert("A name was submitted: " + value);
+    props.handleSearch(value);
+    setValue("");
     e.preventDefault();
   };
 
