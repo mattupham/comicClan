@@ -28,7 +28,6 @@ const GroupButton = styled.button`
 
 interface IProps {
   primary: boolean;
-  index: number;
   handleClick: (groupOption: GROUP_OPTIONS) => void;
   name: GROUP_OPTIONS;
 }
