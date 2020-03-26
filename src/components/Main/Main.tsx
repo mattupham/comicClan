@@ -27,16 +27,44 @@ interface IProps {
   handleSearch: (val: string) => void;
 }
 
-// I: [{},{},{}]
-const groupBy = (array: BookData[], groupOption: GROUP_OPTIONS) => {
-  let key = groupOption.toLowerCase() as keyof BookData;
+type Group = "name" | "writer" | "artist" | "owner" | "random";
+
+// type GroupKeyType = keyof BookData | "undefined";
+type GroupKey = Extract<keyof BookData, Group>;
+
+const groupByRandom = (array: BookData[]) => {
+  return [["random", array.slice()]];
+};
+
+const groupByType = (
+  array: BookData[],
+  groupOption: Omit<GROUP_OPTIONS, "RANDOM">
+) => {
+  const key = groupOption.toLowerCase();
   const groups = array.reduce((acc, curVal) => {
+    //@ts-ignore
     acc[curVal[key]] = acc[curVal[key]] || [];
+    //@ts-ignore
     acc[curVal[key]].push(curVal);
     return acc;
   }, Object.create(null));
   return Object.entries(groups);
 };
+
+// I: [{},{},{}]
+const groupBy = (array: BookData[], groupOption: GROUP_OPTIONS) => {
+  if (groupOption === GROUP_OPTIONS.RANDOM) {
+    console.log("GROUP BY RANDOM: ", groupByRandom(array));
+    return groupByRandom(array);
+  } else {
+    console.log(
+      `GROUP BY TYPE ${groupOption}: `,
+      groupByType(array, groupOption)
+    );
+    return groupByType(array, groupOption);
+  }
+};
+
 // O: [
 //   [key, [{},{},{}] ]
 //   [key, [{},{},{}] ]
