@@ -14,13 +14,19 @@ export const randomizeArray = <T>(array: T[]): T[] => {
 };
 
 export const sortByYearAsc = <T>(array: T[]): T[] => {
-  return array.sort((a: any, b: any) => +b[0] - +a[0]);
+  return array.sort((a: any, b: any) => {
+    return +b[0] - +a[0];
+  });
 };
 
 export const sortByAlph = <T>(array: T[]): T[] => {
   return array.sort((a: any, b: any) => {
-    if (a < b) return -1;
-    else if (a > b) return 1;
-    return 0;
+    if (a[0] < b[0]) {
+      return -1;
+    } else if (a[0] > b[0]) {
+      return 1;
+    } else {
+      return 0;
+    }
   });
 };

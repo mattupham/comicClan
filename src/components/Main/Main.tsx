@@ -7,11 +7,7 @@ import Search from "components/Search/Search";
 import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
-import {
-  randomizeArray,
-  sortByAlph,
-  sortByYearAsc
-} from "utils/randomizeArray";
+import { sortByAlph, sortByYearAsc } from "utils/utils";
 
 const Main = styled.main`
   background: #333333;
@@ -31,7 +27,8 @@ interface IProps {
   handleSearch: (val: string) => void;
 }
 
-const groupByCommonValues = (array: BookData[], groupOption: GROUP_OPTIONS) => {
+// I: [{},{},{}]
+const groupBy = (array: BookData[], groupOption: GROUP_OPTIONS) => {
   let key = groupOption.toLowerCase() as keyof BookData;
   const groups = array.reduce((acc, curVal) => {
     acc[curVal[key]] = acc[curVal[key]] || [];
@@ -40,19 +37,10 @@ const groupByCommonValues = (array: BookData[], groupOption: GROUP_OPTIONS) => {
   }, Object.create(null));
   return Object.entries(groups);
 };
-
-const groupBy = (array: BookData[], groupOption: GROUP_OPTIONS) => {
-  // I: [{},{},{}]
-  if (groupOption === GROUP_OPTIONS.RANDOM) {
-    return [["random", randomizeArray(array)]];
-  } else {
-    return groupByCommonValues(array, groupOption);
-  }
-  // O: [
-  //   [key, [{},{},{}] ]
-  //   [key, [{},{},{}] ]
-  // ]
-};
+// O: [
+//   [key, [{},{},{}] ]
+//   [key, [{},{},{}] ]
+// ]
 
 const sortBy = (groupedData: any, groupOption: GROUP_OPTIONS) => {
   if (groupOption === GROUP_OPTIONS.YEAR) {
@@ -80,11 +68,9 @@ const StyledMain: FC<IProps> = (props: IProps) => {
   const [sortedGroupData, setSortedGroupData] = useState<any>([]);
 
   useEffect(() => {
-    let sortedGroupedData = groupBy(props.bookData, currentGroupOption);
-    if (currentGroupOption) {
-      sortedGroupedData = sortBy(sortedGroupedData, currentGroupOption);
-    }
-    setSortedGroupData(sortedGroupedData);
+    let groupedData = groupBy(props.bookData, currentGroupOption);
+    let sortedData = sortBy(groupedData, currentGroupOption);
+    setSortedGroupData(sortedData);
   }, [currentGroupOption, props.bookData]);
 
   return (
