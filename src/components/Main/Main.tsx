@@ -7,7 +7,11 @@ import Search from "components/Search/Search";
 import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
-import randomizeArray from "utils/randomizeArray";
+import {
+  randomizeArray,
+  sortByAlph,
+  sortByYearAsc
+} from "utils/randomizeArray";
 
 const Main = styled.main`
   background: #333333;
@@ -27,38 +31,43 @@ interface IProps {
   handleSearch: (val: string) => void;
 }
 
-const groupBy = (arr: BookData[], groupOption: GROUP_OPTIONS) => {
+const groupByCommonValues = (array: BookData[], groupOption: GROUP_OPTIONS) => {
+  let key = groupOption.toLowerCase() as keyof BookData;
+  const groups = array.reduce((acc, curVal) => {
+    acc[curVal[key]] = acc[curVal[key]] || [];
+    acc[curVal[key]].push(curVal);
+    return acc;
+  }, Object.create(null));
+  return Object.entries(groups);
+};
+
+const groupBy = (array: BookData[], groupOption: GROUP_OPTIONS) => {
+  // I: [{},{},{}]
   if (groupOption === GROUP_OPTIONS.RANDOM) {
-    const randomizedBookData = randomizeArray(arr);
-    return [[GROUP_OPTIONS.RANDOM, randomizedBookData]];
+    return [["random", randomizeArray(array)]];
   } else {
-    let key = groupOption.toLowerCase() as keyof BookData;
-    const groups = arr.reduce((acc, curVal) => {
-      acc[curVal[key]] = acc[curVal[key]] || [];
-      acc[curVal[key]].push(curVal);
-      return acc;
-    }, Object.create(null));
-    return Object.entries(groups);
+    return groupByCommonValues(array, groupOption);
   }
+  // O: [
+  //   [key, [{},{},{}] ]
+  //   [key, [{},{},{}] ]
+  // ]
 };
 
 const sortBy = (groupedData: any, groupOption: GROUP_OPTIONS) => {
   if (groupOption === GROUP_OPTIONS.YEAR) {
-    return groupedData.sort((a: any, b: any) => +b[0] - +a[0]);
-  } else if (
-    groupOption === GROUP_OPTIONS.WRITER ||
-    groupOption === GROUP_OPTIONS.ARTIST ||
-    groupOption === GROUP_OPTIONS.OWNER
-  ) {
-    return groupedData.sort((a: any, b: any) => {
-      if (a < b) return -1;
-      else if (a > b) return 1;
-      return 0;
-    });
-  } else if (groupOption === GROUP_OPTIONS.RANDOM) {
-    const randomlyGroupedData = ["random", randomizeArray(groupedData[1])];
-    return randomlyGroupedData;
-  } else {
+    return sortByYearAsc(groupedData);
+  }
+  if (groupOption === GROUP_OPTIONS.WRITER) {
+    return sortByAlph(groupedData);
+  }
+  if (groupOption === GROUP_OPTIONS.ARTIST) {
+    return sortByAlph(groupedData);
+  }
+  if (groupOption === GROUP_OPTIONS.OWNER) {
+    return sortByAlph(groupedData);
+  }
+  if (groupOption === GROUP_OPTIONS.RANDOM) {
     return groupedData;
   }
 };
@@ -72,7 +81,7 @@ const StyledMain: FC<IProps> = (props: IProps) => {
 
   useEffect(() => {
     let sortedGroupedData = groupBy(props.bookData, currentGroupOption);
-    if (currentGroupOption !== GROUP_OPTIONS.RANDOM) {
+    if (currentGroupOption) {
       sortedGroupedData = sortBy(sortedGroupedData, currentGroupOption);
     }
     setSortedGroupData(sortedGroupedData);

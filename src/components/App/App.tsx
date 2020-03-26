@@ -38,6 +38,7 @@ export interface BookData {
 
 const App: FC = () => {
   const [bookData, setBookData] = useState<BookData[]>([]);
+  // console.log("BOOK DATA: ", bookData);
 
   const handleSearch = async (query: string) => {
     const data: BookData[] = await getComics(url, token, query);
