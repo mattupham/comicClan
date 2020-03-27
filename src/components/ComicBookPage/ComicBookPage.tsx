@@ -5,24 +5,7 @@ import { BookData } from "components/App/App";
 import { HR } from "components/Main/Main";
 import ComicBookDetails from "components/ComicBookDetails/ComicBookDetails";
 import OtherRandomBooks from "components/OtherRandomBooks/OtherRandomBooks";
-
-const BackLink = styled.a`
-  height: 23px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 2rem;
-  line-height: 2.3rem;
-  text-decoration-line: underline;
-  color: #777777;
-  margin-top: 0.4rem;
-  margin-left: 0.659rem;
-  position: relative;
-  bottom: 0;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+import BackLink from "components/BackLink/BackLink";
 
 interface IProps {
   bookDataList: BookData[];
