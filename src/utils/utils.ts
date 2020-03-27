@@ -36,7 +36,6 @@ const sortByAlph = <T>(array: T[]): T[] => {
 };
 
 const groupByRandom = (array: BookData[]): GroupedTuple[] | never[] => {
-  console.log("ARRAY: ", array);
   if (array.length === 0) {
     return [];
   } else {
