@@ -6,6 +6,7 @@ import { BookData } from "components/App/App";
 import { HR, groupAndSortBy } from "components/Main/Main";
 import ComicBookList from "components/ComicBookList/ComicBookList";
 import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import Rating from "components/Rating/Rating";
 
 const BackLink = styled.a`
   height: 23px;
@@ -31,8 +32,6 @@ interface IProps {
 }
 
 const ComicBookImage = styled.img`
-  /* height: 51.992rem;
-  width: 34rem; */
   height: 100%;
   width: 100%;
 `;
@@ -42,10 +41,10 @@ const BookName = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 3.2rem;
-  line-height: 37px;
   color: #aaaaaa;
   margin-top: 0;
   margin-bottom: 0.3rem;
+  margin-right: 3.9rem;
 `;
 
 const MetaData = styled.div`
@@ -90,7 +89,6 @@ const RandomBookTitle = styled.div`
 `;
 
 const ComicBookPage: FC<IProps> = (props: IProps) => {
-  console.log("PROPS: ", props);
   return (
     <Flex flexDirection="column" className="comicBookPage">
       <Flex flexDirection="row" alignItems="flex-end">
@@ -104,9 +102,12 @@ const ComicBookPage: FC<IProps> = (props: IProps) => {
           <ComicBookImage src={props.selectedBookData.image} />
         </Box>
         <Flex flexDirection="column" width="100%">
-          <BookName>
-            {props.selectedBookData.name} {`(${props.selectedBookData.year})`}
-          </BookName>
+          <Flex flexDirection="row" width="100%">
+            <BookName>
+              {props.selectedBookData.name} {`(${props.selectedBookData.year})`}
+            </BookName>
+            <Rating rating={props.selectedBookData.rating} />
+          </Flex>
           <MetaData>
             Writer:<Val>{props.selectedBookData.writer}</Val>
           </MetaData>
