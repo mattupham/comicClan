@@ -1,4 +1,8 @@
-export const randomizeArray = <T>(array: T[]): T[] => {
+import { BookData } from "components/App/App";
+import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import { GroupedTuple, GroupKey } from "components/Main/Main";
+
+const randomizeArray = <T>(array: T[]): T[] => {
   const arrayToRandomize = array.slice();
   let curIndex = arrayToRandomize.length,
     tempValue,
@@ -13,13 +17,13 @@ export const randomizeArray = <T>(array: T[]): T[] => {
   return arrayToRandomize;
 };
 
-export const sortByYearAsc = <T>(array: T[]): T[] => {
+const sortByYearAsc = <T>(array: T[]): T[] => {
   return array.sort((a: any, b: any) => {
     return +b[0] - +a[0];
   });
 };
 
-export const sortByAlph = <T>(array: T[]): T[] => {
+const sortByAlph = <T>(array: T[]): T[] => {
   return array.sort((a: any, b: any) => {
     if (a[0] < b[0]) {
       return -1;
@@ -29,4 +33,53 @@ export const sortByAlph = <T>(array: T[]): T[] => {
       return 0;
     }
   });
+};
+
+const groupByRandom = (array: BookData[]): GroupedTuple[] => [
+  ["random", randomizeArray(array.slice())]
+];
+export const groupByType = (
+  array: BookData[],
+  groupOption: GroupKey
+): GroupedTuple[] => {
+  const key = groupOption.toLowerCase() as GroupKey;
+  const groups = array.reduce((acc, curVal: BookData) => {
+    acc[curVal[key]] = acc[curVal[key]] || [];
+    acc[curVal[key]].push(curVal);
+    return acc;
+  }, Object.create(null));
+  return Object.entries(groups);
+};
+
+export const groupBy = (
+  array: BookData[],
+  groupOption: GROUP_OPTIONS
+): GroupedTuple[] => {
+  if (groupOption === GROUP_OPTIONS.RANDOM) {
+    return groupByRandom(array);
+  } else {
+    return groupByType(array, groupOption);
+  }
+};
+
+export const sortBy = (
+  groupedData: any,
+  groupOption: GROUP_OPTIONS
+): GroupedTuple[] => {
+  if (groupOption === GROUP_OPTIONS.YEAR) {
+    return sortByYearAsc(groupedData);
+  }
+  if (groupOption === GROUP_OPTIONS.WRITER) {
+    return sortByAlph(groupedData);
+  }
+  if (groupOption === GROUP_OPTIONS.ARTIST) {
+    return sortByAlph(groupedData);
+  }
+  if (groupOption === GROUP_OPTIONS.OWNER) {
+    return sortByAlph(groupedData);
+  }
+  if (groupOption === GROUP_OPTIONS.RANDOM) {
+    return groupedData;
+  }
+  return groupedData;
 };
