@@ -27,24 +27,24 @@ interface IProps {
   handleSearch: (val: string) => void;
 }
 
-type Group = "name" | "writer" | "artist" | "owner" | "random";
+type GroupKey =
+  | GROUP_OPTIONS.YEAR
+  | GROUP_OPTIONS.WRITER
+  | GROUP_OPTIONS.ARTIST
+  | GROUP_OPTIONS.OWNER;
 
-// type GroupKeyType = keyof BookData | "undefined";
-type GroupKey = Extract<keyof BookData, Group>;
+type GroupedTuple = [string, BookData[]];
 
-const groupByRandom = (array: BookData[]) => {
-  return [["random", array.slice()]];
-};
-
+const groupByRandom = (array: BookData[]): GroupedTuple[] => [
+  ["random", array.slice()]
+];
 const groupByType = (
   array: BookData[],
-  groupOption: Omit<GROUP_OPTIONS, "RANDOM">
-) => {
-  const key = groupOption.toLowerCase();
-  const groups = array.reduce((acc, curVal) => {
-    //@ts-ignore
+  groupOption: GroupKey
+): GroupedTuple[] => {
+  const key = groupOption.toLowerCase() as GroupKey;
+  const groups = array.reduce((acc, curVal: BookData) => {
     acc[curVal[key]] = acc[curVal[key]] || [];
-    //@ts-ignore
     acc[curVal[key]].push(curVal);
     return acc;
   }, Object.create(null));
@@ -52,25 +52,25 @@ const groupByType = (
 };
 
 // I: [{},{},{}]
-const groupBy = (array: BookData[], groupOption: GROUP_OPTIONS) => {
+const groupBy = (
+  array: BookData[],
+  groupOption: GROUP_OPTIONS
+): GroupedTuple[] => {
   if (groupOption === GROUP_OPTIONS.RANDOM) {
-    console.log("GROUP BY RANDOM: ", groupByRandom(array));
     return groupByRandom(array);
   } else {
-    console.log(
-      `GROUP BY TYPE ${groupOption}: `,
-      groupByType(array, groupOption)
-    );
     return groupByType(array, groupOption);
   }
 };
-
 // O: [
 //   [key, [{},{},{}] ]
 //   [key, [{},{},{}] ]
 // ]
 
-const sortBy = (groupedData: any, groupOption: GROUP_OPTIONS) => {
+const sortBy = (
+  groupedData: any,
+  groupOption: GROUP_OPTIONS
+): GroupedTuple[] => {
   if (groupOption === GROUP_OPTIONS.YEAR) {
     return sortByYearAsc(groupedData);
   }
@@ -86,6 +86,7 @@ const sortBy = (groupedData: any, groupOption: GROUP_OPTIONS) => {
   if (groupOption === GROUP_OPTIONS.RANDOM) {
     return groupedData;
   }
+  return groupedData;
 };
 
 const StyledMain: FC<IProps> = (props: IProps) => {
@@ -93,7 +94,7 @@ const StyledMain: FC<IProps> = (props: IProps) => {
     GROUP_OPTIONS.YEAR
   );
 
-  const [sortedGroupData, setSortedGroupData] = useState<any>([]);
+  const [sortedGroupData, setSortedGroupData] = useState<GroupedTuple[]>([]);
 
   useEffect(() => {
     let groupedData = groupBy(props.bookData, currentGroupOption);

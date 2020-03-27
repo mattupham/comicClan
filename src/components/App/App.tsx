@@ -1,4 +1,5 @@
 import axios from "axios";
+import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 import Headers from "components/Header/Header";
 import Main from "components/Main/Main";
 import React, { FC, useEffect, useState } from "react";
@@ -26,19 +27,18 @@ const getComics = (
 
 export interface BookData {
   name: string;
-  writer: string;
-  artist: string;
+  [GROUP_OPTIONS.WRITER]: string;
+  [GROUP_OPTIONS.ARTIST]: string;
   publication: string;
-  owner: string;
+  [GROUP_OPTIONS.OWNER]: string;
   rating: number;
   image: string;
   summary: string;
-  year: number;
+  [GROUP_OPTIONS.YEAR]: number;
 }
 
 const App: FC = () => {
   const [bookData, setBookData] = useState<BookData[]>([]);
-  // console.log("BOOK DATA: ", bookData);
 
   const handleSearch = async (query: string) => {
     const data: BookData[] = await getComics(url, token, query);
