@@ -1,13 +1,14 @@
 import { BookData } from "components/App/App";
 import ComicBookList from "components/ComicBookList/ComicBookList";
 import GroupOptions, {
-  GROUP_OPTIONS
+  GROUP_OPTIONS,
 } from "components/GroupOptions/GroupOptions";
 import Search from "components/Search/Search";
 import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
+import ComicBookPage from "components/ComicBookPage/ComicBookPage";
 
 interface IProps {
   bookData: BookData[];
@@ -30,10 +31,20 @@ const Main = styled.main`
   padding-top: 2.8rem;
 `;
 
-const HR = styled.hr`
+export const HR = styled.hr`
   border: 1px solid #535353;
   width: 100%;
+  margin: 0;
 `;
+
+export const groupAndSortBy = (
+  bookData: BookData[],
+  groupOption: GROUP_OPTIONS
+): GroupedTuple[] => {
+  let groupedData = groupBy(bookData, groupOption);
+  let sortedData = sortBy(groupedData, groupOption);
+  return sortedData;
+};
 
 const StyledMain: FC<IProps> = (props: IProps) => {
   const [currentGroupOption, setCurrentGroupOption] = useState<GROUP_OPTIONS>(
@@ -43,14 +54,19 @@ const StyledMain: FC<IProps> = (props: IProps) => {
   const [sortedGroupData, setSortedGroupData] = useState<GroupedTuple[]>([]);
 
   useEffect(() => {
-    let groupedData = groupBy(props.bookData, currentGroupOption);
-    let sortedData = sortBy(groupedData, currentGroupOption);
-    setSortedGroupData(sortedData);
+    setSortedGroupData(groupAndSortBy(props.bookData, currentGroupOption));
   }, [currentGroupOption, props.bookData]);
 
+  console.log("BOOK DATA IN MAIN: ", props.bookData);
   return (
     <Main className="main">
-      <Search handleSearch={props.handleSearch} />
+      {props.bookData.length && (
+        <ComicBookPage
+          bookDataList={props.bookData}
+          selectedBookData={props.bookData[0]}
+        />
+      )}
+      {/* <Search handleSearch={props.handleSearch} />
       <GroupOptions
         handleSetCurrentGroup={setCurrentGroupOption}
         currentGroup={currentGroupOption}
@@ -64,7 +80,7 @@ const StyledMain: FC<IProps> = (props: IProps) => {
           />
           <HR />
         </Box>
-      ))}
+      ))} */}
     </Main>
   );
 };
