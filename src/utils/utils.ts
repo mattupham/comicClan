@@ -35,9 +35,14 @@ const sortByAlph = <T>(array: T[]): T[] => {
   });
 };
 
-const groupByRandom = (array: BookData[]): GroupedTuple[] => [
-  ["random", randomizeArray(array.slice())]
-];
+const groupByRandom = (array: BookData[]): GroupedTuple[] | never[] => {
+  console.log("ARRAY: ", array);
+  if (array.length === 0) {
+    return [];
+  } else {
+    return [["random", randomizeArray(array.slice())]];
+  }
+};
 export const groupByType = (
   array: BookData[],
   groupOption: GroupKey
