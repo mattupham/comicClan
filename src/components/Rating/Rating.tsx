@@ -13,8 +13,8 @@ const createArrayFromRange = (num: number) =>
     return i;
   });
 
-const Star = (type: StarType) => (
-  <Box mr="1rem">
+const Star = (type: StarType, index: number) => (
+  <Box mr="1rem" key={index}>
     {type === StarType.FULL && <StarFull />}
     {type === StarType.EMPTY && <StarEmpty />}
   </Box>
@@ -26,8 +26,12 @@ interface IProps {
 
 const Rating: FC<IProps> = (props: IProps) => (
   <Flex pt="1.125rem" minWidth="17.342rem">
-    {createArrayFromRange(props.rating).map(num => Star(StarType.FULL))}
-    {createArrayFromRange(5 - props.rating).map(num => Star(StarType.EMPTY))}
+    {createArrayFromRange(props.rating).map((num, index) =>
+      Star(StarType.FULL, index)
+    )}
+    {createArrayFromRange(5 - props.rating).map((num, index) =>
+      Star(StarType.EMPTY, index)
+    )}
   </Flex>
 );
 

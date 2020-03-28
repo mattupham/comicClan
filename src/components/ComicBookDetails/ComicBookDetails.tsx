@@ -1,11 +1,7 @@
 import React, { FC } from "react";
-import { Box, Flex } from "rebass";
+import { Flex } from "rebass";
 import styled from "styled-components";
-import { ReactComponent as BackArrow } from "assets/backArrow.svg";
 import { BookData } from "components/App/App";
-import { HR, groupAndSortBy } from "components/Main/Main";
-import ComicBookList from "components/ComicBookList/ComicBookList";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 import Rating from "components/Rating/Rating";
 
 const BookName = styled.div`
@@ -57,6 +53,7 @@ interface IProps {
 
 const ComicBookDetails: FC<IProps> = (props: IProps) => (
   <Flex flexDirection="column" width="100%">
+    {console.log("BOOK DETAIL PROPS: ", props)}
     <Flex flexDirection="row" width="100%">
       <BookName>
         {props.bookData.name} {`(${props.bookData.year})`}

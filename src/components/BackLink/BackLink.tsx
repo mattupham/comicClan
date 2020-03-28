@@ -2,8 +2,9 @@ import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { ReactComponent as BackArrow } from "assets/backArrow.svg";
+import { Link } from "react-router-dom";
 
-const Link = styled.a`
+const StyledLink = styled.a`
   height: 23px;
   font-family: Roboto;
   font-style: normal;
@@ -23,12 +24,14 @@ const Link = styled.a`
 
 const BackLink: FC = () => {
   return (
-    <Flex flexDirection="row" alignItems="flex-end">
-      <Box mb=".05rem">
-        <BackArrow />
-      </Box>
-      <Link>Back to collection</Link>
-    </Flex>
+    <Link to="/">
+      <Flex flexDirection="row" alignItems="flex-end">
+        <Box mb=".05rem">
+          <BackArrow />
+        </Box>
+        <StyledLink>Back to collection</StyledLink>
+      </Flex>
+    </Link>
   );
 };
 

@@ -9,12 +9,7 @@ import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
 import ComicBookPage from "components/ComicBookPage/ComicBookPage";
-import {
-  BrowserRouter as Router,
-  useParams,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { useParams, Switch, Route } from "react-router-dom";
 
 interface IProps {
   bookData: BookData[];
@@ -122,14 +117,11 @@ const ComicBookPageRoute = (props: {
   if (id === undefined) {
     return null;
   } else {
-    //@ts-ignore
-    const matchingBook = props.bookDataList.filter(book => book.id === +id);
-    console.log("MATCHING BOOK: ", matchingBook);
-
     return (
       <ComicBookPage
         bookDataList={props.bookDataList}
-        selectedBookData={props.bookDataList[0]}
+        //@ts-ignore
+        selectedBookData={props.bookDataList.filter(book => book.id === +id)[0]}
       />
     );
   }

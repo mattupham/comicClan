@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ComicBookName = styled.div`
   font-family: Roboto;
@@ -34,6 +35,7 @@ interface IProps {
   username: string;
   bookName: string;
   imageUrl: string;
+  id: number;
 }
 
 const ComicBookImage = styled.img`
@@ -43,18 +45,23 @@ const ComicBookImage = styled.img`
 
 const ComicBook: FC<IProps> = (props: IProps) => {
   return (
-    <Box className="comicBook" mt="3.2rem" mr="9.6rem" width="20rem">
-      <Box>
-        <ComicBookImage alt={`${props.bookName}-image`} src={props.imageUrl} />
+    <Link to={`/${props.id}`}>
+      <Box className="comicBook" mt="3.2rem" mr="9.6rem" width="20rem">
+        <Box>
+          <ComicBookImage
+            alt={`${props.bookName}-image`}
+            src={props.imageUrl}
+          />
+        </Box>
+        <Box mt="1.605rem">
+          <ComicBookName>{props.bookName}</ComicBookName>
+        </Box>
+        <Flex mt=".9rem">
+          <OwnedBy>Owned By</OwnedBy>
+          <Owner>{props.username}</Owner>
+        </Flex>
       </Box>
-      <Box mt="1.605rem">
-        <ComicBookName>{props.bookName}</ComicBookName>
-      </Box>
-      <Flex mt=".9rem">
-        <OwnedBy>Owned By</OwnedBy>
-        <Owner>{props.username}</Owner>
-      </Flex>
-    </Box>
+    </Link>
   );
 };
 
