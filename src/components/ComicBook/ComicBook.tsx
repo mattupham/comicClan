@@ -45,7 +45,7 @@ const ComicBookImage = styled.img`
 
 const ComicBook: FC<IProps> = (props: IProps) => {
   return (
-    <Link to={`/${props.id}`}>
+    <Link to={`/${props.id}`} style={{ textDecoration: "none" }}>
       <Box className="comicBook" mt="3.2rem" mr="9.6rem" width="20rem">
         <Box>
           <ComicBookImage

@@ -24,7 +24,7 @@ const StyledLink = styled.a`
 
 const BackLink: FC = () => {
   return (
-    <Link to="/">
+    <Link to="/" style={{ textDecoration: "none" }}>
       <Flex flexDirection="row" alignItems="flex-end">
         <Box mb=".05rem">
           <BackArrow />
