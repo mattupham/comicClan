@@ -53,7 +53,6 @@ interface IProps {
 
 const ComicBookDetails: FC<IProps> = (props: IProps) => (
   <Flex flexDirection="column" width="100%">
-    {console.log("BOOK DETAIL PROPS: ", props)}
     <Flex flexDirection="row" width="100%">
       <BookName>
         {props.bookData.name} {`(${props.bookData.year})`}

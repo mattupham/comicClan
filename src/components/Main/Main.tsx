@@ -55,18 +55,12 @@ const StyledMain: FC<IProps> = (props: IProps) => {
   const [sortedGroupData, setSortedGroupData] = useState<GroupedTuple[]>([]);
 
   useEffect(() => {
-    setSortedGroupData(groupAndSortBy(props.bookData, currentGroupOption));
+    const data = groupAndSortBy(props.bookData, currentGroupOption);
+    setSortedGroupData(data);
   }, [currentGroupOption, props.bookData]);
 
-  console.log("BOOK DATA IN MAIN: ", props.bookData);
   return (
     <Main className="main">
-      {/* {props.bookData.length && (
-        <ComicBookPage
-          bookDataList={props.bookData}
-          selectedBookData={props.bookData[0]}
-        />
-      )} */}
       <Route
         exact
         path="/"
@@ -113,7 +107,6 @@ const ComicBookPageRoute = (props: {
   selectedBookData: BookData;
 }) => {
   let { id } = useParams();
-  console.log("ID FROM ROUTER: ", id);
   if (id === undefined) {
     return null;
   } else {
