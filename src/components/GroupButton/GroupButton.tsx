@@ -32,13 +32,16 @@ interface IProps {
   name: GROUP_OPTIONS;
 }
 
+const capitalize = (s: string): string =>
+  typeof s !== "string" ? "" : s.charAt(0).toUpperCase() + s.slice(1);
+
 const StyledGroupButton: FC<IProps> = (props: IProps) => {
   return (
     <GroupButton
       primary={props.primary}
       onClick={() => props.handleClick(props.name)}
     >
-      {props.name}
+      {capitalize(props.name)}
     </GroupButton>
   );
 };
