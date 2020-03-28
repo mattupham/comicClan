@@ -5,12 +5,10 @@ import Main from "components/Main/Main";
 import React, { FC, useEffect, useState } from "react";
 import { Box, Flex } from "rebass";
 
-// pull into ENV
 const url = "https://comicclan.vett.io/comics";
 const token = "ComicClanVettIO2019";
-// const term = "?q=The True Story";
 
-const addIdsToBookData = (bookData: any): any => {
+const addIdsToBookData = (bookData: BookData[]): any => {
   if (bookData.length === 0) {
     return [];
   } else {
