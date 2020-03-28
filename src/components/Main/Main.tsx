@@ -9,6 +9,12 @@ import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
 import ComicBookPage from "components/ComicBookPage/ComicBookPage";
+import {
+  BrowserRouter as Router,
+  useParams,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 interface IProps {
   bookData: BookData[];
@@ -60,29 +66,73 @@ const StyledMain: FC<IProps> = (props: IProps) => {
   console.log("BOOK DATA IN MAIN: ", props.bookData);
   return (
     <Main className="main">
-      {props.bookData.length && (
+      {/* {props.bookData.length && (
         <ComicBookPage
           bookDataList={props.bookData}
           selectedBookData={props.bookData[0]}
         />
-      )}
-      {/* <Search handleSearch={props.handleSearch} />
-      <GroupOptions
-        handleSetCurrentGroup={setCurrentGroupOption}
-        currentGroup={currentGroupOption}
+      )} */}
+      <Route
+        exact
+        path="/"
+        children={
+          <>
+            <Search handleSearch={props.handleSearch} />
+            <GroupOptions
+              handleSetCurrentGroup={setCurrentGroupOption}
+              currentGroup={currentGroupOption}
+            />
+            {sortedGroupData.map(([groupValue, data]: any, index: number) => (
+              <Box key={index}>
+                <ComicBookList
+                  groupValue={groupValue}
+                  bookData={data}
+                  currentGroup={currentGroupOption}
+                />
+                <HR />
+              </Box>
+            ))}
+          </>
+        }
       />
-      {sortedGroupData.map(([groupValue, data]: any, index: number) => (
-        <Box key={index}>
-          <ComicBookList
-            groupValue={groupValue}
-            bookData={data}
-            currentGroup={currentGroupOption}
+
+      {props.bookData.length && (
+        <Switch>
+          <Route
+            path="/:id"
+            children={
+              <ComicBookPageRoute
+                bookDataList={props.bookData}
+                selectedBookData={props.bookData[0]}
+              />
+            }
           />
-          <HR />
-        </Box>
-      ))} */}
+        </Switch>
+      )}
     </Main>
   );
+};
+
+const ComicBookPageRoute = (props: {
+  bookDataList: BookData[];
+  selectedBookData: BookData;
+}) => {
+  let { id } = useParams();
+  console.log("ID FROM ROUTER: ", id);
+  if (id === undefined) {
+    return null;
+  } else {
+    //@ts-ignore
+    const matchingBook = props.bookDataList.filter(book => book.id === +id);
+    console.log("MATCHING BOOK: ", matchingBook);
+
+    return (
+      <ComicBookPage
+        bookDataList={props.bookDataList}
+        selectedBookData={props.bookDataList[0]}
+      />
+    );
+  }
 };
 
 export default StyledMain;

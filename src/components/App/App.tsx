@@ -10,6 +10,16 @@ const url = "https://comicclan.vett.io/comics";
 const token = "ComicClanVettIO2019";
 // const term = "?q=The True Story";
 
+const addIdsToBookData = (bookData: any): any => {
+  if (bookData.length === 0) {
+    return [];
+  } else {
+    return bookData.map((book: BookData, index: number) => {
+      return { ...book, id: index };
+    });
+  }
+};
+
 const getComics = (
   url: string,
   token: string,
@@ -21,7 +31,7 @@ const getComics = (
 
   return axios
     .get(url, { headers: { Authorization: `Bearer ${token}` } })
-    .then(({ data }) => data)
+    .then(({ data }) => addIdsToBookData(data))
     .catch(err => console.log(err));
 };
 
@@ -35,6 +45,7 @@ export interface BookData {
   image: string;
   summary: string;
   [GROUP_OPTIONS.YEAR]: number;
+  id: number;
 }
 
 const App: FC = () => {
