@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BookData } from "components/App/App";
+import { EnzymeAdapter } from "enzyme";
 
 const addIdsToBookData = (bookData: BookData[]): any => {
   if (bookData.length === 0) {
@@ -12,10 +13,9 @@ const addIdsToBookData = (bookData: BookData[]): any => {
 };
 
 export default function apiCaller<T>(
-  queryString?: string,
-  data?: any
+  queryString?: string
 ): Promise<T[] | null> {
-  let url = process.env.COMIC_CLAN_URL;
+  let url = process.env.REACT_APP_COMIC_CLAN_URL;
   if (queryString) {
     url = `${url}?q=${queryString}`;
   }
@@ -26,11 +26,14 @@ export default function apiCaller<T>(
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.AUTHORIZATION_TOKEN}`,
+          Authorization: `Bearer ${process.env.REACT_APP_AUTHORIZATION_TOKEN}`,
         },
       })
       //@ts-ignore
-      .then(({ data }) => addIdsToBookData(data))
+      .then(({ data }) => {
+        // addIdsToBookData(data);
+        return data;
+      })
       //@ts-ignore
       .catch(err => console.log(err))
   );

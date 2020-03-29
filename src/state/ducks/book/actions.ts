@@ -1,11 +1,10 @@
-// TODO UPDATE
 import { action } from "typesafe-actions";
 import { IBookRaw, BookActionTypes } from "state/ducks/book/types";
 
 export const fetchBooks = () =>
   action(BookActionTypes.FETCH_BOOKS, [], {
-    method: "get",
-    route: "/books",
+    // TODO add query string
+    queryString: "",
   });
 
 export const fetchBooksSuccess = (data: IBookRaw[]) =>

@@ -3,17 +3,20 @@ import ComicBookList from "components/ComicBookList/ComicBookList";
 import GroupOptions, {
   GROUP_OPTIONS,
 } from "components/GroupOptions/GroupOptions";
-import Search from "components/Search/Search";
+// import Search from "components/Search/Search";
 import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
-import ComicBookPage from "components/ComicBookPage/ComicBookPage";
-import { useParams, Switch, Route } from "react-router-dom";
+// import ComicBookPage from "components/ComicBookPage/ComicBookPage";
+// import { useParams, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { IDispatchToProps } from "state/ducks/book/types";
 
 interface IProps {
   bookData: BookData[];
-  handleSearch: (val: string) => void;
+  // handleSearch: (val: string) => void;
+  // handleSearch: (val: any) => void;
 }
 
 export type GroupKey =
@@ -39,25 +42,31 @@ export const HR = styled.hr`
 `;
 
 export const groupAndSortBy = (
-  bookData: BookData[],
+  book: BookData[],
   groupOption: GROUP_OPTIONS
 ): GroupedTuple[] => {
-  let groupedData = groupBy(bookData, groupOption);
+  let groupedData = groupBy(book, groupOption);
   let sortedData = sortBy(groupedData, groupOption);
   return sortedData;
 };
 
-const StyledMain: FC<IProps> = (props: IProps) => {
+// type AllProps = IPostState & IDispatchToProps;
+type AllProps = IProps & IDispatchToProps;
+
+const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   const [currentGroupOption, setCurrentGroupOption] = useState<GROUP_OPTIONS>(
     GROUP_OPTIONS.YEAR
   );
 
-  const [sortedGroupData, setSortedGroupData] = useState<GroupedTuple[]>([]);
-
+  // const [sortedGroupData, setSortedGroupData] = useState<GroupedTuple[]>([]);
+  const [sortedGroupData] = useState<GroupedTuple[]>([]);
+  // useEffect(() => {
+  //   const data = groupAndSortBy(props.bookData, currentGroupOption);
+  //   setSortedGroupData(data);
+  // }, [currentGroupOption, props.bookData]);
   useEffect(() => {
-    const data = groupAndSortBy(props.bookData, currentGroupOption);
-    setSortedGroupData(data);
-  }, [currentGroupOption, props.bookData]);
+    fetchBooks();
+  }, [fetchBooks]);
 
   return (
     <Main className="main">
@@ -66,58 +75,60 @@ const StyledMain: FC<IProps> = (props: IProps) => {
         path="/"
         children={
           <>
-            <Search handleSearch={props.handleSearch} />
+            {/* <Search handleSearch={props.handleSearch} /> */}
             <GroupOptions
               handleSetCurrentGroup={setCurrentGroupOption}
               currentGroup={currentGroupOption}
             />
-            {sortedGroupData.map(([groupValue, data]: any, index: number) => (
-              <Box key={index}>
-                <ComicBookList
-                  groupValue={groupValue}
-                  bookData={data}
-                  currentGroup={currentGroupOption}
-                />
-                <HR />
-              </Box>
-            ))}
+            {groupAndSortBy(bookData, currentGroupOption).map(
+              ([groupValue, data]: any, index: number) => (
+                <Box key={index}>
+                  <ComicBookList
+                    groupValue={groupValue}
+                    bookData={data}
+                    currentGroup={currentGroupOption}
+                  />
+                  <HR />
+                </Box>
+              )
+            )}
           </>
         }
       />
 
-      {props.bookData.length && (
+      {/* {bookData.length && (
         <Switch>
           <Route
             path="/:id"
             children={
               <ComicBookPageRoute
-                bookDataList={props.bookData}
-                selectedBookData={props.bookData[0]}
+                bookDataList={bookData}
+                selectedBookData={bookData[0]}
               />
             }
           />
         </Switch>
-      )}
+      )} */}
     </Main>
   );
 };
 
-const ComicBookPageRoute = (props: {
-  bookDataList: BookData[];
-  selectedBookData: BookData;
-}) => {
-  let { id } = useParams();
-  if (id === undefined) {
-    return null;
-  } else {
-    return (
-      <ComicBookPage
-        bookDataList={props.bookDataList}
-        //@ts-ignore
-        selectedBookData={props.bookDataList.filter(book => book.id === +id)[0]}
-      />
-    );
-  }
-};
+// const ComicBookPageRoute = (props: {
+//   bookDataList: BookData[];
+//   selectedBookData: BookData;
+// }) => {
+//   let { id } = useParams();
+//   if (id === undefined) {
+//     return null;
+//   } else {
+//     return (
+//       <ComicBookPage
+//         bookDataList={props.bookDataList}
+//         //@ts-ignore
+//         selectedBookData={props.bookDataList.filter(book => book.id === +id)[0]}
+//       />
+//     );
+//   }
+// };
 
 export default StyledMain;

@@ -1,4 +1,3 @@
-// TODO UPDATE
 import { expectSaga } from "redux-saga-test-plan";
 import * as matchers from "redux-saga-test-plan/matchers";
 import apiCaller from "state/utils/apiCaller";

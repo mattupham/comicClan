@@ -1,8 +1,7 @@
-// TODO UPDATE
 import { Action, PayloadAction, TypeConstant } from "typesafe-actions";
 import { IBookRaw, IBookState, BookActionTypes } from "state/ducks/book/types";
 export const initialState: IBookState = {
-  data: [],
+  bookData: [],
   errors: [],
   loading: false,
 };
@@ -15,7 +14,7 @@ export const bookReducer = (
       return { ...state, loading: true };
     }
     case BookActionTypes.FETCH_BOOKS_SUCCESS: {
-      return { ...initialState, data: action.payload };
+      return { ...initialState, bookData: action.payload };
     }
     case BookActionTypes.FETCH_BOOKS_ERROR: {
       return {

@@ -23,6 +23,7 @@
     "react-scripts": "3.4.1",
     "rebass": "^4.0.7",
     "redux": "4.0.4",
+    "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "1.5.3",
     "redux-saga": "1.0.5",
     "redux-saga-test-plan": "4.0.0-beta.4",

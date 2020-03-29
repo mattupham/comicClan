@@ -1,4 +1,3 @@
-// TODO UPDATE
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 import { IMetaAction } from "state/ducks/index";
 import apiCaller from "state/utils/apiCaller";
@@ -12,10 +11,8 @@ function* handleFetch(action: IMetaAction): Generator {
   try {
     const res: IBookRaw[] | any = yield call(
       apiCaller,
-      action.meta.method,
-      action.meta.route
+      action.meta.queryString
     );
-
     yield put(fetchBooksSuccess(res));
   } catch (err) {
     if (err instanceof Error) {
@@ -36,6 +33,6 @@ function* watchFetchRequest(): Generator {
 /**
  * @desc saga init, forks in effects, other sagas
  */
-export default function* bookSaga() {
+export default function* x() {
   yield all([fork(watchFetchRequest)]);
 }

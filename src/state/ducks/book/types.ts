@@ -3,7 +3,7 @@ import { BookData } from "components/App/App";
 import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 
 export interface IBookState {
-  readonly data: BookData[];
+  readonly bookData: BookData[];
   readonly loading: boolean;
   readonly errors: [];
 }
@@ -27,5 +27,5 @@ export const BookActionTypes = {
 };
 
 export interface IDispatchToProps {
-  getBooks: () => IMetaAction;
+  fetchBooks: () => IMetaAction;
 }
