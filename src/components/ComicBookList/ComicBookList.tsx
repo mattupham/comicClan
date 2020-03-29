@@ -32,6 +32,8 @@ const ComicBookList: FC<IProps> = (props: IProps) => {
             bookName={book.name}
             username={book.owner}
             imageUrl={book.image}
+            // TODO handle ID
+            //@ts-ignore
             id={book.id}
           />
         ))}

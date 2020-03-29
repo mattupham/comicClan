@@ -4,6 +4,12 @@ import Headers from "components/Header/Header";
 import Main from "components/Main/Main";
 import React, { FC, useEffect, useState } from "react";
 import { Box, Flex } from "rebass";
+import { Provider } from "react-redux";
+import configureStore from "state";
+
+const initialState = (window as any).initialReduxState;
+
+const store = configureStore(initialState);
 
 const url = "https://comicclan.vett.io/comics";
 const token = "ComicClanVettIO2019";
@@ -43,7 +49,7 @@ export interface BookData {
   image: string;
   summary: string;
   [GROUP_OPTIONS.YEAR]: number;
-  id: number;
+  // id: number;
 }
 
 const App: FC = () => {
@@ -62,12 +68,14 @@ const App: FC = () => {
   }, []);
 
   return (
-    <Box className="App">
-      <Flex flexDirection="column">
-        <Headers />
-        <Main bookData={bookData} handleSearch={handleSearch} />
-      </Flex>
-    </Box>
+    <Provider store={store}>
+      <Box className="App">
+        <Flex flexDirection="column">
+          <Headers />
+          <Main bookData={bookData} handleSearch={handleSearch} />
+        </Flex>
+      </Box>
+    </Provider>
   );
 };
 

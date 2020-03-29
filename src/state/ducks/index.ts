@@ -1,0 +1,29 @@
+import { combineReducers } from "redux";
+import { all, fork } from "redux-saga/effects";
+import {
+  Action,
+  MetaAction,
+  PayloadAction,
+  TypeConstant,
+} from "typesafe-actions";
+import { bookReducer } from "state/ducks/book/reducers";
+import bookSaga from "state/ducks/book/sagas";
+import { IBookState } from "./book/types";
+// The top-level state object
+export interface IApplicationState {
+  book: IBookState;
+}
+export interface IMetaAction extends MetaAction<TypeConstant, IMeta> {}
+export interface IReducerAction<TPayload>
+  extends Action<TypeConstant>,
+    PayloadAction<TypeConstant, TPayload> {}
+export const rootReducer = combineReducers<IApplicationState>({
+  book: bookReducer,
+});
+export function* rootSaga() {
+  yield all([fork(bookSaga)]);
+}
+interface IMeta {
+  method: string;
+  route: string;
+}
