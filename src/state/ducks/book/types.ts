@@ -27,5 +27,5 @@ export const BookActionTypes = {
 };
 
 export interface IDispatchToProps {
-  fetchBooks: () => IMetaAction;
+  fetchBooks: (s?: string) => IMetaAction;
 }

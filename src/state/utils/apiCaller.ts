@@ -19,6 +19,8 @@ export default function apiCaller<T>(
   if (queryString) {
     url = `${url}?q=${queryString}`;
   }
+  console.log("QUERY STRING IN API CALLER: ", queryString);
+  console.log("URL IN API CALLER: ", url);
   return (
     axios
       //@ts-ignore

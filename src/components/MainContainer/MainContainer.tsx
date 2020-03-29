@@ -17,7 +17,7 @@ const MainContainer = () => {
   );
 
   const mapDispatchToProps = {
-    fetchBooks: useCallback(() => dispatch(fetchBooks()), [dispatch]),
+    fetchBooks: useCallback(s => dispatch(fetchBooks(s)), [dispatch]),
   };
 
   return <Main {...mapStateToProps} {...mapDispatchToProps} />;

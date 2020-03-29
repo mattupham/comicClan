@@ -3,7 +3,7 @@ import ComicBookList from "components/ComicBookList/ComicBookList";
 import GroupOptions, {
   GROUP_OPTIONS,
 } from "components/GroupOptions/GroupOptions";
-// import Search from "components/Search/Search";
+import Search from "components/Search/Search";
 import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
@@ -50,7 +50,6 @@ export const groupAndSortBy = (
   return sortedData;
 };
 
-// type AllProps = IPostState & IDispatchToProps;
 type AllProps = IProps & IDispatchToProps;
 
 const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
@@ -58,12 +57,6 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
     GROUP_OPTIONS.YEAR
   );
 
-  // const [sortedGroupData, setSortedGroupData] = useState<GroupedTuple[]>([]);
-  const [sortedGroupData] = useState<GroupedTuple[]>([]);
-  // useEffect(() => {
-  //   const data = groupAndSortBy(props.bookData, currentGroupOption);
-  //   setSortedGroupData(data);
-  // }, [currentGroupOption, props.bookData]);
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
@@ -76,6 +69,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
         children={
           <>
             {/* <Search handleSearch={props.handleSearch} /> */}
+            <Search fetchBooks={s => fetchBooks(s)} />
             <GroupOptions
               handleSetCurrentGroup={setCurrentGroupOption}
               currentGroup={currentGroupOption}
