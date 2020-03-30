@@ -1,6 +1,6 @@
 import { IBook } from "state/ducks/book/types";
 import Book from "components/Book/Book";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import { GROUP_OPTIONS } from "components/Groups/Groups";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";

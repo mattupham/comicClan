@@ -1,11 +1,7 @@
 import GroupButton from "components/GroupButton/GroupButton";
 import React, { FC } from "react";
 import { Box } from "rebass";
-
-interface IProps {
-  currentGroup: GROUP_OPTIONS;
-  handleSetCurrentGroup: (group: GROUP_OPTIONS) => void;
-}
+import { IDispatchToProps } from "state/ducks/group/types";
 
 export enum GROUP_OPTIONS {
   YEAR = "year",
@@ -20,34 +16,41 @@ interface GroupButton {
   selected: boolean;
 }
 
-const GroupOptions: FC<IProps> = (props: IProps) => {
-  const handleClick = (groupOption: GROUP_OPTIONS) =>
-    props.handleSetCurrentGroup(groupOption);
+interface IProps {
+  group: GROUP_OPTIONS;
+  // handleSetCurrentGroup: (group: GROUP_OPTIONS) => void;
+}
+
+type AllProps = IProps & IDispatchToProps;
+// type AllProps = IDispatchToProps;
+
+const Groups: FC<AllProps> = ({ setGroup, group }: AllProps) => {
+  const handleClick = (groupOption: GROUP_OPTIONS) => setGroup(groupOption);
 
   return (
     <Box className="groupOptions">
       <GroupButton
-        primary={props.currentGroup === GROUP_OPTIONS.YEAR}
+        primary={group === GROUP_OPTIONS.YEAR}
         handleClick={handleClick}
         name={GROUP_OPTIONS.YEAR}
       />
       <GroupButton
-        primary={props.currentGroup === GROUP_OPTIONS.WRITER}
+        primary={group === GROUP_OPTIONS.WRITER}
         handleClick={handleClick}
         name={GROUP_OPTIONS.WRITER}
       />
       <GroupButton
-        primary={props.currentGroup === GROUP_OPTIONS.ARTIST}
+        primary={group === GROUP_OPTIONS.ARTIST}
         handleClick={handleClick}
         name={GROUP_OPTIONS.ARTIST}
       />
       <GroupButton
-        primary={props.currentGroup === GROUP_OPTIONS.OWNER}
+        primary={group === GROUP_OPTIONS.OWNER}
         handleClick={handleClick}
         name={GROUP_OPTIONS.OWNER}
       />
       <GroupButton
-        primary={props.currentGroup === GROUP_OPTIONS.RANDOM}
+        primary={group === GROUP_OPTIONS.RANDOM}
         handleClick={handleClick}
         name={GROUP_OPTIONS.RANDOM}
       />
@@ -55,4 +58,4 @@ const GroupOptions: FC<IProps> = (props: IProps) => {
   );
 };
 
-export default GroupOptions;
+export default Groups;

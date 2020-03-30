@@ -1,11 +1,12 @@
 import { IMetaAction } from "state/ducks/index";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import { GROUP_OPTIONS } from "components/Groups/Groups";
 
 export interface IBookState {
   readonly bookData: IBook[];
   readonly loading: boolean;
   readonly errors: [];
 }
+
 export type ApiResponse = Record<string, any>;
 
 export interface IBook extends ApiResponse {

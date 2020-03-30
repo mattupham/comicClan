@@ -1,18 +1,15 @@
-import { IMetaAction } from "state/ducks/index";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
-
-interface IMeta {
-  queryString: string;
-}
+// import { IMetaAction } from "state/ducks/index";
+import { GROUP_OPTIONS } from "components/Groups/Groups";
 
 export interface IGroupState {
-  readonly option: GROUP_OPTIONS;
+  readonly group: GROUP_OPTIONS;
 }
 
 export const GroupActionTypes = {
-  CHANGE_GROUP: "@@book/CHANGE_GROUP",
+  SET_GROUP: "@@group/SET_GROUP",
 };
 
 export interface IDispatchToProps {
-  changeGroup: (group: string) => IMetaAction;
+  // TODO fix meta action
+  setGroup: (group: GROUP_OPTIONS) => any;
 }

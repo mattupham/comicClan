@@ -1,8 +1,7 @@
 import { IBook } from "state/ducks/book/types";
 import BookList from "components/BookList/BookList";
-import GroupOptions, {
-  GROUP_OPTIONS,
-} from "components/GroupOptions/GroupOptions";
+import { GROUP_OPTIONS as GROUP } from "components/Groups/Groups";
+import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
 import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
@@ -12,15 +11,7 @@ import BookPage from "components/BookPage/BookPage";
 import { Route, Switch, useParams } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 
-interface IProps {
-  bookData: IBook[];
-}
-
-export type GroupKey =
-  | GROUP_OPTIONS.YEAR
-  | GROUP_OPTIONS.WRITER
-  | GROUP_OPTIONS.ARTIST
-  | GROUP_OPTIONS.OWNER;
+export type GroupKey = GROUP.YEAR | GROUP.WRITER | GROUP.ARTIST | GROUP.OWNER;
 
 export type GroupedTuple = [string, IBook[]];
 
@@ -41,19 +32,21 @@ export const HR = styled.hr`
 
 export const groupAndSortBy = (
   book: IBook[],
-  groupOption: GROUP_OPTIONS
+  groupOption: GROUP
 ): GroupedTuple[] => {
   let groupedData = groupBy(book, groupOption);
   let sortedData = sortBy(groupedData, groupOption);
   return sortedData;
 };
 
+interface IProps {
+  bookData: IBook[];
+}
+
 type AllProps = IProps & IDispatchToProps;
 
 const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
-  const [currentGroupOption, setCurrentGroupOption] = useState<GROUP_OPTIONS>(
-    GROUP_OPTIONS.YEAR
-  );
+  // const [group, setGroup] = useState<GROUP>(GROUP.YEAR);
 
   useEffect(() => {
     fetchBooks();
@@ -67,22 +60,23 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
         children={
           <>
             <Search fetchBooks={s => fetchBooks(s)} />
-            <GroupOptions
-              handleSetCurrentGroup={setCurrentGroupOption}
-              currentGroup={currentGroupOption}
-            />
-            {groupAndSortBy(bookData, currentGroupOption).map(
+            {/* <GroupOptions
+              handleSetCurrentGroup={setGroup}
+              currentGroup={group}
+            /> */}
+            <GroupsContainer />
+            {/* {groupAndSortBy(bookData, group).map(
               ([groupValue, data]: any, index: number) => (
                 <Box key={index}>
                   <BookList
                     groupValue={groupValue}
                     books={data}
-                    currentGroup={currentGroupOption}
+                    currentGroup={group}
                   />
                   <HR />
                 </Box>
               )
-            )}
+            )} */}
           </>
         }
       />

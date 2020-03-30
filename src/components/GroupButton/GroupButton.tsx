@@ -1,4 +1,4 @@
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import { GROUP_OPTIONS } from "components/Groups/Groups";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import { capitalizeFirstLetter } from "utils/utils";

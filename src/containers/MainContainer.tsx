@@ -9,10 +9,10 @@ const MainContainer = () => {
   const dispatch = useDispatch();
 
   const mapStateToProps: IBookState = useSelector(
-    ({ bookData }: IApplicationState) => ({
-      loading: bookData.loading,
-      errors: bookData.errors,
-      bookData: bookData.bookData,
+    (state: IApplicationState) => ({
+      loading: state.bookData.loading,
+      errors: state.bookData.errors,
+      bookData: state.bookData.bookData,
     })
   );
 

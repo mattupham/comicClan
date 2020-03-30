@@ -1,5 +1,5 @@
 import { IBook } from "state/ducks/book/types";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import { GROUP_OPTIONS } from "components/Groups/Groups";
 import { GroupedTuple, GroupKey } from "components/Main/Main";
 
 const randomizeArray = <T>(array: T[]): T[] => {

@@ -3,7 +3,7 @@ import { Box } from "rebass";
 import { IBook } from "state/ducks/book/types";
 import { groupAndSortBy } from "components/Main/Main";
 import BookList from "components/BookList/BookList";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import { GROUP_OPTIONS } from "components/Groups/Groups";
 
 interface IProps {
   books: IBook[];
