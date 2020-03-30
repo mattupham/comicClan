@@ -30,6 +30,7 @@ const Main = styled.main`
   padding-right: 2.8rem;
   padding-left: 2.8rem;
   padding-top: 2.8rem;
+  height: 100vh;
 `;
 
 export const HR = styled.hr`
@@ -85,8 +86,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
           </>
         }
       />
-
-      {bookData.length && (
+      {bookData.length === 0 && (
         <Switch>
           <Route
             path="/:title"
