@@ -8,9 +8,8 @@ import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
-// import BookPage from "components/BookPage/BookPage";
-// import { useParams, Route } from "react-router-dom";
-import { Route } from "react-router-dom";
+import BookPage from "components/BookPage/BookPage";
+import { Route, Switch, useParams } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 
 interface IProps {
@@ -87,39 +86,46 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
         }
       />
 
-      {/* {bookData.length && (
+      {bookData.length && (
         <Switch>
           <Route
-            path="/:id"
+            path="/:title"
             children={
-              <BookPageRoute
-                bookDataList={bookData}
-                selectedBookData={bookData[0]}
-              />
+              <BookPageRoute books={bookData} selectedBook={bookData[0]} />
             }
           />
         </Switch>
-      )} */}
+      )}
     </Main>
   );
 };
 
-// const BookPageRoute = (props: {
-//   bookDataList: BookData[];
-//   selectedBookData: BookData;
-// }) => {
-//   let { id } = useParams();
-//   if (id === undefined) {
-//     return null;
-//   } else {
-//     return (
-//       <BookPage
-//         bookDataList={props.bookDataList}
-//         //@ts-ignore
-//         selectedBookData={props.bookDataList.filter(book => book.id === +id)[0]}
-//       />
-//     );
-//   }
-// };
+const BookPageRoute = (props: { books: IBook[]; selectedBook: IBook }) => {
+  let { title } = useParams();
+  console.log("BOOK NAME: ", title);
+  console.log(
+    "MATCH: ",
+    props.books.filter(
+      //@ts-ignore
+      book => book.name === decodeURIComponent(title)
+    )
+  );
+  if (title === undefined) {
+    return null;
+  } else {
+    return (
+      <BookPage
+        books={props.books}
+        //@ts-ignore
+        selectedBook={
+          props.books.filter(
+            //@ts-ignore
+            book => book.name === decodeURIComponent(title)
+          )[0]
+        }
+      />
+    );
+  }
+};
 
 export default StyledMain;

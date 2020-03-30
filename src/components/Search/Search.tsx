@@ -48,10 +48,7 @@ const StyledSearch: FC<IDispatchToProps> = ({
   const [value, setValue] = useState<string>("");
 
   // TODO Add fetchBooks via Redux here
-  // console.log("PROPS: ", fetchBooks);
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    console.log("VALUE IN SUBMIT: ", value);
     fetchBooks(value);
     setValue("");
     e.preventDefault();

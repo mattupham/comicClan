@@ -8,8 +8,6 @@ import { IBook, BookActionTypes } from "state/ducks/book/types";
  * @desc Business logic of effect.
  */
 function* handleFetch(action: IMetaAction): Generator {
-  console.log("ACTION META: ", action.meta);
-  console.log("ACTION META queryString: ", action.meta.queryString);
   try {
     const res: IBook[] | any = yield call(apiCaller, action.meta.queryString);
     yield put(fetchBooksSuccess(res));

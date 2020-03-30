@@ -57,7 +57,7 @@ const BookDetails: FC<IProps> = (props: IProps) => (
       <BookName>
         {props.book.name} {`(${props.book.year})`}
       </BookName>
-      <Rating rating={props.book.rating} />
+      {/* <Rating rating={props.book.rating} /> */}
     </Flex>
     <MetaData>
       Writer:<Val>{props.book.writer}</Val>
