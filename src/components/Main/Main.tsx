@@ -1,6 +1,9 @@
 import { IBook } from "state/ducks/book/types";
 import BookList from "components/BookList/BookList";
-import { GROUP_OPTIONS as GROUP } from "components/Groups/Groups";
+import {
+  GROUP_OPTIONS as GROUP,
+  GROUP_OPTIONS,
+} from "components/Groups/Groups";
 import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
 import React, { FC, useEffect, useState } from "react";
@@ -10,6 +13,7 @@ import { groupBy, sortBy } from "utils/utils";
 import BookPage from "components/BookPage/BookPage";
 import { Route, Switch, useParams } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
+import queryString from "query-string";
 
 export type GroupKey = GROUP.YEAR | GROUP.WRITER | GROUP.ARTIST | GROUP.OWNER;
 
@@ -50,17 +54,47 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
     fetchBooks();
   }, [fetchBooks]);
 
+  // const params = new URLSearchParams(props.location.search);
+  // const groupFromUrl = params.get("group");
+  // console.log("PARAMS: ", params);
+  // console.log("PARAMS: ", params);
+
+  // let { group } = useParams();
+  // console.log("LOCATION: ", location);
+  // const params = new URLSearchParams(location.search);
+  // console.log("PARAMS: ", params);
+  // const groupFromUrl = params.get("group");
+
+  // console.log("GROUP: ", group);
   return (
     <Main className="main">
       <Route
         exact
         path="/"
-        children={
+        children={({ location }) => (
           <>
+            {console.log("LOCATION: ", location)}
+            {console.log("PARSED: ", queryString.parse(location.search).group)}
             <Search fetchBooks={s => fetchBooks(s)} />
             <GroupsContainer />
+            {/* @ts-ignore */}
+            {groupAndSortBy(
+              bookData,
+              // @ts-ignore
+              queryString.parse(location.search).group
+            ).map(([groupValue, data]: any, index: number) => (
+              <Box key={index}>
+                <BookList
+                  groupValue={groupValue}
+                  books={data}
+                  // currentGroup={currentGroupOption}
+                  currentGroup={GROUP_OPTIONS.YEAR}
+                />
+                <HR />
+              </Box>
+            ))}
           </>
-        }
+        )}
       />
       {bookData.length === 0 && (
         <Switch>
