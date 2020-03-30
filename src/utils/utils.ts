@@ -91,3 +91,6 @@ export const sortBy = (
 
 export const createArrayFromRange = (num: number) =>
   Array.apply(null, Array(num)).map((_, i) => i);
+
+export const capitalizeFirstLetter = (s: string): string =>
+  typeof s !== "string" ? "" : s.charAt(0).toUpperCase() + s.slice(1);

@@ -1,5 +1,6 @@
 import GroupButton from "components/GroupButton/GroupButton";
 import React, { FC } from "react";
+import { Box } from "rebass";
 
 interface IProps {
   currentGroup: GROUP_OPTIONS;
@@ -11,7 +12,7 @@ export enum GROUP_OPTIONS {
   WRITER = "writer",
   ARTIST = "artist",
   OWNER = "owner",
-  RANDOM = "random"
+  RANDOM = "random",
 }
 
 interface GroupButton {
@@ -24,7 +25,7 @@ const GroupOptions: FC<IProps> = (props: IProps) => {
     props.handleSetCurrentGroup(groupOption);
 
   return (
-    <>
+    <Box className="groupOptions">
       <GroupButton
         primary={props.currentGroup === GROUP_OPTIONS.YEAR}
         handleClick={handleClick}
@@ -50,7 +51,7 @@ const GroupOptions: FC<IProps> = (props: IProps) => {
         handleClick={handleClick}
         name={GROUP_OPTIONS.RANDOM}
       />
-    </>
+    </Box>
   );
 };
 

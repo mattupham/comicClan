@@ -17,9 +17,7 @@ export const bookReducer = (
       return { ...initialState, bookData: action.payload };
     }
     case BookActionTypes.FETCH_BOOKS_ERROR: {
-      return {
-        ...state,
-      };
+      return { ...state };
     }
     default:
       return state;

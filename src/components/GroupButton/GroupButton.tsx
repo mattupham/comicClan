@@ -1,6 +1,7 @@
 import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
+import { capitalizeFirstLetter } from "utils/utils";
 
 const GroupButton = styled.button`
   background: none;
@@ -17,6 +18,9 @@ const GroupButton = styled.button`
   &:focus {
     outline: none;
   }
+  &:hover {
+    cursor: pointer;
+  }
   ${(props: { primary: boolean }) =>
     props.primary &&
     css`
@@ -32,18 +36,13 @@ interface IProps {
   name: GROUP_OPTIONS;
 }
 
-const capitalize = (s: string): string =>
-  typeof s !== "string" ? "" : s.charAt(0).toUpperCase() + s.slice(1);
-
-const StyledGroupButton: FC<IProps> = (props: IProps) => {
-  return (
-    <GroupButton
-      primary={props.primary}
-      onClick={() => props.handleClick(props.name)}
-    >
-      {capitalize(props.name)}
-    </GroupButton>
-  );
-};
+const StyledGroupButton: FC<IProps> = (props: IProps) => (
+  <GroupButton
+    primary={props.primary}
+    onClick={() => props.handleClick(props.name)}
+  >
+    {capitalizeFirstLetter(props.name)}
+  </GroupButton>
+);
 
 export default StyledGroupButton;
