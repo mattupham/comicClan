@@ -1,5 +1,5 @@
-import { Book } from "state/ducks/book/types";
-import ComicBookList from "components/BookList/BookList";
+import { IBook } from "state/ducks/book/types";
+import BookList from "components/BookList/BookList";
 import GroupOptions, {
   GROUP_OPTIONS,
 } from "components/GroupOptions/GroupOptions";
@@ -8,13 +8,13 @@ import React, { FC, useEffect, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
-// import ComicBookPage from "components/ComicBookPage/ComicBookPage";
+// import BookPage from "components/BookPage/BookPage";
 // import { useParams, Route } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 
 interface IProps {
-  bookData: Book[];
+  bookData: IBook[];
   // handleSearch: (val: string) => void;
   // handleSearch: (val: any) => void;
 }
@@ -25,7 +25,7 @@ export type GroupKey =
   | GROUP_OPTIONS.ARTIST
   | GROUP_OPTIONS.OWNER;
 
-export type GroupedTuple = [string, Book[]];
+export type GroupedTuple = [string, IBook[]];
 
 const Main = styled.main`
   background: #333333;
@@ -42,7 +42,7 @@ export const HR = styled.hr`
 `;
 
 export const groupAndSortBy = (
-  book: Book[],
+  book: IBook[],
   groupOption: GROUP_OPTIONS
 ): GroupedTuple[] => {
   let groupedData = groupBy(book, groupOption);
@@ -77,9 +77,9 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
             {groupAndSortBy(bookData, currentGroupOption).map(
               ([groupValue, data]: any, index: number) => (
                 <Box key={index}>
-                  <ComicBookList
+                  <BookList
                     groupValue={groupValue}
-                    bookData={data}
+                    books={data}
                     currentGroup={currentGroupOption}
                   />
                   <HR />
@@ -95,7 +95,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
           <Route
             path="/:id"
             children={
-              <ComicBookPageRoute
+              <BookPageRoute
                 bookDataList={bookData}
                 selectedBookData={bookData[0]}
               />
@@ -107,7 +107,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   );
 };
 
-// const ComicBookPageRoute = (props: {
+// const BookPageRoute = (props: {
 //   bookDataList: BookData[];
 //   selectedBookData: BookData;
 // }) => {
@@ -116,7 +116,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
 //     return null;
 //   } else {
 //     return (
-//       <ComicBookPage
+//       <BookPage
 //         bookDataList={props.bookDataList}
 //         //@ts-ignore
 //         selectedBookData={props.bookDataList.filter(book => book.id === +id)[0]}

@@ -1,5 +1,5 @@
-import { Book } from "state/ducks/book/types";
-import ComicBook from "components/Book/Book";
+import { IBook } from "state/ducks/book/types";
+import Book from "components/Book/Book";
 import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
@@ -14,20 +14,20 @@ const GroupTitle = styled.div`
 `;
 
 interface IProps {
-  bookData: Book[];
+  books: IBook[];
   groupValue: string;
   currentGroup: GROUP_OPTIONS;
 }
 
-const ComicBookList: FC<IProps> = (props: IProps) => {
+const BookList: FC<IProps> = (props: IProps) => {
   return (
-    <Box className="comicBookList" mt="2.8rem" mb="6.9rem">
+    <Box className="bookList" mt="2.8rem" mb="6.9rem">
       {props.currentGroup !== GROUP_OPTIONS.RANDOM && (
         <GroupTitle>{props.groupValue}</GroupTitle>
       )}
       <Flex flexWrap="wrap">
-        {props.bookData.map((book, index) => (
-          <ComicBook
+        {props.books.map((book, index) => (
+          <Book
             key={index}
             bookName={book.name}
             username={book.owner}
@@ -42,4 +42,4 @@ const ComicBookList: FC<IProps> = (props: IProps) => {
   );
 };
 
-export default ComicBookList;
+export default BookList;

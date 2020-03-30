@@ -1,4 +1,4 @@
-import { Book } from "state/ducks/book/types";
+import { IBook } from "state/ducks/book/types";
 import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 import { GroupedTuple, GroupKey } from "components/Main/Main";
 
@@ -35,7 +35,7 @@ const sortByAlph = <T>(array: T[]): T[] => {
   });
 };
 
-const groupByRandom = (array: Book[]): GroupedTuple[] | never[] => {
+const groupByRandom = (array: IBook[]): GroupedTuple[] | never[] => {
   if (array.length === 0) {
     return [];
   } else {
@@ -43,11 +43,11 @@ const groupByRandom = (array: Book[]): GroupedTuple[] | never[] => {
   }
 };
 export const groupByType = (
-  array: Book[],
+  array: IBook[],
   groupOption: GroupKey
 ): GroupedTuple[] => {
   const key = groupOption.toLowerCase() as GroupKey;
-  const groups = array.reduce((acc, curVal: Book) => {
+  const groups = array.reduce((acc, curVal: IBook) => {
     acc[curVal[key]] = acc[curVal[key]] || [];
     acc[curVal[key]].push(curVal);
     return acc;
@@ -56,7 +56,7 @@ export const groupByType = (
 };
 
 export const groupBy = (
-  array: Book[],
+  array: IBook[],
   groupOption: GROUP_OPTIONS
 ): GroupedTuple[] => {
   if (groupOption === GROUP_OPTIONS.RANDOM) {

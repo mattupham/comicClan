@@ -3,7 +3,7 @@ import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const ComicBookName = styled.div`
+const BookName = styled.div`
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -38,23 +38,20 @@ interface IProps {
   id: number;
 }
 
-const ComicBookImage = styled.img`
+const BookImage = styled.img`
   width: "20rem";
   height: "30.595rem";
 `;
 
-const ComicBook: FC<IProps> = (props: IProps) => {
+const Book: FC<IProps> = (props: IProps) => {
   return (
     <Link to={`/${props.id}`} style={{ textDecoration: "none" }}>
-      <Box className="comicBook" mt="3.2rem" mr="9.6rem" width="20rem">
+      <Box className="Book" mt="3.2rem" mr="9.6rem" width="20rem">
         <Box>
-          <ComicBookImage
-            alt={`${props.bookName}-image`}
-            src={props.imageUrl}
-          />
+          <BookImage alt={`${props.bookName}-image`} src={props.imageUrl} />
         </Box>
         <Box mt="1.605rem">
-          <ComicBookName>{props.bookName}</ComicBookName>
+          <BookName>{props.bookName}</BookName>
         </Box>
         <Flex mt=".9rem">
           <OwnedBy>Owned By</OwnedBy>
@@ -65,4 +62,4 @@ const ComicBook: FC<IProps> = (props: IProps) => {
   );
 };
 
-export default ComicBook;
+export default Book;
