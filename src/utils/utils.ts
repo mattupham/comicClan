@@ -42,6 +42,7 @@ const groupByRandom = (array: IBook[]): GroupedTuple[] | never[] => {
     return [["random", randomizeArray(array.slice())]];
   }
 };
+
 export const groupByType = (
   array: IBook[],
   groupOption: GroupKey
@@ -87,3 +88,6 @@ export const sortBy = (
   }
   return groupedData;
 };
+
+export const createArrayFromRange = (num: number) =>
+  Array.apply(null, Array(num)).map((_, i) => i);

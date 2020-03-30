@@ -15,8 +15,6 @@ import { IDispatchToProps } from "state/ducks/book/types";
 
 interface IProps {
   bookData: IBook[];
-  // handleSearch: (val: string) => void;
-  // handleSearch: (val: any) => void;
 }
 
 export type GroupKey =
@@ -68,7 +66,6 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
         path="/"
         children={
           <>
-            {/* <Search handleSearch={props.handleSearch} /> */}
             <Search fetchBooks={s => fetchBooks(s)} />
             <GroupOptions
               handleSetCurrentGroup={setCurrentGroupOption}

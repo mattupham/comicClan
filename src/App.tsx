@@ -1,4 +1,4 @@
-import Headers from "components/Header/Header";
+import Header from "components/Header/Header";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import { Provider } from "react-redux";
@@ -14,7 +14,7 @@ const App: FC = () => {
     <Provider store={store}>
       <Box className="App">
         <Flex flexDirection="column">
-          <Headers />
+          <Header />
           <MainContainer />
         </Flex>
       </Box>
