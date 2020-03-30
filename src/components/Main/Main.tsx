@@ -46,8 +46,6 @@ interface IProps {
 type AllProps = IProps & IDispatchToProps;
 
 const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
-  // const [group, setGroup] = useState<GROUP>(GROUP.YEAR);
-
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
@@ -60,23 +58,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
         children={
           <>
             <Search fetchBooks={s => fetchBooks(s)} />
-            {/* <GroupOptions
-              handleSetCurrentGroup={setGroup}
-              currentGroup={group}
-            /> */}
             <GroupsContainer />
-            {/* {groupAndSortBy(bookData, group).map(
-              ([groupValue, data]: any, index: number) => (
-                <Box key={index}>
-                  <BookList
-                    groupValue={groupValue}
-                    books={data}
-                    currentGroup={group}
-                  />
-                  <HR />
-                </Box>
-              )
-            )} */}
           </>
         }
       />

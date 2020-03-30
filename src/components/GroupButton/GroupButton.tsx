@@ -2,6 +2,7 @@ import { GROUP_OPTIONS } from "components/Groups/Groups";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import { capitalizeFirstLetter } from "utils/utils";
+import { Link } from "react-router-dom";
 
 const GroupButton = styled.button`
   background: none;
@@ -33,16 +34,18 @@ const GroupButton = styled.button`
 interface IProps {
   primary: boolean;
   handleClick: (groupOption: GROUP_OPTIONS) => void;
-  name: GROUP_OPTIONS;
+  group: GROUP_OPTIONS;
 }
 
 const StyledGroupButton: FC<IProps> = (props: IProps) => (
-  <GroupButton
-    primary={props.primary}
-    onClick={() => props.handleClick(props.name)}
-  >
-    {capitalizeFirstLetter(props.name)}
-  </GroupButton>
+  <Link to={location => `${location.pathname}?group=${props.group}`}>
+    <GroupButton
+      primary={props.primary}
+      onClick={() => props.handleClick(props.group)}
+    >
+      {capitalizeFirstLetter(props.group)}
+    </GroupButton>
+  </Link>
 );
 
 export default StyledGroupButton;

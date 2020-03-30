@@ -32,27 +32,27 @@ const Groups: FC<AllProps> = ({ setGroup, group }: AllProps) => {
       <GroupButton
         primary={group === GROUP_OPTIONS.YEAR}
         handleClick={handleClick}
-        name={GROUP_OPTIONS.YEAR}
+        group={GROUP_OPTIONS.YEAR}
       />
       <GroupButton
         primary={group === GROUP_OPTIONS.WRITER}
         handleClick={handleClick}
-        name={GROUP_OPTIONS.WRITER}
+        group={GROUP_OPTIONS.WRITER}
       />
       <GroupButton
         primary={group === GROUP_OPTIONS.ARTIST}
         handleClick={handleClick}
-        name={GROUP_OPTIONS.ARTIST}
+        group={GROUP_OPTIONS.ARTIST}
       />
       <GroupButton
         primary={group === GROUP_OPTIONS.OWNER}
         handleClick={handleClick}
-        name={GROUP_OPTIONS.OWNER}
+        group={GROUP_OPTIONS.OWNER}
       />
       <GroupButton
         primary={group === GROUP_OPTIONS.RANDOM}
         handleClick={handleClick}
-        name={GROUP_OPTIONS.RANDOM}
+        group={GROUP_OPTIONS.RANDOM}
       />
     </Box>
   );
