@@ -1,16 +1,16 @@
 import axios from "axios";
-import { BookData } from "components/App/App";
-import { EnzymeAdapter } from "enzyme";
+// import { Book } from "state/ducks/book/types";
+// import { EnzymeAdapter } from "enzyme";
 
-const addIdsToBookData = (bookData: BookData[]): any => {
-  if (bookData.length === 0) {
-    return [];
-  } else {
-    return bookData.map((book: BookData, index: number) => {
-      return { ...book, id: index };
-    });
-  }
-};
+// const addIdsToBookData = (bookData: Book[]): any => {
+//   if (bookData.length === 0) {
+//     return [];
+//   } else {
+//     return bookData.map((book: Book, index: number) => {
+//       return { ...book, id: index };
+//     });
+//   }
+// };
 
 export default function apiCaller<T>(
   queryString?: string

@@ -1,5 +1,5 @@
-import { BookData } from "components/App/App";
-import ComicBook from "components/ComicBook/ComicBook";
+import { Book } from "state/ducks/book/types";
+import ComicBook from "components/Book/Book";
 import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
@@ -14,7 +14,7 @@ const GroupTitle = styled.div`
 `;
 
 interface IProps {
-  bookData: BookData[];
+  bookData: Book[];
   groupValue: string;
   currentGroup: GROUP_OPTIONS;
 }

@@ -1,5 +1,5 @@
 import { action } from "typesafe-actions";
-import { IBookRaw, BookActionTypes } from "state/ducks/book/types";
+import { Book, BookActionTypes } from "state/ducks/book/types";
 
 export const fetchBooks = (s: string | undefined = "") => {
   console.log("S IN FETCH BOOKS: ", s);
@@ -9,7 +9,7 @@ export const fetchBooks = (s: string | undefined = "") => {
   });
 };
 
-export const fetchBooksSuccess = (data: IBookRaw[]) =>
+export const fetchBooksSuccess = (data: Book[]) =>
   action(BookActionTypes.FETCH_BOOKS_SUCCESS, data);
 
 export const fetchBooksError = (message: string) =>

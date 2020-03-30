@@ -1,15 +1,14 @@
 import { IMetaAction } from "state/ducks/index";
-import { BookData } from "components/App/App";
 import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 
 export interface IBookState {
-  readonly bookData: BookData[];
+  readonly bookData: Book[];
   readonly loading: boolean;
   readonly errors: [];
 }
 export type ApiResponse = Record<string, any>;
 
-export interface IBookRaw extends ApiResponse {
+export interface Book extends ApiResponse {
   name: string;
   [GROUP_OPTIONS.WRITER]: string;
   [GROUP_OPTIONS.ARTIST]: string;

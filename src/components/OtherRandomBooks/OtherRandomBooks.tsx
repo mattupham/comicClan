@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { Box } from "rebass";
-import { BookData } from "components/App/App";
+import { Book } from "state/ducks/book/types";
 import { groupAndSortBy } from "components/Main/Main";
-import ComicBookList from "components/ComicBookList/ComicBookList";
+import ComicBookList from "components/BookList/BookList";
 import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
 
 interface IProps {
-  bookDataList: BookData[];
+  bookDataList: Book[];
 }
 
 const OtherRandomBooks: FC<IProps> = (props: IProps) => {

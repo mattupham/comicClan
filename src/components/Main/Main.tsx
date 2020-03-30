@@ -1,5 +1,5 @@
-import { BookData } from "components/App/App";
-import ComicBookList from "components/ComicBookList/ComicBookList";
+import { Book } from "state/ducks/book/types";
+import ComicBookList from "components/BookList/BookList";
 import GroupOptions, {
   GROUP_OPTIONS,
 } from "components/GroupOptions/GroupOptions";
@@ -14,7 +14,7 @@ import { Route } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 
 interface IProps {
-  bookData: BookData[];
+  bookData: Book[];
   // handleSearch: (val: string) => void;
   // handleSearch: (val: any) => void;
 }
@@ -25,7 +25,7 @@ export type GroupKey =
   | GROUP_OPTIONS.ARTIST
   | GROUP_OPTIONS.OWNER;
 
-export type GroupedTuple = [string, BookData[]];
+export type GroupedTuple = [string, Book[]];
 
 const Main = styled.main`
   background: #333333;
@@ -42,7 +42,7 @@ export const HR = styled.hr`
 `;
 
 export const groupAndSortBy = (
-  book: BookData[],
+  book: Book[],
   groupOption: GROUP_OPTIONS
 ): GroupedTuple[] => {
   let groupedData = groupBy(book, groupOption);

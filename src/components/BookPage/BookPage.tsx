@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
-import { BookData } from "components/App/App";
 import { HR } from "components/Main/Main";
-import ComicBookDetails from "components/ComicBookDetails/ComicBookDetails";
+import ComicBookDetails from "components/BookDetails/BookDetails";
 import OtherRandomBooks from "components/OtherRandomBooks/OtherRandomBooks";
 import BackLink from "components/BackLink/BackLink";
+import { Book } from "state/ducks/book/types";
 
 interface IProps {
-  bookDataList: BookData[];
-  selectedBookData: BookData;
+  bookDataList: Book[];
+  selectedBookData: Book;
 }
 
 const ComicBookImage = styled.img`

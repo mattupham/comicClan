@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Flex } from "rebass";
 import styled from "styled-components";
-import { BookData } from "components/App/App";
+import { Book } from "state/ducks/book/types";
 import Rating from "components/Rating/Rating";
 
 const BookName = styled.div`
@@ -48,7 +48,7 @@ const Summary = styled.div`
 `;
 
 interface IProps {
-  bookData: BookData;
+  bookData: Book;
 }
 
 const ComicBookDetails: FC<IProps> = (props: IProps) => (
