@@ -10,10 +10,10 @@ interface IProps {
 const Rating: FC<IProps> = (props: IProps) => (
   <Flex pt="1.125rem" minWidth="17.342rem">
     {createArrayFromRange(props.rating).map((num, index) => (
-      <Star type={StarType.FULL} index={index} />
+      <Star type={StarType.FULL} index={index} key={index} />
     ))}
     {createArrayFromRange(5 - props.rating).map((num, index) => (
-      <Star type={StarType.EMPTY} index={index} />
+      <Star type={StarType.EMPTY} index={index} key={index} />
     ))}
   </Flex>
 );

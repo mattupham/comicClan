@@ -102,14 +102,6 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
 
 const BookPageRoute = (props: { books: IBook[]; selectedBook: IBook }) => {
   let { title } = useParams();
-  console.log("BOOK NAME: ", title);
-  console.log(
-    "MATCH: ",
-    props.books.filter(
-      //@ts-ignore
-      book => book.name === decodeURIComponent(title)
-    )
-  );
   if (title === undefined) {
     return null;
   } else {
