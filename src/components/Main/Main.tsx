@@ -6,14 +6,13 @@ import {
 } from "components/Groups/Groups";
 import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
-import BookPage from "components/BookPage/BookPage";
-import { Route, Switch, useParams, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
-import queryString from "query-string";
+import BookPage from "components/BookPage/BookPage";
 
 export type GroupKey = GROUP.YEAR | GROUP.WRITER | GROUP.ARTIST | GROUP.OWNER;
 
@@ -36,7 +35,7 @@ export const HR = styled.hr`
 
 export const groupAndSortBy = (
   book: IBook[],
-  groupOption: GROUP
+  groupOption: GROUP = GROUP_OPTIONS.YEAR
 ): GroupedTuple[] => {
   let groupedData = groupBy(book, groupOption);
   let sortedData = sortBy(groupedData, groupOption);
@@ -54,17 +53,6 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
     fetchBooks();
   }, [fetchBooks]);
 
-  // const params = new URLSearchParams(props.location.search);
-  // const groupFromUrl = params.get("group");
-  // console.log("PARAMS: ", params);
-  // console.log("PARAMS: ", params);
-
-  // let { group } = useParams();
-  // console.log("LOCATION: ", location);
-  // const params = new URLSearchParams(location.search);
-  // console.log("PARAMS: ", params);
-  // const groupFromUrl = params.get("group");
-
   return (
     <Main className="main">
       <Switch>
@@ -76,27 +64,35 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
           path="/books/:group"
           children={({ match }) => (
             <>
-              {/* {console.log("MATCH: ", match)}
-              {console.log("MATCHED: ", match.params.group)} */}
               <Search fetchBooks={s => fetchBooks(s)} />
               <GroupsContainer />
-              {/* @ts-ignore */}
               {groupAndSortBy(
                 bookData,
-                // @ts-ignore
-                match.params.group
+                //@ts-ignore
+                match.params.group as GROUP_OPTIONS
               ).map(([groupValue, data]: any, index: number) => (
                 <Box key={index}>
                   <BookList
                     groupValue={groupValue}
                     books={data}
                     // currentGroup={currentGroupOption}
+                    // TODO change this
                     currentGroup={GROUP_OPTIONS.YEAR}
                   />
                   <HR />
                 </Box>
               ))}
             </>
+          )}
+        />
+        <Route
+          path="/book/:title"
+          children={({ match }) => (
+            <BookPageRoute
+              books={bookData}
+              selectedBook={bookData[0]}
+              title={match !== null ? match.params.title : ""}
+            />
           )}
         />
       </Switch>
@@ -156,24 +152,30 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
 //   );
 // };
 
-// const BookPageRoute = (props: { books: IBook[]; selectedBook: IBook }) => {
-//   let { title } = useParams();
-//   if (title === undefined) {
-//     return null;
-//   } else {
-//     return (
-//       <BookPage
-//         books={props.books}
-//         //@ts-ignore
-//         selectedBook={
-//           props.books.filter(
-//             //@ts-ignore
-//             book => book.name === decodeURIComponent(title)
-//           )[0]
-//         }
-//       />
-//     );
-//   }
-// };
+const BookPageRoute = (props: {
+  books: IBook[];
+  selectedBook: IBook;
+  title: string;
+}) => {
+  const title = decodeURIComponent(props.title);
+  console.log("TITLE: ", title);
+
+  if (props.title === undefined) {
+    return null;
+  } else {
+    return (
+      <BookPage
+        books={props.books}
+        //@ts-ignore
+        selectedBook={
+          props.books.filter(
+            //@ts-ignore
+            book => book.name === decodeURIComponent(title)
+          )[0]
+        }
+      />
+    );
+  }
+};
 
 export default StyledMain;

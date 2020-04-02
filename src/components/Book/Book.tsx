@@ -46,7 +46,7 @@ const BookImage = styled.img`
 const Book: FC<IProps> = (props: IProps) => {
   return (
     <Link
-      to={`/${encodeURIComponent(props.bookName)}`}
+      to={`/book/${encodeURIComponent(props.bookName)}`}
       style={{ textDecoration: "none" }}
     >
       <Box className="Book" mt="3.2rem" mr="9.6rem" width="20rem">

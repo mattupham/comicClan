@@ -38,13 +38,14 @@ interface IProps {
 }
 
 const StyledGroupButton: FC<IProps> = (props: IProps) => (
-  <Link to={`${props.group}`}>
+  <Link to={`/books/${props.group}`}>
     <GroupButton
       primary={props.primary}
       onClick={() => props.handleClick(props.group)}
     >
       {capitalizeFirstLetter(props.group)}
     </GroupButton>
+    //{" "}
   </Link>
 );
 
