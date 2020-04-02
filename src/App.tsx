@@ -1,4 +1,5 @@
 import Header from "components/Header/Header";
+import ScrollToTop from "components/ScrollToTop/ScrollToTop";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import { Provider } from "react-redux";
@@ -12,6 +13,7 @@ const store = configureStore(initialState);
 const App: FC = () => {
   return (
     <Provider store={store}>
+      <ScrollToTop />
       <Box className="App">
         <Flex flexDirection="column">
           <Header />
