@@ -1,5 +1,5 @@
 import { IMetaAction } from "state/ducks/index";
-import { GROUP_OPTIONS } from "components/Groups/Groups";
+import { GROUP } from "components/Groups/Groups";
 
 export interface IBookState {
   readonly bookData: IBook[];
@@ -11,14 +11,14 @@ export type ApiResponse = Record<string, any>;
 
 export interface IBook extends ApiResponse {
   name: string;
-  [GROUP_OPTIONS.WRITER]: string;
-  [GROUP_OPTIONS.ARTIST]: string;
+  [GROUP.WRITER]: string;
+  [GROUP.ARTIST]: string;
   publication: string;
-  [GROUP_OPTIONS.OWNER]: string;
+  [GROUP.OWNER]: string;
   rating: number;
   image: string;
   summary: string;
-  [GROUP_OPTIONS.YEAR]: number;
+  [GROUP.YEAR]: number;
 }
 export const BookActionTypes = {
   FETCH_BOOKS: "@@book/FETCH_BOOKS",

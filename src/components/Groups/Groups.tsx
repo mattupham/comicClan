@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { Box } from "rebass";
 import { IDispatchToProps } from "state/ducks/group/types";
 
-export enum GROUP_OPTIONS {
+export enum GROUP {
   YEAR = "year",
   WRITER = "writer",
   ARTIST = "artist",
@@ -12,12 +12,12 @@ export enum GROUP_OPTIONS {
 }
 
 interface GroupButton {
-  name: GROUP_OPTIONS;
+  name: GROUP;
   selected: boolean;
 }
 
 interface IProps {
-  group: GROUP_OPTIONS;
+  group: GROUP;
   // handleSetCurrentGroup: (group: GROUP_OPTIONS) => void;
 }
 
@@ -25,34 +25,34 @@ type AllProps = IProps & IDispatchToProps;
 // type AllProps = IDispatchToProps;
 
 const Groups: FC<AllProps> = ({ setGroup, group }: AllProps) => {
-  const handleClick = (groupOption: GROUP_OPTIONS) => setGroup(groupOption);
+  const handleClick = (groupOption: GROUP) => setGroup(groupOption);
 
   return (
     <Box className="groupOptions">
       <GroupButton
-        primary={group === GROUP_OPTIONS.YEAR}
+        primary={group === GROUP.YEAR}
         handleClick={handleClick}
-        group={GROUP_OPTIONS.YEAR}
+        group={GROUP.YEAR}
       />
       <GroupButton
-        primary={group === GROUP_OPTIONS.WRITER}
+        primary={group === GROUP.WRITER}
         handleClick={handleClick}
-        group={GROUP_OPTIONS.WRITER}
+        group={GROUP.WRITER}
       />
       <GroupButton
-        primary={group === GROUP_OPTIONS.ARTIST}
+        primary={group === GROUP.ARTIST}
         handleClick={handleClick}
-        group={GROUP_OPTIONS.ARTIST}
+        group={GROUP.ARTIST}
       />
       <GroupButton
-        primary={group === GROUP_OPTIONS.OWNER}
+        primary={group === GROUP.OWNER}
         handleClick={handleClick}
-        group={GROUP_OPTIONS.OWNER}
+        group={GROUP.OWNER}
       />
       <GroupButton
-        primary={group === GROUP_OPTIONS.RANDOM}
+        primary={group === GROUP.RANDOM}
         handleClick={handleClick}
-        group={GROUP_OPTIONS.RANDOM}
+        group={GROUP.RANDOM}
       />
     </Box>
   );

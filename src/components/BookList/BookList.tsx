@@ -1,6 +1,6 @@
 import { IBook } from "state/ducks/book/types";
 import Book from "components/Book/Book";
-import { GROUP_OPTIONS } from "components/Groups/Groups";
+import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
@@ -16,13 +16,13 @@ const GroupTitle = styled.div`
 interface IProps {
   books: IBook[];
   groupValue: string;
-  currentGroup: GROUP_OPTIONS;
+  currentGroup: GROUP;
 }
 
 const BookList: FC<IProps> = (props: IProps) => {
   return (
     <Box className="bookList" mt="2.8rem" mb="6.9rem">
-      {props.currentGroup !== GROUP_OPTIONS.RANDOM && (
+      {props.currentGroup !== GROUP.RANDOM && (
         <GroupTitle>{props.groupValue}</GroupTitle>
       )}
       <Flex flexWrap="wrap">

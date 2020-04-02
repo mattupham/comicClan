@@ -1,5 +1,5 @@
 import { IBook } from "state/ducks/book/types";
-import { GROUP_OPTIONS } from "components/Groups/Groups";
+import { GROUP } from "components/Groups/Groups";
 import { GroupedTuple, GroupKey } from "components/Main/Main";
 
 const randomizeArray = <T>(array: T[]): T[] => {
@@ -56,11 +56,8 @@ export const groupByType = (
   return Object.entries(groups);
 };
 
-export const groupBy = (
-  array: IBook[],
-  groupOption: GROUP_OPTIONS
-): GroupedTuple[] => {
-  if (groupOption === GROUP_OPTIONS.RANDOM) {
+export const groupBy = (array: IBook[], groupOption: GROUP): GroupedTuple[] => {
+  if (groupOption === GROUP.RANDOM) {
     return groupByRandom(array);
   } else {
     return groupByType(array, groupOption);
@@ -69,21 +66,21 @@ export const groupBy = (
 
 export const sortBy = (
   groupedData: any,
-  groupOption: GROUP_OPTIONS
+  groupOption: GROUP
 ): GroupedTuple[] => {
-  if (groupOption === GROUP_OPTIONS.YEAR) {
+  if (groupOption === GROUP.YEAR) {
     return sortByYearAsc(groupedData);
   }
-  if (groupOption === GROUP_OPTIONS.WRITER) {
+  if (groupOption === GROUP.WRITER) {
     return sortByAlph(groupedData);
   }
-  if (groupOption === GROUP_OPTIONS.ARTIST) {
+  if (groupOption === GROUP.ARTIST) {
     return sortByAlph(groupedData);
   }
-  if (groupOption === GROUP_OPTIONS.OWNER) {
+  if (groupOption === GROUP.OWNER) {
     return sortByAlph(groupedData);
   }
-  if (groupOption === GROUP_OPTIONS.RANDOM) {
+  if (groupOption === GROUP.RANDOM) {
     return groupedData;
   }
   return groupedData;

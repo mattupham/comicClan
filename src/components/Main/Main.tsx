@@ -1,9 +1,6 @@
 import { IBook } from "state/ducks/book/types";
 import BookList from "components/BookList/BookList";
-import {
-  GROUP_OPTIONS as GROUP,
-  GROUP_OPTIONS,
-} from "components/Groups/Groups";
+import { GROUP } from "components/Groups/Groups";
 import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
 import React, { FC, useEffect } from "react";
@@ -34,7 +31,7 @@ export const HR = styled.hr`
 
 export const groupAndSortBy = (
   book: IBook[],
-  groupOption: GROUP = GROUP_OPTIONS.YEAR
+  groupOption: GROUP = GROUP.YEAR
 ): GroupedTuple[] => {
   let groupedData = groupBy(book, groupOption);
   let sortedData = sortBy(groupedData, groupOption);
@@ -68,7 +65,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
               {groupAndSortBy(
                 bookData,
                 //@ts-ignore
-                match.params.group as GROUP_OPTIONS
+                match.params.group as GROUP
               ).map(([groupValue, data]: any, index: number) => (
                 <Box key={index}>
                   <BookList
@@ -77,7 +74,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
                     // currentGroup={currentGroupOption}
                     currentGroup={
                       //@ts-ignore
-                      match.params.group as GROUP_OPTIONS
+                      match.params.group as GROUP
                     }
                   />
                   <HR />

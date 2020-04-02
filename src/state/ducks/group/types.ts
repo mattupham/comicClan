@@ -1,8 +1,8 @@
 // import { IMetaAction } from "state/ducks/index";
-import { GROUP_OPTIONS } from "components/Groups/Groups";
+import { GROUP } from "components/Groups/Groups";
 
 export interface IGroupState {
-  readonly group: GROUP_OPTIONS;
+  readonly group: GROUP;
 }
 
 export const GroupActionTypes = {
@@ -11,5 +11,5 @@ export const GroupActionTypes = {
 
 export interface IDispatchToProps {
   // TODO fix meta action
-  setGroup: (group: GROUP_OPTIONS) => any;
+  setGroup: (group: GROUP) => any;
 }

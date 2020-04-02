@@ -1,4 +1,4 @@
-import { GROUP_OPTIONS } from "components/Groups/Groups";
+import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import { capitalizeFirstLetter } from "utils/utils";
@@ -33,8 +33,8 @@ const GroupButton = styled.button`
 
 interface IProps {
   primary: boolean;
-  handleClick: (groupOption: GROUP_OPTIONS) => void;
-  group: GROUP_OPTIONS;
+  handleClick: (groupOption: GROUP) => void;
+  group: GROUP;
 }
 
 const StyledGroupButton: FC<IProps> = (props: IProps) => (

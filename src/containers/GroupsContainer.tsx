@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Groups, { GROUP_OPTIONS } from "components/Groups/Groups";
+import Groups, { GROUP } from "components/Groups/Groups";
 import { IApplicationState } from "state/ducks/index";
 import { setGroup } from "state/ducks/group/actions";
 import { IGroupState } from "state/ducks/group/types";
@@ -13,7 +13,7 @@ const GroupsContainer = () => {
   );
 
   const mapDispatchToProps = {
-    setGroup: useCallback((group: GROUP_OPTIONS) => dispatch(setGroup(group)), [
+    setGroup: useCallback((group: GROUP) => dispatch(setGroup(group)), [
       dispatch,
     ]),
   };
