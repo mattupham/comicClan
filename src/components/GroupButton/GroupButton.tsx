@@ -38,7 +38,7 @@ interface IProps {
 }
 
 const StyledGroupButton: FC<IProps> = (props: IProps) => (
-  <Link to={location => `${location.pathname}?group=${props.group}`}>
+  <Link to={`${props.group}`}>
     <GroupButton
       primary={props.primary}
       onClick={() => props.handleClick(props.group)}

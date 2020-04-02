@@ -11,7 +11,7 @@ import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
 import BookPage from "components/BookPage/BookPage";
-import { Route, Switch, useParams } from "react-router-dom";
+import { Route, Switch, useParams, Redirect } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 import queryString from "query-string";
 
@@ -65,69 +65,115 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   // console.log("PARAMS: ", params);
   // const groupFromUrl = params.get("group");
 
-  // console.log("GROUP: ", group);
   return (
     <Main className="main">
-      <Route
-        exact
-        path="/"
-        children={({ location }) => (
-          <>
-            {console.log("LOCATION: ", location)}
-            {console.log("PARSED: ", queryString.parse(location.search).group)}
-            <Search fetchBooks={s => fetchBooks(s)} />
-            <GroupsContainer />
-            {/* @ts-ignore */}
-            {groupAndSortBy(
-              bookData,
-              // @ts-ignore
-              queryString.parse(location.search).group
-            ).map(([groupValue, data]: any, index: number) => (
-              <Box key={index}>
-                <BookList
-                  groupValue={groupValue}
-                  books={data}
-                  // currentGroup={currentGroupOption}
-                  currentGroup={GROUP_OPTIONS.YEAR}
-                />
-                <HR />
-              </Box>
-            ))}
-          </>
-        )}
-      />
-      {bookData.length === 0 && (
-        <Switch>
-          <Route
-            path="/:title"
-            children={
-              <BookPageRoute books={bookData} selectedBook={bookData[0]} />
-            }
-          />
-        </Switch>
-      )}
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/books/year" />
+        </Route>
+        <Route
+          exact
+          path="/books/:group"
+          children={({ match }) => (
+            <>
+              {/* {console.log("MATCH: ", match)}
+              {console.log("MATCHED: ", match.params.group)} */}
+              <Search fetchBooks={s => fetchBooks(s)} />
+              <GroupsContainer />
+              {/* @ts-ignore */}
+              {groupAndSortBy(
+                bookData,
+                // @ts-ignore
+                match.params.group
+              ).map(([groupValue, data]: any, index: number) => (
+                <Box key={index}>
+                  <BookList
+                    groupValue={groupValue}
+                    books={data}
+                    // currentGroup={currentGroupOption}
+                    currentGroup={GROUP_OPTIONS.YEAR}
+                  />
+                  <HR />
+                </Box>
+              ))}
+            </>
+          )}
+        />
+      </Switch>
     </Main>
   );
 };
 
-const BookPageRoute = (props: { books: IBook[]; selectedBook: IBook }) => {
-  let { title } = useParams();
-  if (title === undefined) {
-    return null;
-  } else {
-    return (
-      <BookPage
-        books={props.books}
-        //@ts-ignore
-        selectedBook={
-          props.books.filter(
-            //@ts-ignore
-            book => book.name === decodeURIComponent(title)
-          )[0]
-        }
-      />
-    );
-  }
-};
+// console.log("GROUP: ", group);
+//   return (
+//     <Main className="main">
+//       <Switch>
+//         <Redirect exact from="/" to="/group" />
+
+//         <Route
+//           path="/group"
+//           children={({ location }) => (
+//             <>
+//               {console.log("LOCATION: ", location)}
+//               {console.log(
+//                 "PARSED: ",
+//                 queryString.parse(location.search).group
+//               )}
+//               <Search fetchBooks={s => fetchBooks(s)} />
+//               <GroupsContainer />
+//               {/* @ts-ignore */}
+//               {groupAndSortBy(
+//                 bookData,
+//                 // @ts-ignore
+//                 queryString.parse(location.search).group
+//               ).map(([groupValue, data]: any, index: number) => (
+//                 <Box key={index}>
+//                   <BookList
+//                     groupValue={groupValue}
+//                     books={data}
+//                     // currentGroup={currentGroupOption}
+//                     currentGroup={GROUP_OPTIONS.YEAR}
+//                   />
+//                   <HR />
+//                 </Box>
+//               ))}
+//             </>
+//           )}
+//         />
+//       </Switch>
+
+//       {bookData.length !== 0 && (
+//         <Switch>
+//           <Route
+//             path="/:title"
+//             children={
+//               <BookPageRoute books={bookData} selectedBook={bookData[0]} />
+//             }
+//           />
+//         </Switch>
+//       )}
+//     </Main>
+//   );
+// };
+
+// const BookPageRoute = (props: { books: IBook[]; selectedBook: IBook }) => {
+//   let { title } = useParams();
+//   if (title === undefined) {
+//     return null;
+//   } else {
+//     return (
+//       <BookPage
+//         books={props.books}
+//         //@ts-ignore
+//         selectedBook={
+//           props.books.filter(
+//             //@ts-ignore
+//             book => book.name === decodeURIComponent(title)
+//           )[0]
+//         }
+//       />
+//     );
+//   }
+// };
 
 export default StyledMain;
