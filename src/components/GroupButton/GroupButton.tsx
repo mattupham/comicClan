@@ -45,7 +45,6 @@ const StyledGroupButton: FC<IProps> = (props: IProps) => (
     >
       {capitalizeFirstLetter(props.group)}
     </GroupButton>
-    //{" "}
   </Link>
 );
 

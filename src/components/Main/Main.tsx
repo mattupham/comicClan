@@ -24,7 +24,6 @@ const Main = styled.main`
   padding-right: 2.8rem;
   padding-left: 2.8rem;
   padding-top: 2.8rem;
-  height: 100vh;
 `;
 
 export const HR = styled.hr`
@@ -76,8 +75,10 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
                     groupValue={groupValue}
                     books={data}
                     // currentGroup={currentGroupOption}
-                    // TODO change this
-                    currentGroup={GROUP_OPTIONS.YEAR}
+                    currentGroup={
+                      //@ts-ignore
+                      match.params.group as GROUP_OPTIONS
+                    }
                   />
                   <HR />
                 </Box>
@@ -100,58 +101,6 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   );
 };
 
-// console.log("GROUP: ", group);
-//   return (
-//     <Main className="main">
-//       <Switch>
-//         <Redirect exact from="/" to="/group" />
-
-//         <Route
-//           path="/group"
-//           children={({ location }) => (
-//             <>
-//               {console.log("LOCATION: ", location)}
-//               {console.log(
-//                 "PARSED: ",
-//                 queryString.parse(location.search).group
-//               )}
-//               <Search fetchBooks={s => fetchBooks(s)} />
-//               <GroupsContainer />
-//               {/* @ts-ignore */}
-//               {groupAndSortBy(
-//                 bookData,
-//                 // @ts-ignore
-//                 queryString.parse(location.search).group
-//               ).map(([groupValue, data]: any, index: number) => (
-//                 <Box key={index}>
-//                   <BookList
-//                     groupValue={groupValue}
-//                     books={data}
-//                     // currentGroup={currentGroupOption}
-//                     currentGroup={GROUP_OPTIONS.YEAR}
-//                   />
-//                   <HR />
-//                 </Box>
-//               ))}
-//             </>
-//           )}
-//         />
-//       </Switch>
-
-//       {bookData.length !== 0 && (
-//         <Switch>
-//           <Route
-//             path="/:title"
-//             children={
-//               <BookPageRoute books={bookData} selectedBook={bookData[0]} />
-//             }
-//           />
-//         </Switch>
-//       )}
-//     </Main>
-//   );
-// };
-
 const BookPageRoute = (props: {
   books: IBook[];
   selectedBook: IBook;
@@ -170,7 +119,7 @@ const BookPageRoute = (props: {
         selectedBook={
           props.books.filter(
             //@ts-ignore
-            book => book.name === decodeURIComponent(title)
+            book => book.name === title
           )[0]
         }
       />
