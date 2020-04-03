@@ -1,42 +1,21 @@
 import { IBook } from "state/ducks/book/types";
-import BookList from "components/BookList/BookList";
 import { GROUP } from "components/Groups/Groups";
 import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
 import React, { FC, useEffect } from "react";
-import { Box } from "rebass";
-import styled from "styled-components";
-import { groupBy, sortBy } from "utils/utils";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 import BookPage from "components/BookPage/BookPage";
-
-export type GroupKey = GROUP.YEAR | GROUP.WRITER | GROUP.ARTIST | GROUP.OWNER;
-
-export type GroupedTuple = [string, IBook[]];
+import GroupedBooks from "components/GroupedBooks/GroupedBooks";
+import styled from "styled-components";
 
 const Main = styled.main`
   background: #333333;
-  height: 100%;
+  min-height: 100vh;
   padding-right: 2.8rem;
   padding-left: 2.8rem;
   padding-top: 2.8rem;
 `;
-
-export const HR = styled.hr`
-  border: 1px solid #535353;
-  width: 100%;
-  margin: 0;
-`;
-
-export const groupAndSortBy = (
-  book: IBook[],
-  groupOption: GROUP = GROUP.YEAR
-): GroupedTuple[] => {
-  let groupedData = groupBy(book, groupOption);
-  let sortedData = sortBy(groupedData, groupOption);
-  return sortedData;
-};
 
 interface IProps {
   bookData: IBook[];
@@ -62,24 +41,12 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
             <>
               <Search fetchBooks={s => fetchBooks(s)} />
               <GroupsContainer />
-              {groupAndSortBy(
-                bookData,
+              <GroupedBooks
+                // TODO add null case
                 //@ts-ignore
-                match.params.group as GROUP
-              ).map(([groupValue, data]: any, index: number) => (
-                <Box key={index}>
-                  <BookList
-                    groupValue={groupValue}
-                    books={data}
-                    // currentGroup={currentGroupOption}
-                    currentGroup={
-                      //@ts-ignore
-                      match.params.group as GROUP
-                    }
-                  />
-                  <HR />
-                </Box>
-              ))}
+                selectedGroup={match.params.group as GROUP}
+                bookData={bookData}
+              />
             </>
           )}
         />

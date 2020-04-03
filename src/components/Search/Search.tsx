@@ -4,7 +4,7 @@ import { Box } from "rebass";
 import styled from "styled-components";
 import { IDispatchToProps } from "state/ducks/book/types";
 
-const SearchContainer = styled.div`
+const SearchBox = styled.div`
   display: inline-flex;
   border: 1px solid #ccc;
   overflow: hidden;
@@ -15,7 +15,7 @@ const SearchContainer = styled.div`
   width: 100%;
 `;
 
-const Search = styled.input`
+const Input = styled.input`
   border: 0;
   flex: 1;
   background: none;
@@ -57,12 +57,12 @@ const StyledSearch: FC<IDispatchToProps> = ({
   return (
     <Box mb="2.8rem">
       <form onSubmit={handleSubmit}>
-        <SearchContainer>
+        <SearchBox>
           <Box ml="1.819rem" mt="1.819rem" mb="1.811rem" mr="1.811rem">
             <SearchIcon />
           </Box>
           <Box width="100%">
-            <Search
+            <Input
               type="text"
               placeholder="Search by book name"
               value={value}
@@ -71,7 +71,7 @@ const StyledSearch: FC<IDispatchToProps> = ({
               }
             />
           </Box>
-        </SearchContainer>
+        </SearchBox>
       </form>
     </Box>
   );

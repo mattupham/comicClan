@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Box } from "rebass";
 import { IBook } from "state/ducks/book/types";
-import { groupAndSortBy } from "components/Main/Main";
+import { groupAndSortBy } from "utils/utils";
 import BookList from "components/BookList/BookList";
 import { GROUP } from "components/Groups/Groups";
 
