@@ -27,7 +27,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
-
+  console.log("BOOK DATA: ", bookData);
   return (
     <Main className="main">
       <Switch>
@@ -52,43 +52,30 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
         />
         <Route
           path="/book/:title"
-          children={({ match }) => (
-            <BookPageRoute
-              books={bookData}
-              selectedBook={bookData[0]}
-              title={match !== null ? match.params.title : ""}
-            />
-          )}
+          children={({ match }) => {
+            const title = decodeURIComponent(
+              match !== null ? match.params.title : ""
+            );
+            if (title === undefined) {
+              return null;
+            } else {
+              const selectedBook = bookData.filter(
+                book => book.name === title
+              )[0];
+              return (
+                <BookPage
+                  books={bookData}
+                  selectedBook={selectedBook}
+                  //@ts-ignore
+                  title={title}
+                />
+              );
+            }
+          }}
         />
       </Switch>
     </Main>
   );
-};
-
-const BookPageRoute = (props: {
-  books: IBook[];
-  selectedBook: IBook;
-  title: string;
-}) => {
-  const title = decodeURIComponent(props.title);
-  console.log("TITLE: ", title);
-
-  if (props.title === undefined) {
-    return null;
-  } else {
-    return (
-      <BookPage
-        books={props.books}
-        //@ts-ignore
-        selectedBook={
-          props.books.filter(
-            //@ts-ignore
-            book => book.name === title
-          )[0]
-        }
-      />
-    );
-  }
 };
 
 export default StyledMain;

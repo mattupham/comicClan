@@ -7,11 +7,6 @@ import OtherRandomBooks from "components/OtherRandomBooks/OtherRandomBooks";
 import BackLink from "components/BackLink/BackLink";
 import { IBook } from "state/ducks/book/types";
 
-interface IProps {
-  books: IBook[];
-  selectedBook: IBook;
-}
-
 const BookImage = styled.img`
   height: 100%;
   width: 100%;
@@ -25,6 +20,12 @@ const RandomBookTitle = styled.div`
   line-height: 37px;
   color: #aaaaaa;
 `;
+
+interface IProps {
+  books: IBook[];
+  selectedBook: IBook;
+  title: string;
+}
 
 const BookPage: FC<IProps> = (props: IProps) => {
   return (
