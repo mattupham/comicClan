@@ -1,6 +1,6 @@
-import { BookData } from "components/App/App";
-import ComicBook from "components/ComicBook/ComicBook";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import { IBook } from "state/ducks/book/types";
+import Book from "components/Book/Book";
+import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
@@ -14,24 +14,26 @@ const GroupTitle = styled.div`
 `;
 
 interface IProps {
-  bookData: BookData[];
+  books: IBook[];
   groupValue: string;
-  currentGroup: GROUP_OPTIONS;
+  currentGroup: GROUP;
 }
 
-const ComicBookList: FC<IProps> = (props: IProps) => {
+const BookList: FC<IProps> = (props: IProps) => {
   return (
-    <Box className="comicBookList" mt="2.8rem" mb="6.9rem">
-      {props.currentGroup !== GROUP_OPTIONS.RANDOM && (
+    <Box className="bookList" mt="2.8rem" mb="6.9rem">
+      {props.currentGroup !== GROUP.RANDOM && (
         <GroupTitle>{props.groupValue}</GroupTitle>
       )}
       <Flex flexWrap="wrap">
-        {props.bookData.map((book, index) => (
-          <ComicBook
+        {props.books.map((book, index) => (
+          <Book
             key={index}
             bookName={book.name}
             username={book.owner}
             imageUrl={book.image}
+            // TODO handle ID
+            //@ts-ignore
             id={book.id}
           />
         ))}
@@ -40,4 +42,4 @@ const ComicBookList: FC<IProps> = (props: IProps) => {
   );
 };
 
-export default ComicBookList;
+export default BookList;

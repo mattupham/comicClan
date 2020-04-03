@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ReactComponent as BackArrow } from "assets/backArrow.svg";
 import { Link } from "react-router-dom";
 
-const StyledLink = styled.a`
+const StyledLink = styled.div`
   height: 23px;
   font-family: Roboto;
   font-style: normal;
@@ -17,9 +17,6 @@ const StyledLink = styled.a`
   margin-left: 0.659rem;
   position: relative;
   bottom: 0;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const BackLink: FC = () => {

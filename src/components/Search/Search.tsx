@@ -2,6 +2,7 @@ import { ReactComponent as SearchIcon } from "assets/searchIcon.svg";
 import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
+import { IDispatchToProps } from "state/ducks/book/types";
 
 const SearchContainer = styled.div`
   display: inline-flex;
@@ -41,15 +42,14 @@ const Search = styled.input`
   color: #cccccc;
 `;
 
-interface IProps {
-  handleSearch: (val: string) => void;
-}
-
-const StyledSearch: FC<IProps> = (props: IProps) => {
+const StyledSearch: FC<IDispatchToProps> = ({
+  fetchBooks,
+}: IDispatchToProps) => {
   const [value, setValue] = useState<string>("");
 
+  // TODO Add fetchBooks via Redux here
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    props.handleSearch(value);
+    fetchBooks(value);
     setValue("");
     e.preventDefault();
   };

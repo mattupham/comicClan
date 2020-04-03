@@ -1,24 +1,24 @@
 import React, { FC } from "react";
 import { Box } from "rebass";
-import { BookData } from "components/App/App";
+import { IBook } from "state/ducks/book/types";
 import { groupAndSortBy } from "components/Main/Main";
-import ComicBookList from "components/ComicBookList/ComicBookList";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import BookList from "components/BookList/BookList";
+import { GROUP } from "components/Groups/Groups";
 
 interface IProps {
-  bookDataList: BookData[];
+  books: IBook[];
 }
 
 const OtherRandomBooks: FC<IProps> = (props: IProps) => {
   return (
     <>
-      {groupAndSortBy(props.bookDataList, GROUP_OPTIONS.RANDOM).map(
+      {groupAndSortBy(props.books, GROUP.RANDOM).map(
         ([groupValue, data]: any, index: number) => (
           <Box key={index}>
-            <ComicBookList
+            <BookList
               groupValue={groupValue}
-              bookData={data}
-              currentGroup={GROUP_OPTIONS.RANDOM}
+              books={data}
+              currentGroup={GROUP.RANDOM}
             />
           </Box>
         )

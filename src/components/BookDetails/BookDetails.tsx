@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Flex } from "rebass";
 import styled from "styled-components";
-import { BookData } from "components/App/App";
+import { IBook } from "state/ducks/book/types";
 import Rating from "components/Rating/Rating";
 
 const BookName = styled.div`
@@ -48,31 +48,31 @@ const Summary = styled.div`
 `;
 
 interface IProps {
-  bookData: BookData;
+  book: IBook;
 }
 
-const ComicBookDetails: FC<IProps> = (props: IProps) => (
+const BookDetails: FC<IProps> = (props: IProps) => (
   <Flex flexDirection="column" width="100%">
     <Flex flexDirection="row" width="100%">
       <BookName>
-        {props.bookData.name} {`(${props.bookData.year})`}
+        {props.book.name} {`(${props.book.year})`}
       </BookName>
-      <Rating rating={props.bookData.rating} />
+      <Rating rating={props.book.rating} />
     </Flex>
     <MetaData>
-      Writer:<Val>{props.bookData.writer}</Val>
+      Writer:<Val>{props.book.writer}</Val>
     </MetaData>
     <MetaData>
-      Artist:<Val>{props.bookData.artist}</Val>
+      Artist:<Val>{props.book.artist}</Val>
     </MetaData>
     <MetaData>
-      Publication:<Val>{props.bookData.publication}</Val>
+      Publication:<Val>{props.book.publication}</Val>
     </MetaData>
     <MetaData>
-      Owner:<Val>{props.bookData.owner}</Val>
+      Owner:<Val>{props.book.owner}</Val>
     </MetaData>
-    <Summary>{props.bookData.summary}</Summary>
+    <Summary>{props.book.summary}</Summary>
   </Flex>
 );
 
-export default ComicBookDetails;
+export default BookDetails;

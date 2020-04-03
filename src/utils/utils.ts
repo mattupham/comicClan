@@ -1,5 +1,5 @@
-import { BookData } from "components/App/App";
-import { GROUP_OPTIONS } from "components/GroupOptions/GroupOptions";
+import { IBook } from "state/ducks/book/types";
+import { GROUP } from "components/Groups/Groups";
 import { GroupedTuple, GroupKey } from "components/Main/Main";
 
 const randomizeArray = <T>(array: T[]): T[] => {
@@ -35,19 +35,20 @@ const sortByAlph = <T>(array: T[]): T[] => {
   });
 };
 
-const groupByRandom = (array: BookData[]): GroupedTuple[] | never[] => {
+const groupByRandom = (array: IBook[]): GroupedTuple[] | never[] => {
   if (array.length === 0) {
     return [];
   } else {
     return [["random", randomizeArray(array.slice())]];
   }
 };
+
 export const groupByType = (
-  array: BookData[],
+  array: IBook[],
   groupOption: GroupKey
 ): GroupedTuple[] => {
   const key = groupOption.toLowerCase() as GroupKey;
-  const groups = array.reduce((acc, curVal: BookData) => {
+  const groups = array.reduce((acc, curVal: IBook) => {
     acc[curVal[key]] = acc[curVal[key]] || [];
     acc[curVal[key]].push(curVal);
     return acc;
@@ -55,11 +56,8 @@ export const groupByType = (
   return Object.entries(groups);
 };
 
-export const groupBy = (
-  array: BookData[],
-  groupOption: GROUP_OPTIONS
-): GroupedTuple[] => {
-  if (groupOption === GROUP_OPTIONS.RANDOM) {
+export const groupBy = (array: IBook[], groupOption: GROUP): GroupedTuple[] => {
+  if (groupOption === GROUP.RANDOM) {
     return groupByRandom(array);
   } else {
     return groupByType(array, groupOption);
@@ -68,22 +66,28 @@ export const groupBy = (
 
 export const sortBy = (
   groupedData: any,
-  groupOption: GROUP_OPTIONS
+  groupOption: GROUP
 ): GroupedTuple[] => {
-  if (groupOption === GROUP_OPTIONS.YEAR) {
+  if (groupOption === GROUP.YEAR) {
     return sortByYearAsc(groupedData);
   }
-  if (groupOption === GROUP_OPTIONS.WRITER) {
+  if (groupOption === GROUP.WRITER) {
     return sortByAlph(groupedData);
   }
-  if (groupOption === GROUP_OPTIONS.ARTIST) {
+  if (groupOption === GROUP.ARTIST) {
     return sortByAlph(groupedData);
   }
-  if (groupOption === GROUP_OPTIONS.OWNER) {
+  if (groupOption === GROUP.OWNER) {
     return sortByAlph(groupedData);
   }
-  if (groupOption === GROUP_OPTIONS.RANDOM) {
+  if (groupOption === GROUP.RANDOM) {
     return groupedData;
   }
   return groupedData;
 };
+
+export const createArrayFromRange = (num: number) =>
+  Array.apply(null, Array(num)).map((_, i) => i);
+
+export const capitalizeFirstLetter = (s: string): string =>
+  typeof s !== "string" ? "" : s.charAt(0).toUpperCase() + s.slice(1);

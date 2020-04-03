@@ -1,28 +1,19 @@
-import { BookData } from "components/App/App";
-import ComicBookList from "components/ComicBookList/ComicBookList";
-import GroupOptions, {
-  GROUP_OPTIONS,
-} from "components/GroupOptions/GroupOptions";
+import { IBook } from "state/ducks/book/types";
+import BookList from "components/BookList/BookList";
+import { GROUP } from "components/Groups/Groups";
+import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
 import { groupBy, sortBy } from "utils/utils";
-import ComicBookPage from "components/ComicBookPage/ComicBookPage";
-import { useParams, Switch, Route } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { IDispatchToProps } from "state/ducks/book/types";
+import BookPage from "components/BookPage/BookPage";
 
-interface IProps {
-  bookData: BookData[];
-  handleSearch: (val: string) => void;
-}
+export type GroupKey = GROUP.YEAR | GROUP.WRITER | GROUP.ARTIST | GROUP.OWNER;
 
-export type GroupKey =
-  | GROUP_OPTIONS.YEAR
-  | GROUP_OPTIONS.WRITER
-  | GROUP_OPTIONS.ARTIST
-  | GROUP_OPTIONS.OWNER;
-
-export type GroupedTuple = [string, BookData[]];
+export type GroupedTuple = [string, IBook[]];
 
 const Main = styled.main`
   background: #333333;
@@ -39,82 +30,95 @@ export const HR = styled.hr`
 `;
 
 export const groupAndSortBy = (
-  bookData: BookData[],
-  groupOption: GROUP_OPTIONS
+  book: IBook[],
+  groupOption: GROUP = GROUP.YEAR
 ): GroupedTuple[] => {
-  let groupedData = groupBy(bookData, groupOption);
+  let groupedData = groupBy(book, groupOption);
   let sortedData = sortBy(groupedData, groupOption);
   return sortedData;
 };
 
-const StyledMain: FC<IProps> = (props: IProps) => {
-  const [currentGroupOption, setCurrentGroupOption] = useState<GROUP_OPTIONS>(
-    GROUP_OPTIONS.YEAR
-  );
+interface IProps {
+  bookData: IBook[];
+}
 
-  const [sortedGroupData, setSortedGroupData] = useState<GroupedTuple[]>([]);
+type AllProps = IProps & IDispatchToProps;
 
+const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   useEffect(() => {
-    const data = groupAndSortBy(props.bookData, currentGroupOption);
-    setSortedGroupData(data);
-  }, [currentGroupOption, props.bookData]);
+    fetchBooks();
+  }, [fetchBooks]);
 
   return (
     <Main className="main">
-      <Route
-        exact
-        path="/"
-        children={
-          <>
-            <Search handleSearch={props.handleSearch} />
-            <GroupOptions
-              handleSetCurrentGroup={setCurrentGroupOption}
-              currentGroup={currentGroupOption}
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/books/year" />
+        </Route>
+        <Route
+          exact
+          path="/books/:group"
+          children={({ match }) => (
+            <>
+              <Search fetchBooks={s => fetchBooks(s)} />
+              <GroupsContainer />
+              {groupAndSortBy(
+                bookData,
+                //@ts-ignore
+                match.params.group as GROUP
+              ).map(([groupValue, data]: any, index: number) => (
+                <Box key={index}>
+                  <BookList
+                    groupValue={groupValue}
+                    books={data}
+                    // currentGroup={currentGroupOption}
+                    currentGroup={
+                      //@ts-ignore
+                      match.params.group as GROUP
+                    }
+                  />
+                  <HR />
+                </Box>
+              ))}
+            </>
+          )}
+        />
+        <Route
+          path="/book/:title"
+          children={({ match }) => (
+            <BookPageRoute
+              books={bookData}
+              selectedBook={bookData[0]}
+              title={match !== null ? match.params.title : ""}
             />
-            {sortedGroupData.map(([groupValue, data]: any, index: number) => (
-              <Box key={index}>
-                <ComicBookList
-                  groupValue={groupValue}
-                  bookData={data}
-                  currentGroup={currentGroupOption}
-                />
-                <HR />
-              </Box>
-            ))}
-          </>
-        }
-      />
-
-      {props.bookData.length && (
-        <Switch>
-          <Route
-            path="/:id"
-            children={
-              <ComicBookPageRoute
-                bookDataList={props.bookData}
-                selectedBookData={props.bookData[0]}
-              />
-            }
-          />
-        </Switch>
-      )}
+          )}
+        />
+      </Switch>
     </Main>
   );
 };
 
-const ComicBookPageRoute = (props: {
-  bookDataList: BookData[];
-  selectedBookData: BookData;
+const BookPageRoute = (props: {
+  books: IBook[];
+  selectedBook: IBook;
+  title: string;
 }) => {
-  let { id } = useParams();
-  if (id === undefined) {
+  const title = decodeURIComponent(props.title);
+  console.log("TITLE: ", title);
+
+  if (props.title === undefined) {
     return null;
   } else {
     return (
-      <ComicBookPage
-        bookDataList={props.bookDataList}
+      <BookPage
+        books={props.books}
         //@ts-ignore
-        selectedBookData={props.bookDataList.filter(book => book.id === +id)[0]}
+        selectedBook={
+          props.books.filter(
+            //@ts-ignore
+            book => book.name === title
+          )[0]
+        }
       />
     );
   }
