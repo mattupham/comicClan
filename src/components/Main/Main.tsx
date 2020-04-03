@@ -8,6 +8,8 @@ import { IDispatchToProps } from "state/ducks/book/types";
 import BookPage from "components/BookPage/BookPage";
 import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import styled from "styled-components";
+import { Flex } from "rebass";
+import NotFound from "components/NotFound/NotFound";
 
 const Main = styled.main`
   background: #333333;
@@ -74,6 +76,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
             }
           }}
         />
+        <Route component={() => <NotFound />} />
       </Switch>
     </Main>
   );
