@@ -10,11 +10,11 @@ describe("book saga", () => {
     return (
       expectSaga(bookSaga)
         .provide([[matchers.call.fn(apiCaller), bookData]])
-        // Assert that the 'put' will eventually happen
+        // Assert that the 'put' will happen in the future
         .put(fetchBooksSuccess(bookData))
-        // Dispatch any actions that the saga will 'take'
+        // Dispatch actions that saga will take
         .dispatch(fetchBooks())
-        // Start the test, return a Promise
+        // Start test (return promise)
         .run()
     );
   });

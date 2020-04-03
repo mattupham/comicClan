@@ -8,12 +8,14 @@ describe("book reducer", () => {
       initialState
     );
   });
+
   it("should handle fetching all books", () => {
     expect(bookReducer(initialState, fetchBooks())).toEqual({
       ...initialState,
       loading: true,
     });
   });
+
   it("should handle all data successfully fetch book", () => {
     expect(bookReducer(initialState, fetchBooksSuccess(bookData))).toEqual({
       ...initialState,

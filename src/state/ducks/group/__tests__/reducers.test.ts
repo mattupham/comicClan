@@ -8,6 +8,7 @@ describe("group reducer", () => {
       groupReducer(initialState, { type: "no type", payload: GROUP.RANDOM })
     ).toEqual(initialState);
   });
+
   it("should handle setting all groups correctly", () => {
     const groups = Object.keys(GROUP) as GROUP[];
     groups.forEach(group => {
