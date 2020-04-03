@@ -1,7 +1,7 @@
 import { action } from "typesafe-actions";
-import { fetchBooks, fetchBooksSuccess } from "../actions";
-import { BookActionTypes } from "../types";
-import * as bookData from "./__mockData__/comicBookData.json";
+import { fetchBooks, fetchBooksSuccess } from "state/ducks/book/actions";
+import { BookActionTypes } from "state/ducks/book/types";
+import * as bookData from "state/ducks/book/__tests__/__mockData__/comicBookData.json";
 
 describe("book actions", () => {
   it("should create an action to fetch all books", () => {

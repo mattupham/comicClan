@@ -3,9 +3,11 @@ import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { HR } from "components/Shared/Shared";
 import BookDetails from "components/BookDetails/BookDetails";
-import OtherRandomBooks from "components/OtherRandomBooks/OtherRandomBooks";
+// import OtherRandomBooks from "components/OtherRandomBooks/OtherRandomBooks";
+import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import BackLink from "components/BackLink/BackLink";
 import { IBook } from "state/ducks/book/types";
+import { GROUP } from "components/Groups/Groups";
 
 const BookImage = styled.img`
   height: 100%;
@@ -41,7 +43,8 @@ const BookPage: FC<IProps> = (props: IProps) => {
       <Flex flexDirection="column" mt="3.25rem">
         <RandomBookTitle>Other Random Books</RandomBookTitle>
       </Flex>
-      <OtherRandomBooks books={props.books} />
+      {/* // TODO fix margin top */}
+      <GroupedBooks selectedGroup={GROUP.RANDOM} bookData={props.books} />
     </Flex>
   );
 };

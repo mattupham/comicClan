@@ -57,6 +57,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
               match !== null ? match.params.title : ""
             );
             if (title === undefined) {
+              // TODO add redirect here
               return null;
             } else {
               const selectedBook = bookData.filter(
