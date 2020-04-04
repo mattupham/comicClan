@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Flex, Box } from "rebass";
+import { Box } from "rebass";
 import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 
@@ -12,11 +12,11 @@ const PageNotFound = styled.div`
   font-style: normal;
   font-weight: bold;
   color: #cccccc;
-  height: 100vh;
-  text-align: center;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 `;
 
 const countDown = (seconds: number, cb: (s: number) => void) =>
@@ -34,9 +34,7 @@ const NotFound: FC = () => {
   } else {
     return (
       <PageNotFound>
-        <Box mt="5rem" fontSize="10rem">
-          Page Not Found
-        </Box>
+        <Box fontSize="10rem">Page Not Found</Box>
         <Box mt="8rem" fontSize="4rem">
           Redirecting You Back to the home page in:
         </Box>

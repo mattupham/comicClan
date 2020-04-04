@@ -8,7 +8,6 @@ import { IDispatchToProps } from "state/ducks/book/types";
 import BookPage from "components/BookPage/BookPage";
 import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import styled from "styled-components";
-import { Flex } from "rebass";
 import NotFound from "components/NotFound/NotFound";
 
 const Main = styled.main`
@@ -29,7 +28,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
-  console.log("BOOK DATA: ", bookData);
+
   return (
     <Main className="main">
       <Switch>
