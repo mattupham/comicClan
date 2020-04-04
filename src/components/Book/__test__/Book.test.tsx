@@ -1,6 +1,7 @@
 import Book, { IProps } from "components/Book/Book";
 import React from "react";
 import { renderWithRouter } from "utils/testUtils";
+import { cleanup } from "@testing-library/react";
 
 const initialProps: IProps = {
   username: "username",
@@ -23,5 +24,6 @@ describe("book", () => {
 
     const imageElem = getByTestId("bookImage");
     expect(imageElem).toHaveAttribute("src", initialProps.imageUrl);
+    cleanup();
   });
 });

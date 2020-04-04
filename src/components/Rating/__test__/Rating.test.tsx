@@ -1,27 +1,19 @@
-import Book, { IProps } from "components/Book/Book";
+import Rating from "components/Rating/Rating";
 import React from "react";
-import { renderWithRouter } from "utils/testUtils";
+import { render, cleanup } from "@testing-library/react";
 
-const initialProps: IProps = {
-  username: "username",
-  bookName: "bookName",
-  imageUrl: "https://www.placeholder.com",
-};
+describe("rating", () => {
+  test("number of stars render correctly", () => {
+    [1, 2, 3, 4, 5].forEach(rating => {
+      const { getAllByTestId } = render(<Rating rating={rating} />);
+      const starFullElems = getAllByTestId("starFull");
+      expect(starFullElems.length).toBe(rating);
 
-const renderComponent = (props: IProps) =>
-  renderWithRouter(<Book {...props} />);
-
-describe("book", () => {
-  test("book contains all respective props", () => {
-    const { getByText, getByTestId } = renderComponent(initialProps);
-
-    const usernameElem = getByText(initialProps.username, { exact: false });
-    expect(usernameElem.innerHTML).toBe(initialProps.username);
-
-    const bookNameElem = getByText(initialProps.bookName, { exact: false });
-    expect(bookNameElem.innerHTML).toBe(initialProps.bookName);
-
-    const imageElem = getByTestId("bookImage");
-    expect(imageElem).toHaveAttribute("src", initialProps.imageUrl);
+      if (rating !== 5) {
+        const starEmptyElems = getAllByTestId("starEmpty");
+        expect(starEmptyElems.length).toBe(5 - rating);
+      }
+      cleanup();
+    });
   });
 });
