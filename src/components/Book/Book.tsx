@@ -45,6 +45,7 @@ const BookImage = styled.img`
 const Book: FC<IProps> = (props: IProps) => {
   return (
     <Link
+      data-testid="bookLink"
       to={`/book/${encodeURIComponent(props.bookName)}`}
       style={{ textDecoration: "none" }}
     >
