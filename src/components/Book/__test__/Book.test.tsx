@@ -22,7 +22,7 @@ describe("book", () => {
     const bookNameElem = getByText(initialProps.bookName, { exact: false });
     expect(bookNameElem.innerHTML).toBe(initialProps.bookName);
 
-    const imageElem = getByTestId("bookImage");
+    const imageElem = getByTestId("smallBookImage");
     expect(imageElem).toHaveAttribute("src", initialProps.imageUrl);
     cleanup();
   });

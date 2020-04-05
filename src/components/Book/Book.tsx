@@ -52,7 +52,7 @@ const Book: FC<IProps> = (props: IProps) => {
       <Box className="Book" mt="3.2rem" mr="9.6rem" width="20rem">
         <Box>
           <BookImage
-            data-testid="bookImage"
+            data-testid="smallBookImage"
             alt={`${props.bookName}-image`}
             src={props.imageUrl}
           />
