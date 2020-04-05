@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ReactComponent as BackArrow } from "assets/backArrow.svg";
 import { Link } from "react-router-dom";
 
-const StyledLink = styled.div`
+const Title = styled.div`
   height: 23px;
   font-family: Roboto;
   font-style: normal;
@@ -24,9 +24,9 @@ const BackLink: FC = () => {
     <Link to="/" style={{ textDecoration: "none" }}>
       <Flex flexDirection="row" alignItems="flex-end">
         <Box mb=".05rem">
-          <BackArrow />
+          <BackArrow data-testid="backArrow" />
         </Box>
-        <StyledLink>Back to collection</StyledLink>
+        <Title>Back to collection</Title>
       </Flex>
     </Link>
   );

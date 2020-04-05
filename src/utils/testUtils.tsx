@@ -4,14 +4,19 @@ import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-const route = "/";
+interface RouterInterface {
+  route?: string;
+  history?: any;
+}
+
+const defaultRoute = "/";
 
 export const renderWithRouter: any = (
   ui: React.ReactElement<any>,
   {
-    route: string = route,
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {}
+    route = defaultRoute,
+    history = createMemoryHistory({ initialEntries: [defaultRoute] }),
+  }: RouterInterface = {}
 ) => {
   const Wrapper = ({ children }: any) => (
     <Router history={history}>{children}</Router>

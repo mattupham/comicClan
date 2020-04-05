@@ -13,7 +13,7 @@ const GroupTitle = styled.div`
   color: #aaaaaa;
 `;
 
-interface IProps {
+export interface IProps {
   books: IBook[];
   groupValue: string;
   currentGroup: GROUP;
@@ -23,7 +23,7 @@ const BookList: FC<IProps> = (props: IProps) => {
   return (
     <Box className="bookList" mt="2.8rem" mb="6.9rem">
       {props.currentGroup !== GROUP.RANDOM && (
-        <GroupTitle>{props.groupValue}</GroupTitle>
+        <GroupTitle data-testid="groupTitle">{props.groupValue}</GroupTitle>
       )}
       <Flex flexWrap="wrap">
         {props.books.map((book, index) => (
@@ -32,9 +32,6 @@ const BookList: FC<IProps> = (props: IProps) => {
             bookName={book.name}
             username={book.owner}
             imageUrl={book.image}
-            // TODO handle ID
-            //@ts-ignore
-            id={book.id}
           />
         ))}
       </Flex>
