@@ -18,11 +18,9 @@ interface GroupButton {
 
 interface IProps {
   group: GROUP;
-  // handleSetCurrentGroup: (group: GROUP_OPTIONS) => void;
 }
 
 type AllProps = IProps & IDispatchToProps;
-// type AllProps = IDispatchToProps;
 
 const Groups: FC<AllProps> = ({ setGroup, group }: AllProps) => {
   const handleClick = (groupOption: GROUP) => setGroup(groupOption);

@@ -8,15 +8,15 @@ export enum StarType {
   EMPTY = "EMPTY",
 }
 
-interface IProps {
+export interface IProps {
   type: StarType;
   index: number;
 }
 
 const Star: FC<IProps> = (props: IProps) => (
-  <Box mr="1rem" key={props.index}>
-    {props.type === StarType.FULL && <StarFull />}
-    {props.type === StarType.EMPTY && <StarEmpty />}
+  <Box className="star" mr="1rem" key={props.index}>
+    {props.type === StarType.FULL && <StarFull data-testid="starFull" />}
+    {props.type === StarType.EMPTY && <StarEmpty data-testid="starEmpty" />}
   </Box>
 );
 

@@ -3,7 +3,7 @@ import { Flex } from "rebass";
 import Star, { StarType } from "components/Star/Star";
 import { createArrayFromRange } from "utils/utils";
 
-interface IProps {
+export interface IProps {
   rating: number;
 }
 

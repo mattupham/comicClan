@@ -31,11 +31,10 @@ const Owner = styled.div`
   color: #cccccc;
 `;
 
-interface IProps {
+export interface IProps {
   username: string;
   bookName: string;
   imageUrl: string;
-  id: number;
 }
 
 const BookImage = styled.img`
@@ -46,12 +45,17 @@ const BookImage = styled.img`
 const Book: FC<IProps> = (props: IProps) => {
   return (
     <Link
+      data-testid="bookLink"
       to={`/book/${encodeURIComponent(props.bookName)}`}
       style={{ textDecoration: "none" }}
     >
       <Box className="Book" mt="3.2rem" mr="9.6rem" width="20rem">
         <Box>
-          <BookImage alt={`${props.bookName}-image`} src={props.imageUrl} />
+          <BookImage
+            data-testid="bookImage"
+            alt={`${props.bookName}-image`}
+            src={props.imageUrl}
+          />
         </Box>
         <Box mt="1.605rem">
           <BookName>{props.bookName}</BookName>
