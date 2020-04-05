@@ -1,16 +1,12 @@
 import BookList, { IProps } from "components/BookList/BookList";
 import React from "react";
-import { renderWithRouter } from "utils/testUtils";
+import { renderWithRouter, getMockBookData } from "utils/testUtils";
 import { cleanup } from "@testing-library/react";
 import { GROUP } from "components/Groups/Groups";
-import * as bookData from "state/ducks/book/__tests__/__mockData__/comicBookData.json";
 import { groupAndSortBy } from "utils/utils";
 
-//@ts-ignore
-const mockBookData = [...bookData.default];
-
 const initialProps: IProps = {
-  books: [...mockBookData],
+  books: getMockBookData(),
   groupValue: "",
   currentGroup: GROUP.YEAR,
 };

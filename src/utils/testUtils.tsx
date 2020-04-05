@@ -3,6 +3,11 @@ import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import * as bookData from "state/ducks/book/__tests__/__mockData__/comicBookData.json";
+import { IBook } from "state/ducks/book/types";
+
+//@ts-ignore
+export const getMockBookData = (): IBook[] => [...bookData.default];
 
 interface RouterInterface {
   route?: string;

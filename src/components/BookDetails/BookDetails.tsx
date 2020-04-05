@@ -47,31 +47,31 @@ const Summary = styled.div`
   word-wrap: break-word;
 `;
 
-interface IProps {
+export interface IProps {
   book: IBook;
 }
 
 const BookDetails: FC<IProps> = (props: IProps) => (
   <Flex flexDirection="column" width="100%">
     <Flex flexDirection="row" width="100%">
-      <BookName>
+      <BookName data-testid="bookDetailsName">
         {props.book.name} {`(${props.book.year})`}
       </BookName>
       <Rating rating={props.book.rating} />
     </Flex>
-    <MetaData>
+    <MetaData data-testid="bookDetailsWriter">
       Writer:<Val>{props.book.writer}</Val>
     </MetaData>
-    <MetaData>
+    <MetaData data-testid="bookDetailsArtist">
       Artist:<Val>{props.book.artist}</Val>
     </MetaData>
-    <MetaData>
+    <MetaData data-testid="bookDetailsPublication">
       Publication:<Val>{props.book.publication}</Val>
     </MetaData>
-    <MetaData>
+    <MetaData data-testid="bookDetailsOwner">
       Owner:<Val>{props.book.owner}</Val>
     </MetaData>
-    <Summary>{props.book.summary}</Summary>
+    <Summary data-testid="bookDetailsSummary">{props.book.summary}</Summary>
   </Flex>
 );
 
