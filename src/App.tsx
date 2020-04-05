@@ -1,5 +1,5 @@
 import Header from "components/Header/Header";
-import ScrollToTop from "components/Shared/ScrollToTop";
+import { ScrollToTop } from "components/Shared/Shared";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import { Provider } from "react-redux";

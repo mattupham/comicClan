@@ -15,10 +15,10 @@ const StyledHeader: FC = () => {
     <Header className="header">
       <Flex>
         <Box mt="2.3rem" mb="2rem" ml="2.8rem" mr="1.2rem">
-          <ComicClanLogoSVG />
+          <ComicClanLogoSVG data-testid="comicClanLogo" />
         </Box>
         <Box mt="2.537rem" mb="2.57rem">
-          <ComicClanTextSVG />
+          <ComicClanTextSVG data-testid="comicClanText" />
         </Box>
       </Flex>
     </Header>
