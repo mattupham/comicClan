@@ -16,7 +16,7 @@ interface GroupButton {
   selected: boolean;
 }
 
-interface IProps {
+export interface IProps {
   group: GROUP;
 }
 
@@ -26,7 +26,7 @@ const Groups: FC<AllProps> = ({ setGroup, group }: AllProps) => {
   const handleClick = (groupOption: GROUP) => setGroup(groupOption);
 
   return (
-    <Box className="groupOptions">
+    <Box className="groupOptions" data-testid="groupOptions">
       <GroupButton
         primary={group === GROUP.YEAR}
         handleClick={handleClick}

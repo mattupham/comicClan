@@ -38,7 +38,7 @@ export interface IProps {
 }
 
 const StyledGroupButton: FC<IProps> = (props: IProps) => (
-  <Link to={`/books/${props.group}`}>
+  <Link to={`/books/${props.group}`} data-testid="groupButton">
     <GroupButton
       primary={props.primary}
       onClick={() => props.handleClick(props.group)}
