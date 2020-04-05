@@ -6,7 +6,7 @@ import { cleanup } from "@testing-library/react";
 const renderComponent = () => renderWithRouter(<Header />);
 
 describe("header", () => {
-  test("renders svgs", () => {
+  test("renders SVGs", () => {
     const { getByTestId } = renderComponent();
 
     const comicClanLogoElem = getByTestId("comicClanLogo");
