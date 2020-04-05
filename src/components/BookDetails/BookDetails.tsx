@@ -52,7 +52,7 @@ export interface IProps {
 }
 
 const BookDetails: FC<IProps> = (props: IProps) => (
-  <Flex flexDirection="column" width="100%">
+  <Flex flexDirection="column" width="100%" data-testid="bookDetails">
     <Flex flexDirection="row" width="100%">
       <BookName data-testid="bookDetailsName">
         {props.book.name} {`(${props.book.year})`}

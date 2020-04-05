@@ -3,7 +3,6 @@ import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { HR } from "components/Shared/Shared";
 import BookDetails from "components/BookDetails/BookDetails";
-// import OtherRandomBooks from "components/OtherRandomBooks/OtherRandomBooks";
 import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import BackLink from "components/BackLink/BackLink";
 import { IBook } from "state/ducks/book/types";
@@ -23,10 +22,9 @@ const RandomBookTitle = styled.div`
   color: #aaaaaa;
 `;
 
-interface IProps {
+export interface IProps {
   books: IBook[];
   selectedBook: IBook;
-  title: string;
 }
 
 const BookPage: FC<IProps> = (props: IProps) => {
@@ -35,7 +33,10 @@ const BookPage: FC<IProps> = (props: IProps) => {
       <BackLink />
       <Flex mt="3.8rem" mb="7.258rem" flexDirection="row">
         <Box minHeight="51.992rem" minWidth="34rem" marginRight="2.4rem">
-          <BookImage src={props.selectedBook.image} />
+          <BookImage
+            src={props.selectedBook.image}
+            data-testid="bookPageBookImage"
+          />
         </Box>
         <BookDetails book={props.selectedBook} />
       </Flex>

@@ -17,5 +17,6 @@ describe("groupedBooks", () => {
     const { queryAllByTestId } = renderComponent();
     const groupedBookLists = queryAllByTestId("singleGroupedBookList");
     expect(groupedBookLists.length).toBeGreaterThan(1);
+    cleanup();
   });
 });

@@ -21,7 +21,7 @@ const Title = styled.div`
 
 const BackLink: FC = () => {
   return (
-    <Link to="/" style={{ textDecoration: "none" }}>
+    <Link to="/" style={{ textDecoration: "none" }} data-testid="backLink">
       <Flex flexDirection="row" alignItems="flex-end">
         <Box mb=".05rem">
           <BackArrow data-testid="backArrow" />
