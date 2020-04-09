@@ -29,7 +29,7 @@ export interface IProps {
 
 const BookPage: FC<IProps> = (props: IProps) => {
   return (
-    <Flex flexDirection="column" className="bookPage">
+    <Flex flexDirection="column" className="bookPage" data-testid="bookPage">
       <BackLink />
       <Flex mt="3.8rem" mb="7.258rem" flexDirection="row">
         <Box minHeight="51.992rem" minWidth="34rem" marginRight="2.4rem">

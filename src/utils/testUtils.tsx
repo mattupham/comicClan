@@ -23,7 +23,7 @@ export const renderWithRouter: any = (
   ui: React.ReactElement<any>,
   {
     route = defaultRoute,
-    history = createMemoryHistory({ initialEntries: [defaultRoute] }),
+    history = createMemoryHistory({ initialEntries: [route] }),
   }: RouterInterface = {}
 ) => {
   const Wrapper = ({ children }: any) => (
