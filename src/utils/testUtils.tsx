@@ -5,6 +5,9 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import * as bookData from "state/ducks/book/__tests__/__mockData__/comicBookData.json";
 import { IBook } from "state/ducks/book/types";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { rootReducer as reducer } from "state/ducks/index";
 
 //@ts-ignore
 export const getMockBookData = (): IBook[] => [...bookData.default];
@@ -33,4 +36,19 @@ export const renderWithRouter: any = (
     // this to test implementation details).
     history,
   };
+};
+
+// test-utils.js
+export const renderWithRedux: any = (
+  ui: React.ReactElement<any>,
+  {
+    initialState = {},
+    store = createStore(reducer, initialState),
+    ...renderOptions
+  }: any = {}
+) => {
+  function Wrapper({ children }: any) {
+    return <Provider store={store}>{children}</Provider>;
+  }
+  return render(ui, { wrapper: Wrapper, ...renderOptions });
 };

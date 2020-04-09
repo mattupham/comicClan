@@ -55,7 +55,7 @@ const StyledSearch: FC<IDispatchToProps> = ({
   };
 
   return (
-    <Box mb="2.8rem">
+    <Box mb="2.8rem" data-testid="search">
       <form onSubmit={handleSubmit} data-testid="form">
         <SearchBox>
           <Box ml="1.819rem" mt="1.819rem" mb="1.811rem" mr="1.811rem">

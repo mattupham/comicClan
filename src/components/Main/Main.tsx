@@ -30,7 +30,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   }, [fetchBooks]);
 
   return (
-    <Main className="main">
+    <Main className="main" data-testid="main">
       <Switch>
         <Route exact path="/">
           <Redirect to="/books/year" />
@@ -40,7 +40,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
           path="/books/:group"
           children={({ match }) => (
             <>
-              <Search fetchBooks={s => fetchBooks(s)} />
+              <Search fetchBooks={(s) => fetchBooks(s)} />
               <GroupsContainer />
               <GroupedBooks
                 // TODO add null case
@@ -62,7 +62,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
               return null;
             } else {
               const selectedBook = bookData.filter(
-                book => book.name === title
+                (book) => book.name === title
               )[0];
               return (
                 <BookPage

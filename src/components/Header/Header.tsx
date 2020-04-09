@@ -12,7 +12,7 @@ const Header = styled.header`
 
 const StyledHeader: FC = () => {
   return (
-    <Header className="header">
+    <Header className="header" data-testid="header">
       <Flex>
         <Box mt="2.3rem" mb="2rem" ml="2.8rem" mr="1.2rem">
           <ComicClanLogoSVG data-testid="comicClanLogo" />
