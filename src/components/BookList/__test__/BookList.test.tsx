@@ -14,6 +14,10 @@ const initialProps: IProps = {
 const renderComponent = (props: IProps) =>
   renderWithRouter(<BookList {...props} />);
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("bookList", () => {
   test("does not render group value when Random and renders book list", () => {
     const { queryByTestId, queryAllByTestId } = renderComponent({
@@ -26,11 +30,10 @@ describe("bookList", () => {
     // renders book list
     const bookList = queryAllByTestId("bookLink");
     expect(bookList.length).toBeGreaterThan(0);
-    cleanup();
   });
 
   test("does render group value when not Random and renders book list", () => {
-    Object.values(GROUP).forEach(group => {
+    Object.values(GROUP).forEach((group) => {
       // if group is not random
       if (group !== GROUP.RANDOM) {
         // extract groupValue and books from grouped data
@@ -49,8 +52,8 @@ describe("bookList", () => {
         // renders book list
         const bookList = queryAllByTestId("bookLink");
         expect(bookList.length).toBeGreaterThan(0);
-        cleanup();
       }
+      cleanup();
     });
   });
 
@@ -63,7 +66,5 @@ describe("bookList", () => {
     // doesn't render book list
     const bookList = queryAllByTestId("bookLink");
     expect(bookList.length).toBe(0);
-
-    cleanup();
   });
 });

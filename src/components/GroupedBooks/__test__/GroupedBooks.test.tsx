@@ -12,11 +12,14 @@ const initialProps: IProps = {
 const renderComponent = () =>
   renderWithRouter(<GroupedBooks {...initialProps} />);
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("groupedBooks", () => {
   test("renders bookList", () => {
     const { queryAllByTestId } = renderComponent();
     const groupedBookLists = queryAllByTestId("singleGroupedBookList");
     expect(groupedBookLists.length).toBeGreaterThan(1);
-    cleanup();
   });
 });

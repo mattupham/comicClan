@@ -5,6 +5,10 @@ import { cleanup } from "@testing-library/react";
 
 const renderComponent = () => renderWithRouter(<Header />);
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("header", () => {
   test("renders SVGs", () => {
     const { getByTestId } = renderComponent();
@@ -14,7 +18,5 @@ describe("header", () => {
 
     const comicClanTextElem = getByTestId("comicClanText");
     expect(comicClanTextElem).toBeInTheDocument();
-
-    cleanup();
   });
 });

@@ -10,6 +10,10 @@ const initialProps: IProps = {
 const renderComponent = (props: IProps) =>
   renderWithRouter(<BookDetails {...props} />);
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("bookDetails", () => {
   test("bookDetails contains all respective props", () => {
     const { getByTestId, queryByTestId } = renderComponent(initialProps);
@@ -45,7 +49,5 @@ describe("bookDetails", () => {
 
     const bookSummaryElem = getByTestId("bookDetailsSummary");
     expect(bookSummaryElem.innerHTML).toContain(summary);
-
-    cleanup();
   });
 });

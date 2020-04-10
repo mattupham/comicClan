@@ -6,6 +6,10 @@ const initialProps = {
   fetchBooks: jest.fn(),
 };
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("search", () => {
   test("search icon renders correctly", () => {
     const { getByTestId } = render(
@@ -13,7 +17,6 @@ describe("search", () => {
     );
     const searchIconElem = getByTestId("searchIcon");
     expect(searchIconElem).toBeInTheDocument();
-    cleanup();
   });
 
   test("it should update local state on change", () => {
@@ -29,7 +32,6 @@ describe("search", () => {
     const searchValue = "My Book";
     fireEvent.change(inputElem, { target: { value: searchValue } });
     expect(inputElem.value).toBe(searchValue);
-    cleanup();
   });
 
   test("calls fetchBooks correctly on submit", () => {
@@ -38,6 +40,5 @@ describe("search", () => {
     );
     fireEvent.submit(getByTestId("searchForm"));
     expect(initialProps.fetchBooks).toHaveBeenCalled();
-    cleanup();
   });
 });

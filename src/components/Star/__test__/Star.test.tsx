@@ -7,12 +7,15 @@ const initialProps: IProps = {
   index: 1,
 };
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("star", () => {
   test("full stars render correctly", () => {
     const { getByTestId } = render(<Star {...initialProps} />);
     const starFullElem = getByTestId("starFull");
     expect(starFullElem).toBeInTheDocument();
-    cleanup();
   });
 
   test("empty stars render correctly", () => {
@@ -21,6 +24,5 @@ describe("star", () => {
     );
     const starEmptyElem = getByTestId("starEmpty");
     expect(starEmptyElem).toBeInTheDocument();
-    cleanup();
   });
 });

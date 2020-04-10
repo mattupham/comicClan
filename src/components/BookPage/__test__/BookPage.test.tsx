@@ -11,6 +11,10 @@ const initialProps: IProps = {
 const renderComponent = (props: IProps) =>
   renderWithRouter(<BookPage {...props} />);
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("bookPage", () => {
   test("bookPage contains all child components", () => {
     const { getByTestId, queryAllByTestId } = renderComponent(initialProps);
@@ -27,12 +31,5 @@ describe("bookPage", () => {
 
     const groupedBookLists = queryAllByTestId("singleGroupedBookList");
     expect(groupedBookLists.length).toBeGreaterThan(0);
-
-    cleanup();
   });
 });
-
-// renders backlink
-// renders bookImage
-// renders bookDetails
-// renders groupedBooks

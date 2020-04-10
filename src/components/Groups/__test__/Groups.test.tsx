@@ -16,16 +16,19 @@ const initialProps: AllProps = {
 const renderComponent = (props: AllProps) =>
   renderWithRouter(<Groups {...props} />);
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("groups", () => {
   test("should render all 5 group buttons", () => {
     const { queryAllByTestId } = renderComponent(initialProps);
     const groupButtonElems = queryAllByTestId("groupButton");
     expect(groupButtonElems.length).toBe(5);
-    cleanup();
   });
 
   test("calls setGroup when button is clicked", () => {
-    Object.values(GROUP).forEach(group => {
+    Object.values(GROUP).forEach((group) => {
       const { getByText } = renderComponent(initialProps);
       fireEvent.click(getByText(capitalizeFirstLetter(group)));
       expect(initialProps.setGroup).toHaveBeenCalled();

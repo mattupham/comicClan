@@ -12,6 +12,10 @@ const initialProps: IProps = {
 const renderComponent = (props: IProps) =>
   renderWithRouter(<Book {...props} />);
 
+afterAll(() => {
+  cleanup();
+});
+
 describe("book", () => {
   test("book contains all respective props", () => {
     const { getByText, getByTestId } = renderComponent(initialProps);
@@ -24,6 +28,5 @@ describe("book", () => {
 
     const imageElem = getByTestId("smallBookImage");
     expect(imageElem).toHaveAttribute("src", initialProps.imageUrl);
-    cleanup();
   });
 });
