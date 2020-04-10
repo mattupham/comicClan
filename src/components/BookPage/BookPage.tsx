@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
-import { HR } from "components/Shared/Shared";
+import HR from "components/HR/HR";
 import BookDetails from "components/BookDetails/BookDetails";
 import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import BackLink from "components/BackLink/BackLink";

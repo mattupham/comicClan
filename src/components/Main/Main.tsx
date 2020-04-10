@@ -22,7 +22,7 @@ interface IProps {
   bookData: IBook[];
 }
 
-type AllProps = IProps & IDispatchToProps;
+export type AllProps = IProps & IDispatchToProps;
 
 const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   useEffect(() => {

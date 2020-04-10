@@ -56,13 +56,14 @@ const StyledSearch: FC<IDispatchToProps> = ({
 
   return (
     <Box mb="2.8rem" data-testid="search">
-      <form onSubmit={handleSubmit} data-testid="form">
+      <form onSubmit={handleSubmit} data-testid="searchForm">
         <SearchBox>
           <Box ml="1.819rem" mt="1.819rem" mb="1.811rem" mr="1.811rem">
             <SearchIcon data-testid="searchIcon" />
           </Box>
           <Box width="100%">
             <Input
+              data-testid="searchInput"
               type="text"
               placeholder="Search by book name"
               value={value}

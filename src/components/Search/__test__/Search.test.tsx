@@ -36,7 +36,7 @@ describe("search", () => {
     const { getByTestId } = render(
       <Search fetchBooks={initialProps.fetchBooks} />
     );
-    fireEvent.submit(getByTestId("form"));
+    fireEvent.submit(getByTestId("searchForm"));
     expect(initialProps.fetchBooks).toHaveBeenCalled();
     cleanup();
   });

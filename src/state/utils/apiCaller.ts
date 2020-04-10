@@ -17,12 +17,14 @@ export default function apiCaller<T>(
           Authorization: `Bearer ${process.env.REACT_APP_AUTHORIZATION_TOKEN}`,
         },
       })
+      // TODO remove
       //@ts-ignore
       .then(({ data }) => {
+        // TODO remove
         // addIdsToBookData(data);
         return data;
       })
       //@ts-ignore
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   );
 }

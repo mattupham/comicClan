@@ -5,7 +5,7 @@ import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
 import { Box } from "rebass";
 import { GroupedTuple } from "state/ducks/group/types";
-import { HR } from "components/Shared/Shared";
+import HR from "components/HR/HR";
 
 export interface IProps {
   bookData: IBook[];
@@ -14,7 +14,7 @@ export interface IProps {
 
 const GroupedBooks: FC<IProps> = (props: IProps) => {
   return (
-    <>
+    <Box data-testid="groupedBooks">
       {groupAndSortBy(props.bookData, props.selectedGroup).map(
         ([groupValue, data]: GroupedTuple, index: number) => (
           <Box key={index} data-testid="singleGroupedBookList">
@@ -27,7 +27,7 @@ const GroupedBooks: FC<IProps> = (props: IProps) => {
           </Box>
         )
       )}
-    </>
+    </Box>
   );
 };
 
