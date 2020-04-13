@@ -23,6 +23,7 @@ interface RouterInterface {
 
 const defaultRoute = "/";
 
+// allows test to render with only React Router (not a connected Redux component)
 export const renderWithRouter: any = (
   ui: React.ReactElement<any>,
   {
@@ -75,6 +76,7 @@ interface RouterInterface {
   history?: any;
 }
 
+// allows test to render with React Router and Redux
 export const renderWithAll: any = (
   ui: React.ReactElement<any>,
   {

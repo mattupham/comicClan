@@ -19,6 +19,7 @@ export interface IProps {
   currentGroup: GROUP;
 }
 
+// renders a list of books, and displays the groupedBy key (i.e. for year, 2020)
 const BookList: FC<IProps> = (props: IProps) => {
   return (
     <Box className="bookList" mt="2.8rem" mb="6.9rem">

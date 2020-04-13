@@ -12,6 +12,8 @@ export interface IProps {
   selectedGroup: GROUP;
 }
 
+// returns sublists of books, grouped by group data type
+// i.e. books grouped by years: 2020, 2019, 2018, etc
 const GroupedBooks: FC<IProps> = (props: IProps) => {
   return (
     <Box data-testid="groupedBooks">

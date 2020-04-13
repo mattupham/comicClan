@@ -2,6 +2,7 @@ import { IBook } from "state/ducks/book/types";
 import { GROUP } from "components/Groups/Groups";
 import { GroupedTuple, GroupKey } from "state/ducks/group/types";
 
+// randomizes book array
 const randomizeArray = <T>(array: T[]): T[] => {
   const arrayToRandomize = array.slice();
   let curIndex = arrayToRandomize.length,
@@ -17,12 +18,14 @@ const randomizeArray = <T>(array: T[]): T[] => {
   return arrayToRandomize;
 };
 
-const sortByYearAsc = <T>(array: T[]): T[] => {
+// sorts books by years (largest to smallest)
+const sortByYearsDesc = <T>(array: T[]): T[] => {
   return array.sort((a: any, b: any) => {
     return +b[0] - +a[0];
   });
 };
 
+// sorts books by group (alphabetical order)
 const sortByAlph = <T>(array: T[]): T[] => {
   return array.sort((a: any, b: any) => {
     if (a[0] < b[0]) {
@@ -35,6 +38,7 @@ const sortByAlph = <T>(array: T[]): T[] => {
   });
 };
 
+// groups books when random is selected
 const groupByRandom = (array: IBook[]): GroupedTuple[] | never[] => {
   if (array.length === 0) {
     return [];
@@ -43,6 +47,7 @@ const groupByRandom = (array: IBook[]): GroupedTuple[] | never[] => {
   }
 };
 
+// groups books by year, writer, artist, or owner, based on option
 const groupByType = (array: IBook[], groupOption: GroupKey): GroupedTuple[] => {
   const key = groupOption.toLowerCase() as GroupKey;
   const groups = array.reduce((acc, curVal: IBook) => {
@@ -53,6 +58,7 @@ const groupByType = (array: IBook[], groupOption: GroupKey): GroupedTuple[] => {
   return Object.entries(groups);
 };
 
+// selects function to group by (random, or year, writer, artist, owner)
 const groupBy = (array: IBook[], groupOption: GROUP): GroupedTuple[] => {
   if (groupOption === GROUP.RANDOM) {
     return groupByRandom(array);
@@ -61,9 +67,10 @@ const groupBy = (array: IBook[], groupOption: GROUP): GroupedTuple[] => {
   }
 };
 
+// selects function to sort by (descending for years, alphabetical for all else)
 const sortBy = (groupedData: any, groupOption: GROUP): GroupedTuple[] => {
   if (groupOption === GROUP.YEAR) {
-    return sortByYearAsc(groupedData);
+    return sortByYearsDesc(groupedData);
   }
   if (groupOption === GROUP.WRITER) {
     return sortByAlph(groupedData);
@@ -80,17 +87,20 @@ const sortBy = (groupedData: any, groupOption: GROUP): GroupedTuple[] => {
   return groupedData;
 };
 
+// creates array with numbers (for rating)
 export const createArrayFromRange = (num: number) =>
   Array.apply(null, Array(num)).map((_, i) => i);
 
+// capitalizes first letter of string
 export const capitalizeFirstLetter = (s: string): string =>
   typeof s !== "string" ? "" : s.charAt(0).toUpperCase() + s.slice(1);
 
+// groups array of books by group option first, then sorts data by type (numeric for year, alphabetical for all else)
 export const groupAndSortBy = (
   book: IBook[],
-  groupOption: GROUP = GROUP.YEAR
+  group: GROUP = GROUP.YEAR
 ): GroupedTuple[] => {
-  let groupedData = groupBy(book, groupOption);
-  let sortedData = sortBy(groupedData, groupOption);
+  let groupedData = groupBy(book, group);
+  let sortedData = sortBy(groupedData, group);
   return sortedData;
 };

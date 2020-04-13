@@ -22,6 +22,7 @@ export interface IProps {
 
 type AllProps = IProps & IDispatchToProps;
 
+// renders a list of group buttons
 const Groups: FC<AllProps> = ({ setGroup, group }: AllProps) => {
   const handleClick = (groupOption: GROUP) => setGroup(groupOption);
 
