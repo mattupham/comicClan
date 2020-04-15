@@ -16,7 +16,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex: 1 1 auto;
 `;
 
 // function that counts down from a specified number of seconds
