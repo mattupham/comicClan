@@ -4,7 +4,7 @@ import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { IDispatchToProps } from "state/ducks/book/types";
 
-const SearchBox = styled.div`
+const SearchBox = styled(Box)`
   display: inline-flex;
   border: 1px solid #ccc;
   overflow: hidden;
@@ -43,7 +43,6 @@ const Input = styled.input`
 `;
 
 const Form = styled.form`
-  /* justify-content: center; */
   width: 100%;
   height: 100%;
 `;

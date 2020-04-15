@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Box } from "rebass";
+import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 
@@ -7,12 +7,11 @@ interface IProps {
   rating: number;
 }
 
-const Container = styled.div`
+const Container = styled(Flex)`
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   color: #cccccc;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -27,7 +26,7 @@ const PageNotFound: FC = () => {
   const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
-    countDown(seconds, setSeconds);
+    // countDown(seconds, setSeconds);
   }, [seconds]);
 
   if (seconds <= 0) {
