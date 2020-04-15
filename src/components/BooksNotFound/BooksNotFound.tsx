@@ -30,9 +30,7 @@ const CenterBox = styled(Box)`
 
 const BooksNotFound = (props: { searchValue: string }) => (
   <Container>
-    <CenterBox fontSize="10rem">
-      No results found for "{props.searchValue}"
-    </CenterBox>
+    <CenterBox fontSize="10rem">No results found</CenterBox>
     <CenterBox mt="6rem" fontSize="4rem">
       Please make sure your words are spelled correctly or use less or different
       keywords

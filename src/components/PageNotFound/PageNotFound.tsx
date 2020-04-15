@@ -26,7 +26,7 @@ const PageNotFound: FC = () => {
   const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
-    // countDown(seconds, setSeconds);
+    countDown(seconds, setSeconds);
   }, [seconds]);
 
   if (seconds <= 0) {

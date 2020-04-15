@@ -2,7 +2,7 @@ import { IBook } from "state/ducks/book/types";
 import { GROUP } from "components/Groups/Groups";
 import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 import BookPage from "components/BookPage/BookPage";
@@ -14,7 +14,6 @@ import { Box } from "rebass";
 
 const Main = styled.main`
   background: #333333;
-  /* min-height: 100%; */
   flex: 1 1 auto;
   padding-right: 2.8rem;
   padding-left: 2.8rem;
@@ -29,9 +28,13 @@ interface IProps {
 export type AllProps = IProps & IDispatchToProps;
 
 const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
+  const [lastSearchedVal, setLastSearchedVal] = useState<string | undefined>(
+    ""
+  );
+
   useEffect(() => {
     fetchBooks();
-  }, [fetchBooks]);
+  }, []);
 
   return (
     <Main className="main" data-testid="main">
@@ -42,22 +45,33 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
         <Route
           exact
           path="/books/:group"
-          children={({ match }) => (
-            <>
-              <Search fetchBooks={(s) => fetchBooks(s)} />
-              <GroupsContainer />
-              {bookData.length === 0 ? (
-                <BooksNotFound searchValue="My book" />
-              ) : (
-                <GroupedBooks
-                  // TODO add null case
-                  //@ts-ignore
-                  selectedGroup={match.params.group as GROUP}
-                  bookData={bookData}
-                />
-              )}
-            </>
-          )}
+          children={({ match }) => {
+            const isGroupValid =
+              match !== null ||
+              //@ts-ignore
+              Object.values(GROUP).includes(match.params.group);
+
+            return isGroupValid ? (
+              <>
+                <Search fetchBooks={(s) => fetchBooks(s)} />
+                <GroupsContainer />
+                {bookData.length === 0 ? (
+                  <BooksNotFound
+                    searchValue={lastSearchedVal ? lastSearchedVal : ""}
+                  />
+                ) : (
+                  <GroupedBooks
+                    // TODO add null case
+                    //@ts-ignore
+                    selectedGroup={match.params.group as GROUP}
+                    bookData={bookData}
+                  />
+                )}
+              </>
+            ) : (
+              <Redirect to="/404" />
+            );
+          }}
         />
         <Route
           path="/book/:title"
@@ -66,8 +80,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
               match !== null ? match.params.title : ""
             );
             if (title === undefined) {
-              // TODO add redirect here
-              return null;
+              return <PageNotFound />;
             } else {
               const selectedBook = bookData.filter(
                 (book) => book.name === title
