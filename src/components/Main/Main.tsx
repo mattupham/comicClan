@@ -8,7 +8,9 @@ import { IDispatchToProps } from "state/ducks/book/types";
 import BookPage from "components/BookPage/BookPage";
 import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import styled from "styled-components";
-import NotFound from "components/NotFound/NotFound";
+import PageNotFound from "components/PageNotFound/PageNotFound";
+import BooksNotFound from "components/BooksNotFound/BooksNotFound";
+import { Box } from "rebass";
 
 const Main = styled.main`
   background: #333333;
@@ -16,6 +18,8 @@ const Main = styled.main`
   padding-right: 2.8rem;
   padding-left: 2.8rem;
   padding-top: 2.8rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 interface IProps {
@@ -42,12 +46,16 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
             <>
               <Search fetchBooks={(s) => fetchBooks(s)} />
               <GroupsContainer />
-              <GroupedBooks
-                // TODO add null case
-                //@ts-ignore
-                selectedGroup={match.params.group as GROUP}
-                bookData={bookData}
-              />
+              {bookData.length === 0 ? (
+                <BooksNotFound searchValue="My book" />
+              ) : (
+                <GroupedBooks
+                  // TODO add null case
+                  //@ts-ignore
+                  selectedGroup={match.params.group as GROUP}
+                  bookData={bookData}
+                />
+              )}
             </>
           )}
         />
@@ -75,7 +83,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
             }
           }}
         />
-        <Route component={() => <NotFound />} />
+        <Route component={() => <PageNotFound />} />
       </Switch>
     </Main>
   );

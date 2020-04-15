@@ -7,7 +7,7 @@ interface IProps {
   rating: number;
 }
 
-const PageNotFound = styled.div`
+const Container = styled.div`
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -22,7 +22,7 @@ const PageNotFound = styled.div`
 const countDown = (seconds: number, cb: (s: number) => void) =>
   setTimeout(() => cb(seconds - 1), 1000);
 
-const NotFound: FC = () => {
+const PageNotFound: FC = () => {
   const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const NotFound: FC = () => {
     return <Redirect to="/books/year" />;
   } else {
     return (
-      <PageNotFound>
+      <Container>
         <Box fontSize="10rem">Page Not Found</Box>
         <Box mt="8rem" fontSize="4rem">
           Redirecting You Back to the home page in:
@@ -41,9 +41,9 @@ const NotFound: FC = () => {
         <Box mt="3rem" fontSize="8rem">
           {seconds}
         </Box>
-      </PageNotFound>
+      </Container>
     );
   }
 };
 
-export default NotFound;
+export default PageNotFound;
