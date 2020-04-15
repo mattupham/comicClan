@@ -8,7 +8,7 @@ const App: FC = () => {
   return (
     <Box className="App">
       <ScrollToTop data-testid="scrollToTop" />
-      <Flex flexDirection="column">
+      <Flex flexDirection="column" minHeight="100vh">
         <Header />
         <MainContainer />
       </Flex>

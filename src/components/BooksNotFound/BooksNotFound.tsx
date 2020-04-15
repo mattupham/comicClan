@@ -19,16 +19,24 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  height: 100%;
+  flex: 1 1 auto;
+  /* align-items: center; */
+`;
+
+const CenterBox = styled(Box)`
+  text-align: center;
 `;
 
 const BooksNotFound = (props: { searchValue: string }) => (
   <Container>
-    <Box fontSize="10rem">No results found for "{props.searchValue}"</Box>
-    <Box mt="8rem" fontSize="4rem">
+    <CenterBox fontSize="10rem">
+      No results found for "{props.searchValue}"
+    </CenterBox>
+    <CenterBox mt="6rem" fontSize="4rem">
       Please make sure your words are spelled correctly or use less or different
       keywords
-    </Box>
+    </CenterBox>
   </Container>
 );
 

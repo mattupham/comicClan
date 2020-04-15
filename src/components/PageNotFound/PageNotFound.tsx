@@ -19,6 +19,7 @@ const Container = styled.div`
   height: 100vh;
 `;
 
+// function that counts down from a specified number of seconds
 const countDown = (seconds: number, cb: (s: number) => void) =>
   setTimeout(() => cb(seconds - 1), 1000);
 

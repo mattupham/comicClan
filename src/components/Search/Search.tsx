@@ -1,6 +1,6 @@
 import { ReactComponent as SearchIcon } from "assets/searchIcon.svg";
 import React, { ChangeEvent, FC, FormEvent, useState } from "react";
-import { Box } from "rebass";
+import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { IDispatchToProps } from "state/ducks/book/types";
 
@@ -42,6 +42,12 @@ const Input = styled.input`
   color: #cccccc;
 `;
 
+const Form = styled.form`
+  /* justify-content: center; */
+  width: 100%;
+  height: 100%;
+`;
+
 const StyledSearch: FC<IDispatchToProps> = ({
   fetchBooks,
 }: IDispatchToProps) => {
@@ -55,8 +61,8 @@ const StyledSearch: FC<IDispatchToProps> = ({
   };
 
   return (
-    <Box mb="2.8rem" data-testid="search">
-      <form onSubmit={handleSubmit} data-testid="searchForm">
+    <Flex data-testid="search" flex="0 0 12.9rem" alignItems="center">
+      <Form onSubmit={handleSubmit} data-testid="searchForm">
         <SearchBox>
           <Box ml="1.819rem" mt="1.819rem" mb="1.811rem" mr="1.811rem">
             <SearchIcon data-testid="searchIcon" />
@@ -73,8 +79,8 @@ const StyledSearch: FC<IDispatchToProps> = ({
             />
           </Box>
         </SearchBox>
-      </form>
-    </Box>
+      </Form>
+    </Flex>
   );
 };
 

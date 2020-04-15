@@ -14,10 +14,10 @@ import { Box } from "rebass";
 
 const Main = styled.main`
   background: #333333;
-  min-height: 100vh;
+  /* min-height: 100%; */
+  flex: 1 1 auto;
   padding-right: 2.8rem;
   padding-left: 2.8rem;
-  padding-top: 2.8rem;
   display: flex;
   flex-direction: column;
 `;
