@@ -10,6 +10,7 @@ const GroupTitle = styled.div`
   font-weight: normal;
   font-size: 3.2rem;
   color: #aaaaaa;
+  margin-bottom: 3.2rem;
 `;
 
 export interface IProps {
@@ -25,7 +26,14 @@ const BookList: FC<IProps> = (props: IProps) => {
       {props.currentGroup !== GROUP.RANDOM && (
         <GroupTitle data-testid="groupTitle">{props.groupValue}</GroupTitle>
       )}
-      <Flex flexWrap="wrap">
+      <Box
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, 20rem)",
+          gridGap: "6rem 9.6rem",
+          // gridAutoRows: "minMax(100px, auto)",
+        }}
+      >
         {props.books.map((book, index) => (
           <Book
             key={index}
@@ -34,7 +42,7 @@ const BookList: FC<IProps> = (props: IProps) => {
             imageUrl={book.image}
           />
         ))}
-      </Flex>
+      </Box>
     </Box>
   );
 };

@@ -46,7 +46,8 @@ const Book: FC<IProps> = (props: IProps) => {
       to={`/book/${encodeURIComponent(props.bookName)}`}
       style={{ textDecoration: "none" }}
     >
-      <Box className="Book" mt="3.2rem" mr="9.6rem" width="20rem">
+      {/* <Box className="Book" mt="3.2rem" mr="9.6rem" width="20rem"> */}
+      <Box className="Book" width="20rem">
         <Box>
           <BookImage
             data-testid="smallBookImage"
