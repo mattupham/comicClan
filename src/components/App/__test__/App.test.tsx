@@ -1,10 +1,8 @@
 import App from "components/App/App";
 import React from "react";
-import { cleanup, fireEvent } from "@testing-library/react";
-import { GROUP } from "components/Groups/Groups";
+import { cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { renderWithAll } from "utils/testUtils";
-import { capitalizeFirstLetter } from "utils/utils";
 
 const renderComponent = () => renderWithAll(<App />);
 
