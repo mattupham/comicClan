@@ -22,12 +22,13 @@ export interface IProps {
 // renders a list of books, and displays the groupedBy key (i.e. for year, 2020)
 const BookList: FC<IProps> = (props: IProps) => {
   return (
-    <Box className="bookList" mt="2.8rem" mb="6.9rem">
+    // <Box className="bookList" mt="2.8rem" mb="6.9rem">
+    <Box className="bookList">
       {props.currentGroup !== GROUP.RANDOM && (
         <GroupTitle data-testid="groupTitle">{props.groupValue}</GroupTitle>
       )}
       <Box
-        style={{
+        sx={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, 20rem)",
           gridGap: "6rem 9.6rem",
