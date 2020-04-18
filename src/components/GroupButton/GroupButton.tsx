@@ -11,7 +11,6 @@ const GroupButton = styled.button`
   padding-left: 1.5rem;
   height: 3.8rem;
   font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 1.8rem;
   line-height: 2.1rem;

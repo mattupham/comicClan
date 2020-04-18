@@ -7,7 +7,6 @@ import styled from "styled-components";
 
 const GroupTitle = styled.div`
   font-family: Roboto;
-  font-style: normal;
   font-weight: normal;
   font-size: 3.2rem;
   color: #aaaaaa;

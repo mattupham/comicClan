@@ -4,7 +4,6 @@ import { Box, Flex } from "rebass";
 
 const Container = styled(Flex)`
   font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   color: #cccccc;
   flex-direction: column;
