@@ -5,7 +5,7 @@ import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
 import { Box } from "rebass";
 import { GroupedTuple } from "state/ducks/group/types";
-import HR from "components/HR/HR";
+import { HR } from "components/Styled/Styled";
 
 export interface IProps {
   bookData: IBook[];

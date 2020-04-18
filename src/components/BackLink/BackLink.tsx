@@ -4,10 +4,9 @@ import styled from "styled-components";
 import { ReactComponent as BackArrow } from "assets/backArrow.svg";
 import { Link } from "react-router-dom";
 
-const Title = styled.div`
+const Title = styled(Box)`
   height: 23px;
   font-family: Roboto;
-  font-style: normal;
   font-weight: 500;
   font-size: 2rem;
   line-height: 2.3rem;

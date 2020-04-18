@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const BookName = styled.div`
   font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 2.2rem;
   line-height: 2.6rem;
@@ -14,7 +13,6 @@ const BookName = styled.div`
 
 const OwnedBy = styled.div`
   font-family: Roboto;
-  font-style: normal;
   font-weight: 500;
   font-size: 1.6rem;
   line-height: 1.9rem;
@@ -24,7 +22,6 @@ const OwnedBy = styled.div`
 
 const Owner = styled.div`
   font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 1.6rem;
   line-height: 1.9rem;

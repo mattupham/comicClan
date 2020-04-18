@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Box } from "rebass";
+import { Box, Flex } from "rebass";
 
-const Container = styled.div`
+const Container = styled(Flex)`
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   color: #cccccc;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;

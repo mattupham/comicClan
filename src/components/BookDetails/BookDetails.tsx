@@ -6,7 +6,6 @@ import Rating from "components/Rating/Rating";
 
 const BookName = styled.div`
   font-family: Roboto;
-  font-style: normal;
   font-weight: 500;
   font-size: 3.2rem;
   color: #aaaaaa;
@@ -17,7 +16,6 @@ const BookName = styled.div`
 
 const MetaData = styled.div`
   font-family: Roboto;
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -27,7 +25,6 @@ const MetaData = styled.div`
 
 const Val = styled.span`
   font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 1.6rem;
   line-height: 1.9rem;
@@ -37,7 +34,6 @@ const Val = styled.span`
 
 const Summary = styled.div`
   font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 19px;

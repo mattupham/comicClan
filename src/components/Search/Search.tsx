@@ -24,7 +24,6 @@ const Input = styled.input`
   ::placeholder,
   ::-webkit-input-placeholder {
     font-family: Roboto;
-    font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 23px;
@@ -35,7 +34,6 @@ const Input = styled.input`
   }
   color: white;
   font-family: Roboto;
-  font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;

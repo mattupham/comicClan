@@ -28,8 +28,9 @@ export type AllProps = IProps & IDispatchToProps;
 
 const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
   useEffect(() => {
+    console.log("FETCH BOOKS RAN");
     fetchBooks();
-  }, []);
+  }, [fetchBooks]);
 
   return (
     <Main className="main" data-testid="main">
