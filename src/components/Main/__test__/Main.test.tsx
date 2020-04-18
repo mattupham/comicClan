@@ -3,7 +3,7 @@ import React from "react";
 import { cleanup, fireEvent } from "@testing-library/react";
 import { GROUP } from "components/Groups/Groups";
 import "@testing-library/jest-dom/extend-expect";
-import { renderWithAll } from "utils/testUtils";
+import { renderWithAll, renderWithRouter } from "utils/testUtils";
 import { capitalizeFirstLetter } from "utils/utils";
 import { getMockBookData } from "utils/testUtils";
 
@@ -71,6 +71,13 @@ describe("main", () => {
       fireEvent.click(getByText(capitalizeFirstLetter(group)), { button: 0 });
       expect(history.location.pathname).toContain(`/books/${group}`);
     });
+  });
+
+  test("landing on a bad page shows 404 page", () => {
+    const { getByText } = renderWithRouter(<Main {...initialProps} />, {
+      route: "/bad",
+    });
+    expect(getByText("Page Not Found")).toBeInTheDocument();
   });
 });
 
