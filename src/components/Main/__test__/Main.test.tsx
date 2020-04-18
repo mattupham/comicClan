@@ -10,6 +10,7 @@ import { getMockBookData } from "utils/testUtils";
 const initialProps: AllProps = {
   bookData: getMockBookData(),
   fetchBooks: jest.fn(),
+  loading: false,
 };
 
 const renderComponent = () => renderWithAll(<Main {...initialProps} />);

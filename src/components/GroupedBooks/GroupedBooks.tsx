@@ -19,9 +19,8 @@ const GroupedBooks: FC<IProps> = (props: IProps) => {
     <Box data-testid="groupedBooks">
       {groupAndSortBy(props.bookData, props.selectedGroup).map(
         ([groupValue, data]: GroupedTuple, index: number) => (
-          <>
+          <Box key={index}>
             <Box
-              key={index}
               mt={index === 0 ? "2.8rem" : "6.7rem"}
               mb="6.9rem"
               data-testid="singleGroupedBookList"
@@ -33,7 +32,7 @@ const GroupedBooks: FC<IProps> = (props: IProps) => {
               />
             </Box>
             <HR />
-          </>
+          </Box>
         )
       )}
     </Box>

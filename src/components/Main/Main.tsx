@@ -10,7 +10,8 @@ import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import styled from "styled-components";
 import PageNotFound from "components/PageNotFound/PageNotFound";
 import BooksNotFound from "components/BooksNotFound/BooksNotFound";
-import { Box } from "rebass";
+import { Flex } from "rebass";
+import { Loader } from "components/Styled/Styled";
 
 const Main = styled.main`
   background: #333333;
@@ -33,14 +34,14 @@ const StyledMain: FC<AllProps> = ({
   loading,
 }: AllProps) => {
   useEffect(() => {
-    console.log("FETCH BOOKS RAN");
     fetchBooks();
   }, [fetchBooks]);
-
   return (
     <Main className="main" data-testid="main">
       {loading ? (
-        <Box>LOADING</Box>
+        <Flex justifyContent="center" alignItems="center" flex="1 1 auto">
+          <Loader />
+        </Flex>
       ) : (
         <Switch>
           <Route exact path="/">
