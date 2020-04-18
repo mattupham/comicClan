@@ -2,7 +2,7 @@ import { IBook } from "state/ducks/book/types";
 import { GROUP } from "components/Groups/Groups";
 import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 import BookPage from "components/BookPage/BookPage";
@@ -10,7 +10,6 @@ import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import styled from "styled-components";
 import PageNotFound from "components/PageNotFound/PageNotFound";
 import BooksNotFound from "components/BooksNotFound/BooksNotFound";
-import { Box } from "rebass";
 
 const Main = styled.main`
   background: #333333;
@@ -28,10 +27,6 @@ interface IProps {
 export type AllProps = IProps & IDispatchToProps;
 
 const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
-  const [lastSearchedVal, setLastSearchedVal] = useState<string | undefined>(
-    ""
-  );
-
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -56,9 +51,7 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
                 <Search fetchBooks={(s) => fetchBooks(s)} />
                 <GroupsContainer />
                 {bookData.length === 0 ? (
-                  <BooksNotFound
-                    searchValue={lastSearchedVal ? lastSearchedVal : ""}
-                  />
+                  <BooksNotFound />
                 ) : (
                   <GroupedBooks
                     // TODO add null case
