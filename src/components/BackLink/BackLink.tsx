@@ -13,7 +13,6 @@ const Title = styled.div`
   line-height: 2.3rem;
   text-decoration-line: underline;
   color: #777777;
-  margin-top: 0.4rem;
   margin-left: 0.659rem;
   position: relative;
   bottom: 0;
@@ -21,14 +20,16 @@ const Title = styled.div`
 
 const BackLink: FC = () => {
   return (
-    <Link to="/" style={{ textDecoration: "none" }} data-testid="backLink">
-      <Flex flexDirection="row" alignItems="flex-end">
-        <Box mb=".05rem">
-          <BackArrow data-testid="backArrow" />
-        </Box>
-        <Title>Back to collection</Title>
-      </Flex>
-    </Link>
+    <Box mt="3.2rem">
+      <Link to="/" style={{ textDecoration: "none" }} data-testid="backLink">
+        <Flex flexDirection="row" alignItems="flex-end">
+          <Box mb=".05rem">
+            <BackArrow data-testid="backArrow" />
+          </Box>
+          <Title>Back to collection</Title>
+        </Flex>
+      </Link>
+    </Box>
   );
 };
 
