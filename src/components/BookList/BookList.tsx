@@ -2,10 +2,10 @@ import { IBook } from "state/ducks/book/types";
 import Book from "components/Book/Book";
 import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
-import { Box, Flex } from "rebass";
+import { Box } from "rebass";
 import styled from "styled-components";
 
-const GroupTitle = styled.div`
+const GroupTitle = styled(Box)`
   font-family: Roboto;
   font-weight: normal;
   font-size: 3.2rem;

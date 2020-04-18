@@ -3,7 +3,7 @@ import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const BookName = styled.div`
+const BookName = styled(Box)`
   font-family: Roboto;
   font-weight: bold;
   font-size: 2.2rem;
@@ -11,7 +11,7 @@ const BookName = styled.div`
   color: #cccccc;
 `;
 
-const OwnedBy = styled.div`
+const OwnedBy = styled(Box)`
   font-family: Roboto;
   font-weight: 500;
   font-size: 1.6rem;
@@ -20,7 +20,7 @@ const OwnedBy = styled.div`
   margin-right: 0.6rem;
 `;
 
-const Owner = styled.div`
+const Owner = styled(Box)`
   font-family: Roboto;
   font-weight: bold;
   font-size: 1.6rem;

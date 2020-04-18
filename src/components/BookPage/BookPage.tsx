@@ -13,7 +13,7 @@ const BookImage = styled.img`
   width: 100%;
 `;
 
-const RandomBookTitle = styled.div`
+const RandomBookTitle = styled(Box)`
   font-family: Roboto;
   font-weight: normal;
   font-size: 32px;

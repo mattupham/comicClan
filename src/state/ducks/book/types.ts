@@ -29,3 +29,7 @@ export const BookActionTypes = {
 export interface IDispatchToProps {
   fetchBooks: (s?: string) => IMetaAction;
 }
+
+export interface IStateToProps {
+  loading: boolean;
+}

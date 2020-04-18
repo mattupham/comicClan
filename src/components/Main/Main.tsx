@@ -1,4 +1,4 @@
-import { IBook } from "state/ducks/book/types";
+import { IBook, IStateToProps } from "state/ducks/book/types";
 import { GROUP } from "components/Groups/Groups";
 import GroupsContainer from "containers/GroupsContainer";
 import Search from "components/Search/Search";
@@ -10,6 +10,7 @@ import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import styled from "styled-components";
 import PageNotFound from "components/PageNotFound/PageNotFound";
 import BooksNotFound from "components/BooksNotFound/BooksNotFound";
+import { Box } from "rebass";
 
 const Main = styled.main`
   background: #333333;
@@ -24,9 +25,13 @@ interface IProps {
   bookData: IBook[];
 }
 
-export type AllProps = IProps & IDispatchToProps;
+export type AllProps = IProps & IDispatchToProps & IStateToProps;
 
-const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
+const StyledMain: FC<AllProps> = ({
+  bookData,
+  fetchBooks,
+  loading,
+}: AllProps) => {
   useEffect(() => {
     console.log("FETCH BOOKS RAN");
     fetchBooks();
@@ -34,64 +39,68 @@ const StyledMain: FC<AllProps> = ({ bookData, fetchBooks }: AllProps) => {
 
   return (
     <Main className="main" data-testid="main">
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/books/year" />
-        </Route>
-        <Route
-          exact
-          path="/books/:group"
-          children={({ match }) => {
-            const isGroupValid =
-              match !== null ||
-              //@ts-ignore
-              Object.values(GROUP).includes(match.params.group);
+      {loading ? (
+        <Box>LOADING</Box>
+      ) : (
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/books/year" />
+          </Route>
+          <Route
+            exact
+            path="/books/:group"
+            children={({ match }) => {
+              const isGroupValid =
+                match !== null ||
+                //@ts-ignore
+                Object.values(GROUP).includes(match.params.group);
 
-            return isGroupValid ? (
-              <>
-                <Search fetchBooks={(s) => fetchBooks(s)} />
-                <GroupsContainer />
-                {bookData.length === 0 ? (
-                  <BooksNotFound />
-                ) : (
-                  <GroupedBooks
-                    // TODO add null case
-                    //@ts-ignore
-                    selectedGroup={match.params.group as GROUP}
-                    bookData={bookData}
-                  />
-                )}
-              </>
-            ) : (
-              <Redirect to="/404" />
-            );
-          }}
-        />
-        <Route
-          path="/book/:title"
-          children={({ match }) => {
-            const title = decodeURIComponent(
-              match !== null ? match.params.title : ""
-            );
-            if (title === undefined) {
-              return <PageNotFound />;
-            } else {
-              const selectedBook = bookData.filter(
-                (book) => book.name === title
-              )[0];
-              return (
-                <BookPage
-                  books={bookData}
-                  selectedBook={selectedBook}
-                  //@ts-ignore
-                  title={title}
-                />
+              return isGroupValid ? (
+                <>
+                  <Search fetchBooks={(s) => fetchBooks(s)} />
+                  <GroupsContainer />
+                  {bookData.length === 0 ? (
+                    <BooksNotFound />
+                  ) : (
+                    <GroupedBooks
+                      // TODO add null case
+                      //@ts-ignore
+                      selectedGroup={match.params.group as GROUP}
+                      bookData={bookData}
+                    />
+                  )}
+                </>
+              ) : (
+                <Redirect to="/404" />
               );
-            }
-          }}
-        />
-        <Route component={() => <PageNotFound />} />
-      </Switch>
+            }}
+          />
+          <Route
+            path="/book/:title"
+            children={({ match }) => {
+              const title = decodeURIComponent(
+                match !== null ? match.params.title : ""
+              );
+              if (title === undefined) {
+                return <PageNotFound />;
+              } else {
+                const selectedBook = bookData.filter(
+                  (book) => book.name === title
+                )[0];
+                return (
+                  <BookPage
+                    books={bookData}
+                    selectedBook={selectedBook}
+                    //@ts-ignore
+                    title={title}
+                  />
+                );
+              }
+            }}
+          />
+          <Route component={() => <PageNotFound />} />
+        </Switch>
+      )}
     </Main>
   );
 };
