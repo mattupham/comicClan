@@ -3,18 +3,16 @@ import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const BookName = styled.div`
+const BookName = styled(Box)`
   font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 2.2rem;
   line-height: 2.6rem;
   color: #cccccc;
 `;
 
-const OwnedBy = styled.div`
+const OwnedBy = styled(Box)`
   font-family: Roboto;
-  font-style: normal;
   font-weight: 500;
   font-size: 1.6rem;
   line-height: 1.9rem;
@@ -22,9 +20,8 @@ const OwnedBy = styled.div`
   margin-right: 0.6rem;
 `;
 
-const Owner = styled.div`
+const Owner = styled(Box)`
   font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 1.6rem;
   line-height: 1.9rem;
@@ -49,7 +46,7 @@ const Book: FC<IProps> = (props: IProps) => {
       to={`/book/${encodeURIComponent(props.bookName)}`}
       style={{ textDecoration: "none" }}
     >
-      <Box className="Book" mt="3.2rem" mr="9.6rem" width="20rem">
+      <Box className="Book" width="20rem">
         <Box>
           <BookImage
             data-testid="smallBookImage"

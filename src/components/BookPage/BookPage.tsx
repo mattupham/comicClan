@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
-import HR from "components/HR/HR";
+import { HR } from "components/Styled/Styled";
 import BookDetails from "components/BookDetails/BookDetails";
 import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import BackLink from "components/BackLink/BackLink";
@@ -13,9 +13,8 @@ const BookImage = styled.img`
   width: 100%;
 `;
 
-const RandomBookTitle = styled.div`
+const RandomBookTitle = styled(Box)`
   font-family: Roboto;
-  font-style: normal;
   font-weight: normal;
   font-size: 32px;
   line-height: 37px;

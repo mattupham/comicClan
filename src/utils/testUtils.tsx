@@ -43,21 +43,6 @@ export const renderWithRouter: any = (
   };
 };
 
-// test-utils.js
-export const renderWithRedux: any = (
-  ui: React.ReactElement<any>,
-  {
-    initialState = {},
-    store = createStore(reducer, initialState),
-    ...renderOptions
-  }: any = {}
-) => {
-  function Wrapper({ children }: any) {
-    return <Provider store={store}>{children}</Provider>;
-  }
-  return render(ui, { wrapper: Wrapper, ...renderOptions });
-};
-
 const initialTestingState: IApplicationState = {
   bookData: {
     bookData: getMockBookData(),
@@ -69,11 +54,14 @@ const initialTestingState: IApplicationState = {
   },
 };
 
-const store = configureStore(initialTestingState);
-
 interface RouterInterface {
   route?: string;
   history?: any;
+}
+
+interface ReduxInterface {
+  initialState?: any;
+  store?: any;
 }
 
 // allows test to render with React Router and Redux
@@ -82,7 +70,9 @@ export const renderWithAll: any = (
   {
     route = defaultRoute,
     history = createMemoryHistory({ initialEntries: [route] }),
-  }: RouterInterface = {}
+    initialState = { ...initialTestingState },
+    store = createStore(reducer, initialState),
+  }: RouterInterface & ReduxInterface = {}
 ) => {
   const Wrapper = ({ children }: any) => (
     <Provider store={store}>

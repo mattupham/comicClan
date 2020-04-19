@@ -15,7 +15,7 @@ describe("book saga", () => {
         // Dispatch actions that saga will take
         .dispatch(fetchBooks())
         // Start test (return promise)
-        .run()
+        .silentRun()
     );
   });
 });

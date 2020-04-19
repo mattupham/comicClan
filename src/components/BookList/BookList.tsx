@@ -2,15 +2,15 @@ import { IBook } from "state/ducks/book/types";
 import Book from "components/Book/Book";
 import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
-import { Box, Flex } from "rebass";
+import { Box } from "rebass";
 import styled from "styled-components";
 
-const GroupTitle = styled.div`
+const GroupTitle = styled(Box)`
   font-family: Roboto;
-  font-style: normal;
   font-weight: normal;
   font-size: 3.2rem;
   color: #aaaaaa;
+  margin-bottom: 3.2rem;
 `;
 
 export interface IProps {
@@ -22,11 +22,17 @@ export interface IProps {
 // renders a list of books, and displays the groupedBy key (i.e. for year, 2020)
 const BookList: FC<IProps> = (props: IProps) => {
   return (
-    <Box className="bookList" mt="2.8rem" mb="6.9rem">
+    <Box className="bookList">
       {props.currentGroup !== GROUP.RANDOM && (
         <GroupTitle data-testid="groupTitle">{props.groupValue}</GroupTitle>
       )}
-      <Flex flexWrap="wrap">
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, 20rem)",
+          gridGap: "6rem 9.6rem",
+        }}
+      >
         {props.books.map((book, index) => (
           <Book
             key={index}
@@ -35,7 +41,7 @@ const BookList: FC<IProps> = (props: IProps) => {
             imageUrl={book.image}
           />
         ))}
-      </Flex>
+      </Box>
     </Box>
   );
 };
