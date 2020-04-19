@@ -3,7 +3,7 @@ import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { IDispatchToProps } from "state/ducks/book/types";
-import { RobotoBold, COLORS } from "components/Styled/Styled";
+import { COLORS } from "components/Styled/Styled";
 
 const SearchBox = styled(Box)`
   display: inline-flex;

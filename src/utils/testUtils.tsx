@@ -8,8 +8,6 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { rootReducer as reducer } from "state/ducks/index";
 import { render } from "@testing-library/react";
-import configureStore from "state";
-import { GROUP } from "components/Groups/Groups";
 import { IApplicationState } from "state/ducks/index";
 import "@testing-library/jest-dom/extend-expect";
 
@@ -49,9 +47,9 @@ const initialTestingState: IApplicationState = {
     loading: false,
     errors: [],
   },
-  group: {
-    group: GROUP.YEAR,
-  },
+  // group: {
+  //   group: GROUP.YEAR,
+  // },
 };
 
 interface RouterInterface {

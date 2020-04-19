@@ -1,7 +1,7 @@
 import GroupButton from "components/GroupButton/GroupButton";
 import React, { FC } from "react";
 import { Box } from "rebass";
-import { IDispatchToProps } from "state/ducks/group/types";
+import { useParams } from "react-router-dom";
 
 export enum GROUP {
   YEAR = "year",
@@ -16,43 +16,23 @@ interface GroupButton {
   selected: boolean;
 }
 
-export interface IProps {
-  group: GROUP;
-}
+// export interface IProps {
+//   group: GROUP;
+// }
 
-type AllProps = IProps & IDispatchToProps;
+// type AllProps = IProps;
 
 // renders a list of group buttons
-const Groups: FC<AllProps> = ({ setGroup, group }: AllProps) => {
-  const handleClick = (groupOption: GROUP) => setGroup(groupOption);
+const Groups: FC = () => {
+  const { group } = useParams();
 
   return (
     <Box className="groupOptions" data-testid="groupOptions">
-      <GroupButton
-        primary={group === GROUP.YEAR}
-        handleClick={handleClick}
-        group={GROUP.YEAR}
-      />
-      <GroupButton
-        primary={group === GROUP.WRITER}
-        handleClick={handleClick}
-        group={GROUP.WRITER}
-      />
-      <GroupButton
-        primary={group === GROUP.ARTIST}
-        handleClick={handleClick}
-        group={GROUP.ARTIST}
-      />
-      <GroupButton
-        primary={group === GROUP.OWNER}
-        handleClick={handleClick}
-        group={GROUP.OWNER}
-      />
-      <GroupButton
-        primary={group === GROUP.RANDOM}
-        handleClick={handleClick}
-        group={GROUP.RANDOM}
-      />
+      <GroupButton primary={group === GROUP.YEAR} group={GROUP.YEAR} />
+      <GroupButton primary={group === GROUP.WRITER} group={GROUP.WRITER} />
+      <GroupButton primary={group === GROUP.ARTIST} group={GROUP.ARTIST} />
+      <GroupButton primary={group === GROUP.OWNER} group={GROUP.OWNER} />
+      <GroupButton primary={group === GROUP.RANDOM} group={GROUP.RANDOM} />
     </Box>
   );
 };
