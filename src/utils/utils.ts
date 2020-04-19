@@ -1,6 +1,5 @@
 import { IBook } from "state/ducks/book/types";
 import { GROUP } from "components/Groups/Groups";
-import { GroupedTuple, GroupKey } from "state/ducks/group/types";
 
 // randomizes book array
 export const randomizeArray = <T>(array: T[]): T[] => {
@@ -37,6 +36,11 @@ export const sortByAlph = <T>(array: T[]): T[] => {
     }
   });
 };
+
+// type for grouping
+export type GroupedTuple = [string, IBook[]];
+// allow all but random type
+export type GroupKey = GROUP.YEAR | GROUP.WRITER | GROUP.ARTIST | GROUP.OWNER;
 
 // groups books when random is selected
 export const groupByRandom = (array: IBook[]): GroupedTuple[] | never[] => {

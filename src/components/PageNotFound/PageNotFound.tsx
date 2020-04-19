@@ -16,15 +16,16 @@ const Container = styled(Flex)`
   flex: 1 1 auto;
 `;
 
-// function that counts down from a specified number of seconds
-const countDown = (seconds: number, cb: (s: number) => void) =>
-  setTimeout(() => cb(seconds - 1), 1000);
-
 const PageNotFound: FC = () => {
   const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
-    countDown(seconds, setSeconds);
+    // function that counts down from a specified number of seconds
+    const countDown = setTimeout(() => setSeconds(seconds - 1), 1000);
+
+    return () => {
+      clearTimeout(countDown);
+    };
   }, [seconds]);
 
   if (seconds <= 0) {
