@@ -3,11 +3,12 @@ import { ReactComponent as ComicClanTextSVG } from "assets/comicClanText.svg";
 import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
+import { COLORS } from "components/Styled/Styled";
 
 const Header = styled.header`
   width: 100%;
   height: 7.3rem;
-  background: #535353;
+  background: ${COLORS.DarkGrayDark};
 `;
 
 const StyledHeader: FC = () => {

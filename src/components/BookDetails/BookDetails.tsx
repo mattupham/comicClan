@@ -3,11 +3,12 @@ import { Flex } from "rebass";
 import styled from "styled-components";
 import { IBook } from "state/ducks/book/types";
 import Rating from "components/Rating/Rating";
-import { RobotoBold, RobotoMed } from "components/Styled/Styled";
+import { RobotoBold, RobotoMed, COLORS } from "components/Styled/Styled";
 
 const BookName = styled(RobotoMed)`
   font-size: 3.2rem;
-  color: #aaaaaa;
+  color: ${COLORS.LightGrayMed};
+
   margin-top: 0;
   margin-bottom: 0.3rem;
   margin-right: 3.9rem;
@@ -16,7 +17,7 @@ const BookName = styled(RobotoMed)`
 const MetaData = styled(RobotoMed)`
   font-size: 16px;
   line-height: 19px;
-  color: #999999;
+  color: ${COLORS.LightGrayDark};
   margin-top: 1.1rem;
 `;
 
@@ -24,14 +25,14 @@ const Val = styled(RobotoBold)`
   display: inline;
   font-size: 1.6rem;
   line-height: 1.9rem;
-  color: #cccccc;
+  color: ${COLORS.LightGrayLight};
   margin-left: 1rem;
 `;
 
 const Summary = styled(RobotoBold)`
   font-size: 16px;
   line-height: 19px;
-  color: #cccccc;
+  color: ${COLORS.LightGrayLight};
   margin-top: 4.4rem;
   margin-bottom: 0rem;
   word-wrap: break-word;

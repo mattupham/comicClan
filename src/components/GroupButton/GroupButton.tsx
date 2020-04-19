@@ -3,9 +3,10 @@ import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import { capitalizeFirstLetter } from "utils/utils";
 import { Link } from "react-router-dom";
-import { RobotoBold } from "components/Styled/Styled";
+import { RobotoBold, COLORS } from "components/Styled/Styled";
+import { Button } from "rebass";
 
-const GroupButton = styled.button`
+const GroupButton = styled(Button)`
   background: none;
   border: none;
   padding-right: 1.5rem;
@@ -13,7 +14,7 @@ const GroupButton = styled.button`
   height: 3.8rem;
   font-size: 1.8rem;
   line-height: 2.1rem;
-  color: #777777;
+  color: ${COLORS.MedGray};
   &:focus {
     outline: none;
   }
@@ -23,9 +24,9 @@ const GroupButton = styled.button`
   ${(props: { primary: boolean }) =>
     props.primary &&
     css`
-      background: #f15454;
+      background: ${COLORS.Red};
       border-radius: 1.9rem;
-      color: #ffffff;
+      color: ${COLORS.White};
     `}
 `;
 

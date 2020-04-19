@@ -4,13 +4,14 @@ import styled from "styled-components";
 import { ReactComponent as BackArrow } from "assets/backArrow.svg";
 import { Link } from "react-router-dom";
 import { RobotoMed } from "components/Styled/Styled";
+import { COLORS } from "components/Styled/Styled";
 
 const Title = styled(RobotoMed)`
   height: 23px;
   font-size: 2rem;
   line-height: 2.3rem;
   text-decoration-line: underline;
-  color: #777777;
+  color: ${COLORS.MedGray};
   margin-left: 0.659rem;
   position: relative;
   bottom: 0;

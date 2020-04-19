@@ -3,24 +3,25 @@ import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { RobotoBold, RobotoMed } from "components/Styled/Styled";
+import { COLORS } from "components/Styled/Styled";
 
 const BookName = styled(RobotoBold)`
   font-size: 2.2rem;
   line-height: 2.6rem;
-  color: #cccccc;
+  color: ${COLORS.LightGrayLight};
 `;
 
 const OwnedBy = styled(RobotoMed)`
   font-size: 1.6rem;
   line-height: 1.9rem;
-  color: #999999;
+  color: ${COLORS.LightGrayDark};
 `;
 
 const Owner = styled(RobotoBold)`
   display: inline;
   font-size: 1.6rem;
   line-height: 1.9rem;
-  color: #cccccc;
+  color: ${COLORS.LightGrayLight};
   margin-left: 0.6rem;
 `;
 

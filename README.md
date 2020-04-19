@@ -63,8 +63,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - [Redux](https://redux.js.org/) - A Predictable State Container for JavaSccript Apps
 - [Redux Saga](https://redux*saga.js.org/) - A library that makes application side effects easier to manage
 - [Styled Components](https://styled*components.com/) - A way to style your React components using CSS and ES6
+- [Rebass](https://rebassjs.org/) - React Primitive UI Components built with styled system
 - [React Router](https://reacttraining.com/react-router/) - Declarative routing for React
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) - A lightweight solution for testing React components
+- [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) - A grid based layout system
+- [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) - A one-dimensional layout method for laying out items in rows or columns
 
 ## Authors
 

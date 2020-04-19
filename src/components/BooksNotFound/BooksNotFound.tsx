@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Flex } from "rebass";
-import { RobotoBold } from "components/Styled/Styled";
+import { RobotoBold, COLORS } from "components/Styled/Styled";
 
 const Container = styled(Flex)`
-  color: #cccccc;
+  color: ${COLORS.LightGrayLight};
   flex-direction: column;
   justify-content: center;
   height: 100%;

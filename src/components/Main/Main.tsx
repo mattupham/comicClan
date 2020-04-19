@@ -12,9 +12,10 @@ import PageNotFound from "components/PageNotFound/PageNotFound";
 import BooksNotFound from "components/BooksNotFound/BooksNotFound";
 import { Flex } from "rebass";
 import { Loader } from "components/Styled/Styled";
+import { COLORS } from "components/Styled/Styled";
 
 const Main = styled.main`
-  background: #333333;
+  background: ${COLORS.Black};
   flex: 1 1 auto;
   padding-right: 2.8rem;
   padding-left: 2.8rem;

@@ -2,14 +2,14 @@ import React, { FC, useEffect, useState } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { Redirect } from "react-router-dom";
-import { RobotoBold } from "components/Styled/Styled";
+import { RobotoBold, COLORS } from "components/Styled/Styled";
 
 interface IProps {
   rating: number;
 }
 
 const Container = styled(Flex)`
-  color: #cccccc;
+  color: ${COLORS.LightGrayLight};
   flex-direction: column;
   justify-content: center;
   align-items: center;

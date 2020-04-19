@@ -3,10 +3,11 @@ import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { IDispatchToProps } from "state/ducks/book/types";
+import { RobotoBold, COLORS } from "components/Styled/Styled";
 
 const SearchBox = styled(Box)`
   display: inline-flex;
-  border: 1px solid #ccc;
+  border: 1px solid ${COLORS.LightGrayLight};
   overflow: hidden;
   width: 100%;
   border-radius: 0.8rem;
@@ -27,7 +28,7 @@ const Input = styled.input`
     font-weight: 500;
     font-size: 20px;
     line-height: 23px;
-    color: #5a5a5a;
+    color: ${COLORS.DarkGrayLight};
   }
   &:focus {
     outline: none;
@@ -37,7 +38,7 @@ const Input = styled.input`
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
-  color: #cccccc;
+  color: ${COLORS.LightGrayLight};
 `;
 
 const Form = styled.form`

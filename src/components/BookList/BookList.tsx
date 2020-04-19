@@ -4,11 +4,11 @@ import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
-import { Roboto } from "components/Styled/Styled";
+import { Roboto, COLORS } from "components/Styled/Styled";
 
 const GroupTitle = styled(Roboto)`
   font-size: 3.2rem;
-  color: #aaaaaa;
+  color: ${COLORS.LightGrayMed};
 `;
 
 export interface IProps {
