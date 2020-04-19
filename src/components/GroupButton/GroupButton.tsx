@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import { capitalizeFirstLetter } from "utils/utils";
 import { Link } from "react-router-dom";
+import { RobotoBold } from "components/Styled/Styled";
 
 const GroupButton = styled.button`
   background: none;
@@ -10,8 +11,6 @@ const GroupButton = styled.button`
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   height: 3.8rem;
-  font-family: Roboto;
-  font-weight: bold;
   font-size: 1.8rem;
   line-height: 2.1rem;
   color: #777777;
@@ -42,7 +41,7 @@ const StyledGroupButton: FC<IProps> = (props: IProps) => (
       primary={props.primary}
       onClick={() => props.handleClick(props.group)}
     >
-      {capitalizeFirstLetter(props.group)}
+      <RobotoBold>{capitalizeFirstLetter(props.group)}</RobotoBold>
     </GroupButton>
   </Link>
 );

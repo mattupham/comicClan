@@ -7,15 +7,14 @@ import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import BackLink from "components/BackLink/BackLink";
 import { IBook } from "state/ducks/book/types";
 import { GROUP } from "components/Groups/Groups";
+import { Roboto } from "components/Styled/Styled";
 
 const BookImage = styled.img`
   height: 100%;
   width: 100%;
 `;
 
-const RandomBookTitle = styled(Box)`
-  font-family: Roboto;
-  font-weight: normal;
+const RandomBookTitle = styled(Roboto)`
   font-size: 32px;
   line-height: 37px;
   color: #aaaaaa;

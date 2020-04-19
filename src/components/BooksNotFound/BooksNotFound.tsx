@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Box, Flex } from "rebass";
+import { Flex } from "rebass";
+import { RobotoBold } from "components/Styled/Styled";
 
 const Container = styled(Flex)`
-  font-family: Roboto;
-  font-weight: bold;
   color: #cccccc;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +11,7 @@ const Container = styled(Flex)`
   flex: 1 1 auto;
 `;
 
-const CenterBox = styled(Box)`
+const CenterBox = styled(RobotoBold)`
   text-align: center;
 `;
 

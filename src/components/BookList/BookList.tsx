@@ -4,13 +4,11 @@ import { GROUP } from "components/Groups/Groups";
 import React, { FC } from "react";
 import { Box } from "rebass";
 import styled from "styled-components";
+import { Roboto } from "components/Styled/Styled";
 
-const GroupTitle = styled(Box)`
-  font-family: Roboto;
-  font-weight: normal;
+const GroupTitle = styled(Roboto)`
   font-size: 3.2rem;
   color: #aaaaaa;
-  margin-bottom: 3.2rem;
 `;
 
 export interface IProps {
@@ -24,7 +22,9 @@ const BookList: FC<IProps> = (props: IProps) => {
   return (
     <Box className="bookList">
       {props.currentGroup !== GROUP.RANDOM && (
-        <GroupTitle data-testid="groupTitle">{props.groupValue}</GroupTitle>
+        <GroupTitle data-testid="groupTitle" mb="3.2rem">
+          {props.groupValue}
+        </GroupTitle>
       )}
       <Box
         sx={{

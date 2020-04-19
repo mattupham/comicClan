@@ -2,30 +2,26 @@ import React, { FC } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { RobotoBold, RobotoMed } from "components/Styled/Styled";
 
-const BookName = styled(Box)`
-  font-family: Roboto;
-  font-weight: bold;
+const BookName = styled(RobotoBold)`
   font-size: 2.2rem;
   line-height: 2.6rem;
   color: #cccccc;
 `;
 
-const OwnedBy = styled(Box)`
-  font-family: Roboto;
-  font-weight: 500;
+const OwnedBy = styled(RobotoMed)`
   font-size: 1.6rem;
   line-height: 1.9rem;
   color: #999999;
-  margin-right: 0.6rem;
 `;
 
-const Owner = styled(Box)`
-  font-family: Roboto;
-  font-weight: bold;
+const Owner = styled(RobotoBold)`
+  display: inline;
   font-size: 1.6rem;
   line-height: 1.9rem;
   color: #cccccc;
+  margin-left: 0.6rem;
 `;
 
 export interface IProps {
@@ -58,8 +54,9 @@ const Book: FC<IProps> = (props: IProps) => {
           <BookName>{props.bookName}</BookName>
         </Box>
         <Flex mt=".9rem">
-          <OwnedBy>Owned By</OwnedBy>
-          <Owner>{props.username}</Owner>
+          <OwnedBy>
+            Owned By<Owner>{props.username}</Owner>
+          </OwnedBy>
         </Flex>
       </Box>
     </Link>

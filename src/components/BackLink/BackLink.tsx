@@ -3,11 +3,10 @@ import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { ReactComponent as BackArrow } from "assets/backArrow.svg";
 import { Link } from "react-router-dom";
+import { RobotoMed } from "components/Styled/Styled";
 
-const Title = styled(Box)`
+const Title = styled(RobotoMed)`
   height: 23px;
-  font-family: Roboto;
-  font-weight: 500;
   font-size: 2rem;
   line-height: 2.3rem;
   text-decoration-line: underline;

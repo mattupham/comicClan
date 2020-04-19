@@ -2,14 +2,13 @@ import React, { FC, useEffect, useState } from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
 import { Redirect } from "react-router-dom";
+import { RobotoBold } from "components/Styled/Styled";
 
 interface IProps {
   rating: number;
 }
 
 const Container = styled(Flex)`
-  font-family: Roboto;
-  font-weight: bold;
   color: #cccccc;
   flex-direction: column;
   justify-content: center;
@@ -33,12 +32,14 @@ const PageNotFound: FC = () => {
   } else {
     return (
       <Container>
-        <Box fontSize="10rem">Page Not Found</Box>
+        <Box fontSize="10rem">
+          <RobotoBold>Page Not Found</RobotoBold>
+        </Box>
         <Box mt="8rem" fontSize="4rem">
-          Redirecting You Back to the home page in:
+          <RobotoBold>Redirecting You Back to the home page in:</RobotoBold>
         </Box>
         <Box mt="3rem" fontSize="8rem">
-          {seconds}
+          <RobotoBold>{seconds}</RobotoBold>
         </Box>
       </Container>
     );

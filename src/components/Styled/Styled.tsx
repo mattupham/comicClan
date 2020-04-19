@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { Box } from "rebass";
+import { Box, Text } from "rebass";
 
 const rotate = keyframes`
   from { transform: rotate(0deg); }
@@ -43,4 +43,16 @@ export const HR = styled.hr`
   border: 1px solid #535353;
   width: 100%;
   margin: 0;
+`;
+
+export const Roboto = styled(Text)`
+  font-family: Roboto;
+`;
+
+export const RobotoMed = styled(Roboto)`
+  font-weight: 500;
+`;
+
+export const RobotoBold = styled(Roboto)`
+  font-weight: bold;
 `;

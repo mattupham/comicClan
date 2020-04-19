@@ -1,12 +1,11 @@
 import React, { FC } from "react";
-import { Flex, Box } from "rebass";
+import { Flex } from "rebass";
 import styled from "styled-components";
 import { IBook } from "state/ducks/book/types";
 import Rating from "components/Rating/Rating";
+import { RobotoBold, RobotoMed } from "components/Styled/Styled";
 
-const BookName = styled(Box)`
-  font-family: Roboto;
-  font-weight: 500;
+const BookName = styled(RobotoMed)`
   font-size: 3.2rem;
   color: #aaaaaa;
   margin-top: 0;
@@ -14,27 +13,22 @@ const BookName = styled(Box)`
   margin-right: 3.9rem;
 `;
 
-const MetaData = styled(Box)`
-  font-family: Roboto;
-  font-weight: 500;
+const MetaData = styled(RobotoMed)`
   font-size: 16px;
   line-height: 19px;
   color: #999999;
   margin-top: 1.1rem;
 `;
 
-const Val = styled.span`
-  font-family: Roboto;
-  font-weight: bold;
+const Val = styled(RobotoBold)`
+  display: inline;
   font-size: 1.6rem;
   line-height: 1.9rem;
   color: #cccccc;
   margin-left: 1rem;
 `;
 
-const Summary = styled(Box)`
-  font-family: Roboto;
-  font-weight: bold;
+const Summary = styled(RobotoBold)`
   font-size: 16px;
   line-height: 19px;
   color: #cccccc;
