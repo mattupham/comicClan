@@ -1,6 +1,6 @@
 import { IBook, IStateToProps } from "state/ducks/book/types";
 import { GROUP } from "components/Groups/Groups";
-import GroupsContainer from "containers/GroupsContainer";
+import Groups from "components/Groups/Groups";
 import Search from "components/Search/Search";
 import React, { FC, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -62,7 +62,7 @@ const StyledMain: FC<AllProps> = ({
             children={({ match }) => (
               <>
                 <Search fetchBooks={(s) => fetchBooks(s)} />
-                <GroupsContainer />
+                <Groups />
                 {bookData.length === 0 ? (
                   <BooksNotFound />
                 ) : (
