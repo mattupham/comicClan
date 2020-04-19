@@ -27,6 +27,14 @@ interface IProps {
   bookData: IBook[];
 }
 
+const groupList: GROUP[] = Object.values(GROUP);
+
+// generates group regex to limit routes
+const groupRegex =
+  groupList.reduce((acc, cur, index) => {
+    return (acc += (index === 0 ? "" : "|") + cur);
+  }, "(") + ")";
+
 export type AllProps = IProps & IDispatchToProps & IStateToProps;
 
 const StyledMain: FC<AllProps> = ({
@@ -50,32 +58,22 @@ const StyledMain: FC<AllProps> = ({
           </Route>
           <Route
             exact
-            path="/books/:group"
-            children={({ match }) => {
-              const isGroupValid =
-                match !== null ||
-                //@ts-ignore
-                Object.values(GROUP).includes(match.params.group);
-
-              return isGroupValid ? (
-                <>
-                  <Search fetchBooks={(s) => fetchBooks(s)} />
-                  <GroupsContainer />
-                  {bookData.length === 0 ? (
-                    <BooksNotFound />
-                  ) : (
-                    <GroupedBooks
-                      // TODO add null case
-                      //@ts-ignore
-                      selectedGroup={match.params.group as GROUP}
-                      bookData={bookData}
-                    />
-                  )}
-                </>
-              ) : (
-                <Redirect to="/404" />
-              );
-            }}
+            path={`/books/:group${groupRegex}`}
+            children={({ match }) => (
+              <>
+                <Search fetchBooks={(s) => fetchBooks(s)} />
+                <GroupsContainer />
+                {bookData.length === 0 ? (
+                  <BooksNotFound />
+                ) : (
+                  <GroupedBooks
+                    //@ts-ignore
+                    selectedGroup={match.params.group as GROUP}
+                    bookData={bookData}
+                  />
+                )}
+              </>
+            )}
           />
           <Route
             path="/book/:title"

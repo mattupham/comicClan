@@ -32,7 +32,7 @@ const GroupButton = styled(Button)`
 
 export interface IProps {
   primary: boolean;
-  handleClick: (groupOption: GROUP) => void;
+  // handleClick: (groupOption: GROUP) => void;
   group: GROUP;
 }
 
@@ -40,7 +40,7 @@ const StyledGroupButton: FC<IProps> = (props: IProps) => (
   <Link to={`/books/${props.group}`} data-testid="groupButton">
     <GroupButton
       primary={props.primary}
-      onClick={() => props.handleClick(props.group)}
+      // onClick={() => props.handleClick(props.group)}
     >
       <RobotoBold>{capitalizeFirstLetter(props.group)}</RobotoBold>
     </GroupButton>
