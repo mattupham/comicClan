@@ -57,7 +57,7 @@ const LoaderDiv = styled(Box)<{
   border-radius: 50%;
   animation: ${rotate} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   animation-delay: ${(props) => props.delay || "0s"};
-  border-color: ${COLORS.White} transparent transparent transparent;
+  border-color: #fff transparent transparent transparent;
 `;
 
 export const Loader = () => (
