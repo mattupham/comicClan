@@ -19,14 +19,16 @@ export interface IProps {
 
 // renders a list of books, and displays the groupedBy key (i.e. for year, 2020)
 const BookList: FC<IProps> = (props: IProps) => {
+  const isRandom = props.currentGroup === GROUP.RANDOM;
   return (
     <Box className="bookList">
-      {props.currentGroup !== GROUP.RANDOM && (
+      {!isRandom && (
         <GroupTitle data-testid="groupTitle" mb="3.2rem">
           {props.groupValue}
         </GroupTitle>
       )}
       <Box
+        mt={isRandom ? "6rem" : "0rem"}
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, 20rem)",
