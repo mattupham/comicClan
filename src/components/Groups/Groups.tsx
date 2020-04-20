@@ -20,17 +20,12 @@ export interface IProps {
 }
 
 // renders a list of group buttons
-const Groups: FC<IProps> = ({ group }: IProps) => {
-  console.log("GROUP: ", group);
-  return (
-    <Box className="groupOptions" data-testid="groupOptions">
-      <GroupButton primary={group === GROUP.YEAR} group={GROUP.YEAR} />
-      <GroupButton primary={group === GROUP.WRITER} group={GROUP.WRITER} />
-      <GroupButton primary={group === GROUP.ARTIST} group={GROUP.ARTIST} />
-      <GroupButton primary={group === GROUP.OWNER} group={GROUP.OWNER} />
-      <GroupButton primary={group === GROUP.RANDOM} group={GROUP.RANDOM} />
-    </Box>
-  );
-};
+const Groups: FC<IProps> = (props: IProps) => (
+  <Box className="groupOptions" data-testid="groupOptions">
+    {Object.values(GROUP).map((group) => (
+      <GroupButton key={group} primary={props.group === group} group={group} />
+    ))}
+  </Box>
+);
 
 export default Groups;

@@ -73,13 +73,6 @@ describe("main", () => {
     });
   });
 
-  test("landing on a bad page shows 404 page", () => {
-    const { getByText } = renderWithRouter(<Main {...initialProps} />, {
-      route: "/bad",
-    });
-    expect(getByText("Page Not Found")).toBeInTheDocument();
-  });
-
   test("if book list return empty, shows No Results Found page", () => {
     const { getByText, queryByTestId, queryAllByTestId } = renderWithRouter(
       <Main {...initialProps} bookData={[]} />
@@ -91,5 +84,17 @@ describe("main", () => {
 
   test("creates group regex correctly", () => {
     expect(groupRegex(groupList)).toBe("(year|writer|artist|owner|random)");
+  });
+
+  test("landing on a bad page / group / bookshows 404 page", () => {
+    ["/bad", "/book/MyIncorrectBook", "/books/MyIncorrectGroup"].forEach(
+      (route) => {
+        const { getByText } = renderWithRouter(<Main {...initialProps} />, {
+          route,
+        });
+        expect(getByText("Page Not Found")).toBeInTheDocument();
+        cleanup();
+      }
+    );
   });
 });

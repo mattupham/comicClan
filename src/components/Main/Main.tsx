@@ -82,9 +82,6 @@ const StyledMain: FC<AllProps> = ({
             path="/book/:title"
             children={({ match }) => {
               const title = decodeURIComponent(match?.params.title);
-              console.log("TITLE: ", title);
-              console.log("BOOK DATA: ", bookData);
-              // await book data here
               if (bookData.length === 0) {
                 return <Loader />;
               } else {
