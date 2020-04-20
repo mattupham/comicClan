@@ -82,12 +82,18 @@ const StyledMain: FC<AllProps> = ({
             path="/book/:title"
             children={({ match }) => {
               const title = decodeURIComponent(match?.params.title);
-              if (title === undefined) {
-                return <PageNotFound />;
+              console.log("TITLE: ", title);
+              console.log("BOOK DATA: ", bookData);
+              // await book data here
+              if (bookData.length === 0) {
+                return <Loader />;
               } else {
                 const selectedBook = bookData.filter(
                   (book) => book.name === title
                 )[0];
+                if (title === undefined || selectedBook === undefined) {
+                  return <PageNotFound />;
+                }
                 return (
                   <BookPage books={bookData} selectedBook={selectedBook} />
                 );
