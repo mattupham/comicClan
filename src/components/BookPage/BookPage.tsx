@@ -39,7 +39,7 @@ const BookPage: FC<IProps> = (props: IProps) => {
         <BookDetails book={props.selectedBook} />
       </Flex>
       <HR />
-      <Flex flexDirection="column" mt="3.25rem">
+      <Flex flexDirection="column" mt="3.25rem" mb="0.4rem">
         <RandomBookTitle>Other Random Books</RandomBookTitle>
       </Flex>
       {/* // TODO fix margin top */}
