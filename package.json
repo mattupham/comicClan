@@ -2,6 +2,7 @@
   "name": "comic-clan",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mattupham.github.io/comicClan",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -37,7 +38,9 @@
     "test": "react-scripts test",
     "testWatch": "react-scripts test --watch",
     "testCoverage": "react-scripts test --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
