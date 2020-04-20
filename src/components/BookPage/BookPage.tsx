@@ -42,7 +42,6 @@ const BookPage: FC<IProps> = (props: IProps) => {
       <Flex flexDirection="column" mt="3.25rem" mb="0.4rem">
         <RandomBookTitle>Other Random Books</RandomBookTitle>
       </Flex>
-      {/* // TODO fix margin top */}
       <GroupedBooks selectedGroup={GROUP.RANDOM} bookData={props.books} />
     </Flex>
   );
