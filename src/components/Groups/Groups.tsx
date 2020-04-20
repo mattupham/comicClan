@@ -21,6 +21,7 @@ export interface IProps {
 
 // renders a list of group buttons
 const Groups: FC<IProps> = ({ group }: IProps) => {
+  console.log("GROUP: ", group);
   return (
     <Box className="groupOptions" data-testid="groupOptions">
       <GroupButton primary={group === GROUP.YEAR} group={GROUP.YEAR} />
