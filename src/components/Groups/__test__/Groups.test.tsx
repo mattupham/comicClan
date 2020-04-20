@@ -1,20 +1,9 @@
-import Groups, { IProps } from "components/Groups/Groups";
+import Groups from "components/Groups/Groups";
 import { GROUP } from "components/Groups/Groups";
 import React from "react";
 import { renderWithRouter } from "utils/testUtils";
-import { fireEvent, cleanup } from "@testing-library/react";
-import { IDispatchToProps } from "state/ducks/group/types";
+import { fireEvent, cleanup, getByTestId } from "@testing-library/react";
 import { capitalizeFirstLetter } from "utils/utils";
-
-type AllProps = IProps & IDispatchToProps;
-
-const initialProps: AllProps = {
-  group: GROUP.YEAR,
-  setGroup: jest.fn(),
-};
-
-const renderComponent = (props: AllProps) =>
-  renderWithRouter(<Groups {...props} />);
 
 afterAll(() => {
   cleanup();
@@ -22,16 +11,25 @@ afterAll(() => {
 
 describe("groups", () => {
   test("should render all 5 group buttons", () => {
-    const { queryAllByTestId } = renderComponent(initialProps);
-    const groupButtonElems = queryAllByTestId("groupButton");
-    expect(groupButtonElems.length).toBe(5);
+    const { queryAllByTestId } = renderWithRouter(
+      <Groups group={GROUP.YEAR} />
+    );
+    const groupButtonPrimaryElem = queryAllByTestId("groupButtonPrimary");
+    const groupButtonSecondaryElems = queryAllByTestId("groupButtonSecondary");
+    expect(groupButtonPrimaryElem.length).toBe(1);
+    expect(groupButtonSecondaryElems.length).toBe(4);
   });
 
-  test("calls setGroup when button is clicked", () => {
+  test("changes to correct route on button click", () => {
     Object.values(GROUP).forEach((group) => {
-      const { getByText } = renderComponent(initialProps);
+      const { history, getByText } = renderWithRouter(
+        <Groups group={GROUP.RANDOM} />
+      );
+      const route = `/books/${group}`;
+      const testid = `groupButton${capitalizeFirstLetter(group)}`;
       fireEvent.click(getByText(capitalizeFirstLetter(group)));
-      expect(initialProps.setGroup).toHaveBeenCalled();
+      // fireEvent.click(getByTestId(testid));
+      expect(history.location.pathname).toBe(route);
       cleanup();
     });
   });

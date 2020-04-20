@@ -37,10 +37,13 @@ export interface IProps {
 }
 
 const StyledGroupButton: FC<IProps> = (props: IProps) => (
-  <Link to={`/books/${props.group}`} data-testid="groupButton">
+  <Link
+    to={`/books/${props.group}`}
+    data-testid={`groupButton${capitalizeFirstLetter(props.group)}`}
+  >
     <GroupButton
       primary={props.primary}
-      // onClick={() => props.handleClick(props.group)}
+      data-testid={`groupButton${props.primary ? "Primary" : "Secondary"}`}
     >
       <RobotoBold>{capitalizeFirstLetter(props.group)}</RobotoBold>
     </GroupButton>

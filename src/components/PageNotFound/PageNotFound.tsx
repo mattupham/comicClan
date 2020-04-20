@@ -23,9 +23,7 @@ const PageNotFound: FC = () => {
     // function that counts down from a specified number of seconds
     const countDown = setTimeout(() => setSeconds(seconds - 1), 1000);
 
-    return () => {
-      clearTimeout(countDown);
-    };
+    return () => clearTimeout(countDown);
   }, [seconds]);
 
   if (seconds <= 0) {

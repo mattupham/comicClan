@@ -1,7 +1,6 @@
 import GroupButton from "components/GroupButton/GroupButton";
 import React, { FC } from "react";
 import { Box } from "rebass";
-import { useParams } from "react-router-dom";
 
 export enum GROUP {
   YEAR = "year",
@@ -16,16 +15,12 @@ interface GroupButton {
   selected: boolean;
 }
 
-// export interface IProps {
-//   group: GROUP;
-// }
-
-// type AllProps = IProps;
+export interface IProps {
+  group: GROUP;
+}
 
 // renders a list of group buttons
-const Groups: FC = () => {
-  const { group } = useParams();
-
+const Groups: FC<IProps> = ({ group }: IProps) => {
   return (
     <Box className="groupOptions" data-testid="groupOptions">
       <GroupButton primary={group === GROUP.YEAR} group={GROUP.YEAR} />

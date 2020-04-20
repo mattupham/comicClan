@@ -3,7 +3,7 @@ import { GROUP } from "components/Groups/Groups";
 import Groups from "components/Groups/Groups";
 import Search from "components/Search/Search";
 import React, { FC, useEffect } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useParams } from "react-router-dom";
 import { IDispatchToProps } from "state/ducks/book/types";
 import BookPage from "components/BookPage/BookPage";
 import GroupedBooks from "components/GroupedBooks/GroupedBooks";
@@ -45,6 +45,9 @@ const StyledMain: FC<AllProps> = ({
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
+
+  const { group } = useParams();
+
   return (
     <Main className="main" data-testid="main">
       {loading ? (
@@ -62,7 +65,7 @@ const StyledMain: FC<AllProps> = ({
             children={({ match }) => (
               <>
                 <Search fetchBooks={(s) => fetchBooks(s)} />
-                <Groups />
+                <Groups group={group as GROUP} />
                 {bookData.length === 0 ? (
                   <BooksNotFound />
                 ) : (
