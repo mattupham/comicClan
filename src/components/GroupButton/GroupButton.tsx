@@ -32,7 +32,6 @@ const GroupButton = styled(Button)`
 
 export interface IProps {
   primary: boolean;
-  // handleClick: (groupOption: GROUP) => void;
   group: GROUP;
 }
 

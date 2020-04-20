@@ -2,7 +2,7 @@ import Groups from "components/Groups/Groups";
 import { GROUP } from "components/Groups/Groups";
 import React from "react";
 import { renderWithRouter } from "utils/testUtils";
-import { fireEvent, cleanup, getByTestId } from "@testing-library/react";
+import { fireEvent, cleanup } from "@testing-library/react";
 import { capitalizeFirstLetter } from "utils/utils";
 
 afterAll(() => {
@@ -26,9 +26,7 @@ describe("groups", () => {
         <Groups group={GROUP.RANDOM} />
       );
       const route = `/books/${group}`;
-      const testid = `groupButton${capitalizeFirstLetter(group)}`;
       fireEvent.click(getByText(capitalizeFirstLetter(group)));
-      // fireEvent.click(getByTestId(testid));
       expect(history.location.pathname).toBe(route);
       cleanup();
     });

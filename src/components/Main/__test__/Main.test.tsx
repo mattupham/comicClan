@@ -1,4 +1,4 @@
-import Main, { AllProps } from "components/Main/Main";
+import Main, { AllProps, groupRegex, groupList } from "components/Main/Main";
 import React from "react";
 import { cleanup, fireEvent } from "@testing-library/react";
 import { GROUP } from "components/Groups/Groups";
@@ -79,7 +79,17 @@ describe("main", () => {
     });
     expect(getByText("Page Not Found")).toBeInTheDocument();
   });
-});
 
-// TODO add renders no books when none are found
-// renders not found when not found
+  test("if book list return empty, shows No Results Found page", () => {
+    const { getByText, queryByTestId, queryAllByTestId } = renderWithRouter(
+      <Main {...initialProps} bookData={[]} />
+    );
+    expect(getByText("No results found")).toBeInTheDocument();
+    expect(queryByTestId("bookPage")).toBeNull();
+    expect(queryAllByTestId("bookLink").length).toBe(0);
+  });
+
+  test("creates group regex correctly", () => {
+    expect(groupRegex(groupList)).toBe("(year|writer|artist|owner|random)");
+  });
+});

@@ -27,11 +27,11 @@ interface IProps {
   bookData: IBook[];
 }
 
-const groupList: GROUP[] = Object.values(GROUP);
+export const groupList: GROUP[] = Object.values(GROUP);
 
 // generates group regex to limit routes
-const groupRegex =
-  groupList.reduce((acc, cur, index) => {
+export const groupRegex = (arr: GROUP[]) =>
+  arr.reduce((acc, cur, index) => {
     return (acc += (index === 0 ? "" : "|") + cur);
   }, "(") + ")";
 
@@ -61,7 +61,7 @@ const StyledMain: FC<AllProps> = ({
           </Route>
           <Route
             exact
-            path={`/books/:group${groupRegex}`}
+            path={`/books/:group${groupRegex(groupList)}`}
             children={({ match }) => (
               <>
                 <Search fetchBooks={(s) => fetchBooks(s)} />
