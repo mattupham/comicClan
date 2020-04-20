@@ -28,7 +28,6 @@ const BookList: FC<IProps> = (props: IProps) => {
         </GroupTitle>
       )}
       <Box
-        mt={isRandom ? "6rem" : "0rem"}
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, 20rem)",
