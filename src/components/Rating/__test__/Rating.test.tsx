@@ -2,10 +2,6 @@ import Rating from "components/Rating/Rating";
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
 
-afterAll(() => {
-  cleanup();
-});
-
 describe("rating", () => {
   test("number of stars render correctly", () => {
     [1, 2, 3, 4, 5].forEach((rating) => {

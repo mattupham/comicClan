@@ -14,10 +14,6 @@ const initialProps: IProps = {
 const renderComponent = (props: IProps) =>
   renderWithRouter(<BookList {...props} />);
 
-afterAll(() => {
-  cleanup();
-});
-
 describe("bookList", () => {
   test("does not render group value when Random and renders book list", () => {
     const { queryByTestId, queryAllByTestId } = renderComponent({

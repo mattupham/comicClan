@@ -1,6 +1,6 @@
 import App from "components/App/App";
 import React from "react";
-import { cleanup } from "@testing-library/react";
+
 import "@testing-library/jest-dom/extend-expect";
 import { renderWithAll } from "utils/testUtils";
 
@@ -8,10 +8,6 @@ const renderComponent = () => renderWithAll(<App />);
 
 beforeAll(() => {
   jest.spyOn(window, "scrollTo").mockImplementation(() => {});
-});
-
-afterAll(() => {
-  cleanup();
 });
 
 describe("app", () => {

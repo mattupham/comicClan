@@ -1,7 +1,6 @@
 import BookDetails, { IProps } from "components/BookDetails/BookDetails";
 import React from "react";
 import { renderWithRouter, getMockBookData } from "utils/testUtils";
-import { cleanup } from "@testing-library/react";
 
 const initialProps: IProps = {
   book: getMockBookData()[0],
@@ -9,10 +8,6 @@ const initialProps: IProps = {
 
 const renderComponent = (props: IProps) =>
   renderWithRouter(<BookDetails {...props} />);
-
-afterAll(() => {
-  cleanup();
-});
 
 describe("bookDetails", () => {
   test("bookDetails contains all respective props", () => {

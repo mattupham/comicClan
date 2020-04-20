@@ -19,10 +19,6 @@ beforeAll(() => {
   jest.spyOn(window, "scrollTo").mockImplementation(() => {});
 });
 
-afterAll(() => {
-  cleanup();
-});
-
 describe("main", () => {
   test("main renders correct components", () => {
     const { getByTestId, getAllByTestId } = renderComponent();

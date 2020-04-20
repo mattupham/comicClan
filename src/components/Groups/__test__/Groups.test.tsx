@@ -5,10 +5,6 @@ import { renderWithRouter } from "utils/testUtils";
 import { fireEvent, cleanup } from "@testing-library/react";
 import { capitalizeFirstLetter } from "utils/utils";
 
-afterAll(() => {
-  cleanup();
-});
-
 describe("groups", () => {
   test("should render all 5 group buttons", () => {
     const { queryAllByTestId } = renderWithRouter(

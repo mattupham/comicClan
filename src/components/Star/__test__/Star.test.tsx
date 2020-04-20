@@ -1,15 +1,11 @@
 import Star, { StarType, IProps } from "components/Star/Star";
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 const initialProps: IProps = {
   type: StarType.FULL,
   index: 1,
 };
-
-afterAll(() => {
-  cleanup();
-});
 
 describe("star", () => {
   test("full stars render correctly", () => {

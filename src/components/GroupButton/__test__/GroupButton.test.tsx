@@ -13,10 +13,6 @@ const initialProps: IProps = {
 const renderComponent = (props: IProps) =>
   renderWithRouter(<GroupButton {...props} />);
 
-afterAll(() => {
-  cleanup();
-});
-
 describe("group button", () => {
   test("button name is equivalent to passed in group", () => {
     const { getByText } = renderComponent(initialProps);

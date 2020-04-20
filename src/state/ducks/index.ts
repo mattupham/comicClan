@@ -10,7 +10,6 @@ import { bookReducer } from "state/ducks/book/reducers";
 import bookSaga from "state/ducks/book/sagas";
 import { IBookState } from "state/ducks/book/types";
 
-// The top-level state object
 export interface IApplicationState {
   bookData: IBookState;
 }

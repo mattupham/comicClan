@@ -39,6 +39,7 @@ export const sortByAlph = <T>(array: T[]): T[] => {
 
 // type for grouping
 export type GroupedTuple = [string, IBook[]];
+
 // allow all but random type
 export type GroupKey = GROUP.YEAR | GROUP.WRITER | GROUP.ARTIST | GROUP.OWNER;
 

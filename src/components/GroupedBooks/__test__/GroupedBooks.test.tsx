@@ -1,7 +1,6 @@
 import GroupedBooks, { IProps } from "components/GroupedBooks/GroupedBooks";
 import React from "react";
 import { renderWithRouter, getMockBookData } from "utils/testUtils";
-import { cleanup } from "@testing-library/react";
 import { GROUP } from "components/Groups/Groups";
 
 const initialProps: IProps = {
@@ -11,10 +10,6 @@ const initialProps: IProps = {
 
 const renderComponent = () =>
   renderWithRouter(<GroupedBooks {...initialProps} />);
-
-afterAll(() => {
-  cleanup();
-});
 
 describe("groupedBooks", () => {
   test("renders bookList", () => {

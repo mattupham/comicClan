@@ -1,7 +1,6 @@
 import Book, { IProps } from "components/Book/Book";
 import React from "react";
 import { renderWithRouter } from "utils/testUtils";
-import { cleanup } from "@testing-library/react";
 
 const initialProps: IProps = {
   username: "username",
@@ -11,10 +10,6 @@ const initialProps: IProps = {
 
 const renderComponent = (props: IProps) =>
   renderWithRouter(<Book {...props} />);
-
-afterAll(() => {
-  cleanup();
-});
 
 describe("book", () => {
   test("book contains all respective props", () => {

@@ -1,14 +1,10 @@
 import Search from "components/Search/Search";
 import React from "react";
-import { cleanup, render, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 const initialProps = {
   fetchBooks: jest.fn(),
 };
-
-afterAll(() => {
-  cleanup();
-});
 
 describe("search", () => {
   test("search icon renders correctly", () => {

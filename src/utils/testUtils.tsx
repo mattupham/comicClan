@@ -34,9 +34,6 @@ export const renderWithRouter: any = (
   );
   return {
     ...render(ui, { wrapper: Wrapper }),
-    // adding `history` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
     history,
   };
 };
@@ -47,15 +44,7 @@ const initialTestingState: IApplicationState = {
     loading: false,
     errors: [],
   },
-  // group: {
-  //   group: GROUP.YEAR,
-  // },
 };
-
-interface RouterInterface {
-  route?: string;
-  history?: any;
-}
 
 interface ReduxInterface {
   initialState?: any;
@@ -79,9 +68,6 @@ export const renderWithAll: any = (
   );
   return {
     ...render(ui, { wrapper: Wrapper }),
-    // adding `history` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
     history,
   };
 };

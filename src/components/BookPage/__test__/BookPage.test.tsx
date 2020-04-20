@@ -1,7 +1,6 @@
 import BookPage, { IProps } from "components/BookPage/BookPage";
 import React from "react";
 import { renderWithRouter, getMockBookData } from "utils/testUtils";
-import { cleanup } from "@testing-library/react";
 
 const initialProps: IProps = {
   books: getMockBookData(),
@@ -10,10 +9,6 @@ const initialProps: IProps = {
 
 const renderComponent = (props: IProps) =>
   renderWithRouter(<BookPage {...props} />);
-
-afterAll(() => {
-  cleanup();
-});
 
 describe("bookPage", () => {
   test("bookPage contains all child components", () => {
