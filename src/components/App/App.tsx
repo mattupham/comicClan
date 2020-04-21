@@ -4,9 +4,19 @@ import { Box, Flex } from "rebass";
 import MainContainer from "containers/MainContainer";
 
 const App: FC = () => {
+  //@ts-ignore
+
   return (
     <Box className="App">
-      <Flex flexDirection="column" minHeight="100vh">
+      <Flex
+        flexDirection="column"
+        minHeight={[
+          // fix for safari mobile browser (iOS)
+          window.innerHeight ? +window.innerHeight + "px" : "100vh",
+          "100vh",
+          "100vh",
+        ]}
+      >
         <Header />
         <MainContainer />
       </Flex>
