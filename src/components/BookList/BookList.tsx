@@ -26,7 +26,7 @@ const BookList: FC<IProps> = (props: IProps) => {
         <GroupTitle
           data-testid="groupTitle"
           mb="3.2rem"
-          textAlign={["center", "center", "left"]}
+          textAlign={["center", "left", "left"]}
           sx={{ wordWrap: "break-word" }}
         >
           {props.groupValue}
