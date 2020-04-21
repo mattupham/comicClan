@@ -19,7 +19,7 @@ const Title = styled(RobotoMed)`
 
 const BackLink: FC = () => {
   return (
-    <Box mt="3.2rem">
+    <Box mt={["2rem", "3.2rem", "3.2rem"]}>
       <Link to="/" style={{ textDecoration: "none" }} data-testid="backLink">
         <Flex flexDirection="row" alignItems="flex-end">
           <Box mb=".05rem">

@@ -11,17 +11,19 @@ const Container = styled(Flex)`
   flex: 1 1 auto;
 `;
 
-const CenterBox = styled(RobotoBold)`
+const TextCenter = styled(RobotoBold)`
   text-align: center;
 `;
 
 const BooksNotFound = () => (
   <Container>
-    <CenterBox fontSize="10rem">No results found</CenterBox>
-    <CenterBox mt="6rem" fontSize="4rem">
+    <TextCenter fontSize={["6rem", "8rem", "10rem"]}>
+      No results found
+    </TextCenter>
+    <TextCenter mt="6rem" fontSize={["2.4rem", "3.2rem", "4rem"]}>
       Please make sure your words are spelled correctly or use less or different
       keywords
-    </CenterBox>
+    </TextCenter>
   </Container>
 );
 

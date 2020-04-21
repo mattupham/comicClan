@@ -29,8 +29,17 @@ const BookPage: FC<IProps> = (props: IProps) => {
   return (
     <Flex flexDirection="column" className="bookPage" data-testid="bookPage">
       <BackLink />
-      <Flex mt="3.8rem" mb="7.258rem" flexDirection="row">
-        <Box minHeight="51.992rem" minWidth="34rem" marginRight="2.4rem">
+      <Flex
+        mt={["2rem", "2rem", "3.8rem"]}
+        mb={["4rem", "3rem", "7.258rem"]}
+        flexDirection={["column", "row", "row"]}
+      >
+        <Box
+          minHeight={["30rem", "51.992rem", "51.992rem"]}
+          minWidth={["20  rem", "34rem", "34rem"]}
+          marginRight={["0rem", "2.4rem", "2.4rem"]}
+          flex="1 1 auto"
+        >
           <BookImage
             src={props.selectedBook.image}
             data-testid="bookPageBookImage"
@@ -39,7 +48,7 @@ const BookPage: FC<IProps> = (props: IProps) => {
         <BookDetails book={props.selectedBook} />
       </Flex>
       <HR />
-      <Flex flexDirection="column" mt="3.25rem" mb="0.4rem">
+      <Flex flexDirection="column" mt={["2rem", "2rem", "3.25rem"]} mb="0.4rem">
         <RandomBookTitle>Other Random Books</RandomBookTitle>
       </Flex>
       <GroupedBooks selectedGroup={GROUP.RANDOM} bookData={props.books} />

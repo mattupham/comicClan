@@ -10,15 +10,15 @@ import GroupedBooks from "components/GroupedBooks/GroupedBooks";
 import styled from "styled-components";
 import PageNotFound from "components/PageNotFound/PageNotFound";
 import BooksNotFound from "components/BooksNotFound/BooksNotFound";
-import { Flex } from "rebass";
+import { Flex, Box } from "rebass";
 import { Loader } from "components/Styled/Styled";
 import { COLORS } from "components/Styled/Styled";
 
-const Main = styled.main`
+const Main = styled(Box)`
   background: ${COLORS.Black};
   flex: 1 1 auto;
-  padding-right: 2.8rem;
-  padding-left: 2.8rem;
+  /* padding-right: 2.8rem; */
+  /* padding-left: 2.8rem; */
   display: flex;
   flex-direction: column;
 `;
@@ -47,7 +47,11 @@ const StyledMain: FC<AllProps> = ({
   }, [fetchBooks]);
 
   return (
-    <Main className="main" data-testid="main">
+    <Main
+      className="main"
+      data-testid="main"
+      px={["1.5rem", "1.5rem", "2.8rem"]}
+    >
       {loading ? (
         <Flex justifyContent="center" alignItems="center" flex="1 1 auto">
           <Loader />

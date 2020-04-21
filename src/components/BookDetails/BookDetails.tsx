@@ -8,8 +8,6 @@ import { RobotoBold, RobotoMed, COLORS } from "components/Styled/Styled";
 const BookName = styled(RobotoMed)`
   font-size: 3.2rem;
   color: ${COLORS.LightGrayMed};
-
-  margin-top: 0;
   margin-bottom: 0.3rem;
   margin-right: 3.9rem;
 `;
@@ -44,8 +42,8 @@ export interface IProps {
 
 const BookDetails: FC<IProps> = (props: IProps) => (
   <Flex flexDirection="column" width="100%" data-testid="bookDetails">
-    <Flex flexDirection="row" width="100%">
-      <BookName data-testid="bookDetailsName">
+    <Flex flexDirection={["column", "column", "row"]} width="100%">
+      <BookName data-testid="bookDetailsName" mt={["1rem", "0rem", "0rem"]}>
         {props.book.name} {`(${props.book.year})`}
       </BookName>
       <Rating rating={props.book.rating} />

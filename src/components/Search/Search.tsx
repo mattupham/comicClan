@@ -58,7 +58,11 @@ const StyledSearch: FC<IDispatchToProps> = ({
   };
 
   return (
-    <Flex data-testid="search" flex="0 0 12.9rem" alignItems="center">
+    <Flex
+      data-testid="search"
+      flex={["0 0 11rem", "0 0 12.9rem", "0 0 12.9rem"]}
+      alignItems="center"
+    >
       <Form onSubmit={handleSubmit} data-testid="searchForm">
         <SearchBox>
           <Box ml="1.819rem" mt="1.819rem" mb="1.811rem" mr="1.811rem">

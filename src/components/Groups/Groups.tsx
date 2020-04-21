@@ -1,6 +1,6 @@
 import GroupButton from "components/GroupButton/GroupButton";
 import React, { FC } from "react";
-import { Box } from "rebass";
+import { Flex } from "rebass";
 
 export enum GROUP {
   YEAR = "year",
@@ -21,11 +21,15 @@ export interface IProps {
 
 // renders a list of group buttons
 const Groups: FC<IProps> = (props: IProps) => (
-  <Box className="groupOptions" data-testid="groupOptions">
+  <Flex
+    className="groupOptions"
+    data-testid="groupOptions"
+    justifyContent={["space-evenly", "flex-start", "flex-start"]}
+  >
     {Object.values(GROUP).map((group) => (
       <GroupButton key={group} primary={props.group === group} group={group} />
     ))}
-  </Box>
+  </Flex>
 );
 
 export default Groups;

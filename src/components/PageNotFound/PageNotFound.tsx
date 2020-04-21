@@ -16,6 +16,10 @@ const Container = styled(Flex)`
   flex: 1 1 auto;
 `;
 
+const TextCenter = styled(RobotoBold)`
+  text-align: center;
+`;
+
 const PageNotFound: FC = () => {
   const [seconds, setSeconds] = useState(5);
 
@@ -31,14 +35,14 @@ const PageNotFound: FC = () => {
   } else {
     return (
       <Container>
-        <Box fontSize="10rem">
-          <RobotoBold>Page Not Found</RobotoBold>
+        <Box fontSize={["6rem", "8rem", "10rem"]}>
+          <TextCenter>Page Not Found</TextCenter>
         </Box>
-        <Box mt="8rem" fontSize="4rem">
-          <RobotoBold>Redirecting You Back to the home page in:</RobotoBold>
+        <Box mt="8rem" fontSize={["2.4rem", "3.2rem", "4rem"]}>
+          <TextCenter>Redirecting You Back to the home page in:</TextCenter>
         </Box>
-        <Box mt="3rem" fontSize="8rem">
-          <RobotoBold>{seconds}</RobotoBold>
+        <Box mt="3rem" fontSize={["4.8rem", "6.4rem", "8rem"]}>
+          <TextCenter>{seconds}</TextCenter>
         </Box>
       </Container>
     );

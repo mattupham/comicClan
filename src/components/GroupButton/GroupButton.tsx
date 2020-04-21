@@ -9,10 +9,7 @@ import { Button } from "rebass";
 const GroupButton = styled(Button)`
   background: none;
   border: none;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
   height: 3.8rem;
-  font-size: 1.8rem;
   line-height: 2.1rem;
   color: ${COLORS.MedGray};
   &:focus {
@@ -42,6 +39,8 @@ const StyledGroupButton: FC<IProps> = (props: IProps) => (
   >
     <GroupButton
       primary={props.primary}
+      fontSize={["1.4rem", "1.8rem", "1.8rem"]}
+      px={[".9rem", "1.5rem", "1.5rem"]}
       data-testid={`groupButton${props.primary ? "Primary" : "Secondary"}`}
     >
       <RobotoBold>{capitalizeFirstLetter(props.group)}</RobotoBold>
