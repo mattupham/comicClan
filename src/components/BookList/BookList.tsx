@@ -23,7 +23,12 @@ const BookList: FC<IProps> = (props: IProps) => {
   return (
     <Box className="bookList">
       {!isRandom && (
-        <GroupTitle data-testid="groupTitle" mb="3.2rem">
+        <GroupTitle
+          data-testid="groupTitle"
+          mb="3.2rem"
+          textAlign={["center", "center", "left"]}
+          sx={{ wordWrap: "break-word" }}
+        >
           {props.groupValue}
         </GroupTitle>
       )}
@@ -32,6 +37,9 @@ const BookList: FC<IProps> = (props: IProps) => {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, 20rem)",
           gridGap: "6rem 9.6rem",
+          justifyContent: isRandom
+            ? ["center", "center", "normal"]
+            : ["center", "normal", "normal"],
         }}
       >
         {props.books.map((book, index) => (

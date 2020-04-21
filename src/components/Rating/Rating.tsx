@@ -8,7 +8,12 @@ export interface IProps {
 }
 
 const Rating: FC<IProps> = (props: IProps) => (
-  <Flex pt="1.125rem" minWidth="17.342rem" data-testid="rating">
+  <Flex
+    pt="1.125rem"
+    minWidth="17.342rem"
+    data-testid="rating"
+    margin={["auto", "0rem", "0rem"]}
+  >
     {createArrayFromRange(props.rating).map((num, index) => (
       <Star type={StarType.FULL} index={index} key={index} />
     ))}

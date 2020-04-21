@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Box, Flex } from "rebass";
+import { Flex } from "rebass";
 import styled from "styled-components";
 import { HR } from "components/Styled/Styled";
 import BookDetails from "components/BookDetails/BookDetails";
@@ -54,7 +54,9 @@ const BookPage: FC<IProps> = (props: IProps) => {
       </Flex>
       <HR />
       <Flex flexDirection="column" mt={["2rem", "2rem", "3.25rem"]} mb="0.4rem">
-        <RandomBookTitle>Other Random Books</RandomBookTitle>
+        <RandomBookTitle textAlign={["center", "center", "left"]}>
+          Other Random Books
+        </RandomBookTitle>
       </Flex>
       <GroupedBooks selectedGroup={GROUP.RANDOM} bookData={props.books} />
     </Flex>
