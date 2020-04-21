@@ -4,8 +4,6 @@ import { Box, Flex } from "rebass";
 import MainContainer from "containers/MainContainer";
 
 const App: FC = () => {
-  //@ts-ignore
-
   return (
     <Box className="App">
       <Flex
