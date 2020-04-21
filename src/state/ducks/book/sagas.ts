@@ -4,9 +4,6 @@ import apiCaller from "state/utils/apiCaller";
 import { fetchBooksError, fetchBooksSuccess } from "state/ducks/book/actions";
 import { IBook, BookActionTypes } from "state/ducks/book/types";
 
-/**
- * @desc Business logic of effect.
- */
 function* handleFetch(action: IMetaAction): Generator {
   try {
     const res: IBook[] | any = yield call(apiCaller, action.meta.queryString);
@@ -20,16 +17,10 @@ function* handleFetch(action: IMetaAction): Generator {
   }
 }
 
-/**
- * @desc Watches every specified action and runs effect method and passes action args to it
- */
 function* watchFetchRequest(): Generator {
   yield takeEvery(BookActionTypes.FETCH_BOOKS, handleFetch);
 }
 
-/**
- * @desc saga init, forks in effects, other sagas
- */
 export default function* x() {
   yield all([fork(watchFetchRequest)]);
 }

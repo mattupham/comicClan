@@ -58,8 +58,6 @@ describe("bookList", () => {
       ...initialProps,
       books: [],
     });
-
-    // doesn't render book list
     const bookList = queryAllByTestId("bookLink");
     expect(bookList.length).toBe(0);
   });

@@ -38,12 +38,7 @@ export interface IProps {
 }
 
 const BookDetails: FC<IProps> = (props: IProps) => (
-  <Flex
-    flexDirection="column"
-    width="100%"
-    data-testid="bookDetails"
-    // justifyContent={["center", "normal", "normal"]}
-  >
+  <Flex flexDirection="column" width="100%" data-testid="bookDetails">
     <Flex flexDirection={["column", "column", "row"]} width="100%">
       <BookName
         data-testid="bookDetailsName"

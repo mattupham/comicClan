@@ -115,3 +115,9 @@ export const groupAndSortBy = (
   let sortedData = sortBy(groupedData, group);
   return sortedData;
 };
+
+// generates group regex to limit routes
+export const groupRegex = (arr: GROUP[]) =>
+  arr.reduce((acc, cur, index) => {
+    return (acc += (index === 0 ? "" : "|") + cur);
+  }, "(") + ")";

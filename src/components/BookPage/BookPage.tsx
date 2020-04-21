@@ -33,7 +33,6 @@ const BookPage: FC<IProps> = (props: IProps) => {
         mt={["2rem", "2rem", "3.8rem"]}
         mb={["4rem", "3rem", "7.258rem"]}
         flexDirection={["column", "row", "row"]}
-        // flex="1 1 auto"
         alignItems={["center", "stretch", "stretch"]}
       >
         <Flex
@@ -41,9 +40,6 @@ const BookPage: FC<IProps> = (props: IProps) => {
           minWidth={["0rem", "24rem", "34rem"]}
           maxWidth={["80vw", "100%", "100%"]}
           marginRight={["0rem", "2.4rem", "2.4rem"]}
-          // flex="1 1 auto"
-          // alignItems="center"
-          // justifyContent="center"
         >
           <BookImage
             src={props.selectedBook.image}

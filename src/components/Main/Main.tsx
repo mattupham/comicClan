@@ -11,14 +11,13 @@ import styled from "styled-components";
 import PageNotFound from "components/PageNotFound/PageNotFound";
 import BooksNotFound from "components/BooksNotFound/BooksNotFound";
 import { Flex, Box } from "rebass";
-import { Loader } from "components/Styled/Styled";
+import Loader from "components/Loader/Loader";
 import { COLORS } from "components/Styled/Styled";
+import { groupRegex } from "utils/utils";
 
 const Main = styled(Box)`
   background: ${COLORS.Black};
   flex: 1 1 auto;
-  /* padding-right: 2.8rem; */
-  /* padding-left: 2.8rem; */
   display: flex;
   flex-direction: column;
 `;
@@ -27,15 +26,9 @@ interface IProps {
   bookData: IBook[];
 }
 
-export const groupList: GROUP[] = Object.values(GROUP);
-
-// generates group regex to limit routes
-export const groupRegex = (arr: GROUP[]) =>
-  arr.reduce((acc, cur, index) => {
-    return (acc += (index === 0 ? "" : "|") + cur);
-  }, "(") + ")";
-
 export type AllProps = IProps & IDispatchToProps & IStateToProps;
+
+export const groupList: GROUP[] = Object.values(GROUP);
 
 const StyledMain: FC<AllProps> = ({
   bookData,

@@ -1,4 +1,4 @@
-import Main, { AllProps, groupRegex, groupList } from "components/Main/Main";
+import Main, { AllProps } from "components/Main/Main";
 import React from "react";
 import { cleanup, fireEvent } from "@testing-library/react";
 import { GROUP } from "components/Groups/Groups";
@@ -76,10 +76,6 @@ describe("main", () => {
     expect(getByText("No results found")).toBeInTheDocument();
     expect(queryByTestId("bookPage")).toBeNull();
     expect(queryAllByTestId("bookLink").length).toBe(0);
-  });
-
-  test("creates group regex correctly", () => {
-    expect(groupRegex(groupList)).toBe("(year|writer|artist|owner|random)");
   });
 
   test("landing on a bad page / group / bookshows 404 page", () => {

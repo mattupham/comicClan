@@ -9,6 +9,8 @@ import {
 } from "utils/utils";
 import { getMockBookData } from "utils/testUtils";
 import { GROUP } from "components/Groups/Groups";
+import { groupRegex } from "utils/utils";
+import { groupList } from "components/Main/Main";
 
 // helpers
 const bookData = getMockBookData();
@@ -139,6 +141,12 @@ describe("array sort", () => {
           });
         }
       });
+    });
+  });
+
+  describe("group regex", () => {
+    test("creates group regex correctly", () => {
+      expect(groupRegex(groupList)).toBe("(year|writer|artist|owner|random)");
     });
   });
 });
