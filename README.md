@@ -6,6 +6,18 @@ ComicClan is an online library of comic books. This library is a combined collec
 
 [ComicClan](https://comicclan.herokuapp.com/)
 
+## Features / Specifications
+
+- retrieve / display comic book data
+- group books by year, writer, artist, owner random
+- search books based on name (or partial name)
+- grouping is done by URL of app
+- whenever a book is clicked, app scrolls back to the top of the page
+- when an incorrect url is hit, redirects to 404 page, then back to home in 5 seconds
+- displays a message for empty search
+- mobile responsive
+- loader displays (pure CSS) when async calls are made
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
