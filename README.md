@@ -2,13 +2,15 @@
 
 ComicClan is an online library of comic books. This library is a combined collection of comic books owned by the community members.
 
-# Deployed on Heroku
+## Deployed on Heroku
 
 [ComicClan](https://comicclan.herokuapp.com/)
 
-# Demo
+## Demo
 
-![ComicClan Demo](demo/comicClanDemo.gif)
+|                    Desktop                     |                    Mobile                    |
+| :--------------------------------------------: | :------------------------------------------: |
+| ![Desktop Demo](demo/comicClanDesktopDemo.gif) | ![Mobile Demo](demo/comicClanMobileDemo.gif) |
 
 ## Features / Specifications
 
