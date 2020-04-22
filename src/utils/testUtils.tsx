@@ -7,7 +7,7 @@ import { IBook } from "state/ducks/book/types";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { rootReducer as reducer } from "state/ducks/index";
-import { render, RenderResult } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { IApplicationState } from "state/ducks/index";
 import "@testing-library/jest-dom/extend-expect";
 
