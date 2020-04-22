@@ -5,17 +5,6 @@ import styled from "styled-components";
 import { IDispatchToProps } from "state/ducks/book/types";
 import { COLORS } from "components/Styled/Styled";
 
-const SearchBox = styled(Box)`
-  display: inline-flex;
-  border: 1px solid ${COLORS.LightGrayLight};
-  overflow: hidden;
-  width: 100%;
-  border-radius: 0.8rem;
-  background: none;
-  height: 6rem;
-  width: 100%;
-`;
-
 const Input = styled.input`
   border: 0;
   flex: 1;
@@ -41,9 +30,16 @@ const Input = styled.input`
   color: ${COLORS.LightGrayLight};
 `;
 
-const Form = styled.form`
+const SearchForm = styled.form`
+  display: inline-flex;
+  align-items: center;
   width: 100%;
   height: 100%;
+  border: 1px solid ${COLORS.LightGrayLight};
+  overflow: hidden;
+  border-radius: 0.8rem;
+  background: none;
+  height: 6rem;
 `;
 
 const StyledSearch: FC<IDispatchToProps> = ({
@@ -63,24 +59,22 @@ const StyledSearch: FC<IDispatchToProps> = ({
       flex={["0 0 11rem", "0 0 12.9rem", "0 0 12.9rem"]}
       alignItems="center"
     >
-      <Form onSubmit={handleSubmit} data-testid="searchForm">
-        <SearchBox>
-          <Box ml="1.819rem" mt="1.819rem" mb="1.811rem" mr="1.811rem">
-            <SearchIcon data-testid="searchIcon" />
-          </Box>
-          <Box width="100%">
-            <Input
-              data-testid="searchInput"
-              type="text"
-              placeholder="Search by book name"
-              value={value}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setValue(e.target.value)
-              }
-            />
-          </Box>
-        </SearchBox>
-      </Form>
+      <SearchForm onSubmit={handleSubmit} data-testid="searchForm">
+        <Box ml="1.819rem" mt="1.819rem" mb="1.811rem" mr="1.811rem">
+          <SearchIcon data-testid="searchIcon" />
+        </Box>
+        <Box width="100%">
+          <Input
+            data-testid="searchInput"
+            type="text"
+            placeholder="Search by book name"
+            value={value}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setValue(e.target.value)
+            }
+          />
+        </Box>
+      </SearchForm>
     </Flex>
   );
 };
