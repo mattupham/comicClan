@@ -1,22 +1,28 @@
-import React from "react";
+import React, { ReactNode, FC } from "react";
 import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
+import { createMemoryHistory, MemoryHistory } from "history";
 import "@testing-library/jest-dom/extend-expect";
 import * as bookData from "state/ducks/book/__tests__/__mockData__/comicBookData.json";
 import { IBook } from "state/ducks/book/types";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { rootReducer as reducer } from "state/ducks/index";
-import { render } from "@testing-library/react";
+import { render, RenderResult } from "@testing-library/react";
 import { IApplicationState } from "state/ducks/index";
 import "@testing-library/jest-dom/extend-expect";
 
 //@ts-ignore
 export const getMockBookData = (): IBook[] => [...bookData.default];
 
-interface RouterInterface {
+type History = MemoryHistory<{} | null | undefined>;
+
+interface IRouter {
   route?: string;
-  history?: any;
+  history?: History;
+}
+
+interface IWrapper {
+  children?: ReactNode;
 }
 
 const defaultRoute = "/";
@@ -27,9 +33,9 @@ export const renderWithRouter: any = (
   {
     route = defaultRoute,
     history = createMemoryHistory({ initialEntries: [route] }),
-  }: RouterInterface = {}
+  }: IRouter = {}
 ) => {
-  const Wrapper = ({ children }: any) => (
+  const Wrapper: FC<IWrapper> = ({ children }: IWrapper) => (
     <Router history={history}>{children}</Router>
   );
   return {
@@ -47,7 +53,7 @@ const initialTestingState: IApplicationState = {
 };
 
 interface ReduxInterface {
-  initialState?: any;
+  initialState?: Partial<IApplicationState>;
   store?: any;
 }
 
@@ -59,9 +65,9 @@ export const renderWithAll: any = (
     history = createMemoryHistory({ initialEntries: [route] }),
     initialState = { ...initialTestingState },
     store = createStore(reducer, initialState),
-  }: RouterInterface & ReduxInterface = {}
+  }: IRouter & ReduxInterface = {}
 ) => {
-  const Wrapper = ({ children }: any) => (
+  const Wrapper: FC<IWrapper> = ({ children }: IWrapper) => (
     <Provider store={store}>
       <Router history={history}>{children}</Router>
     </Provider>
