@@ -87,4 +87,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Authors
 
-- **Matt Upham** - _Initial work_ - [@mattupham](https://github.com/mattupham)
+- **Matt Upham** - [@mattupham](https://github.com/mattupham)
