@@ -6,6 +6,10 @@ ComicClan is an online library of comic books. This library is a combined collec
 
 [ComicClan](https://comicclan.herokuapp.com/)
 
+# Demo
+
+![ComicClan Demo](demo/comicClanDemo.gif)
+
 ## Features / Specifications
 
 - retrieve / display comic book data
