@@ -84,7 +84,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - [React](https://reactjs.org/) - A component-based JavaScript library for building user interfaces
 - [Redux](https://redux.js.org/) - A Predictable State Container for JavaSccript Apps
 - [Redux Saga](https://redux*saga.js.org/) - A library that makes application side effects easier to manage
-- [Styled Components](https://styled*components.com/) - A way to style your React components using CSS and ES6
+- [Styled Components](https://styled-components.com/) - A way to style your React components using CSS and ES6
 - [Rebass](https://rebassjs.org/) - React Primitive UI Components built with styled system
 - [React Router](https://reacttraining.com/react-router/) - Declarative routing for React
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) - A lightweight solution for testing React components
